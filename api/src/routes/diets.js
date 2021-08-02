@@ -1,5 +1,6 @@
 const { Router } = require('express');
-//const { Diet } = require('../models/Diet')
+
+const {getDiets} = require('../controllers/index')
 
 const router = Router()
 
@@ -9,8 +10,7 @@ const router = Router()
 // Obtener todos los tipos de dieta posibles
 // En una primera instancia, cuando no exista ninguno, deberán precargar la base de datos con los tipos de datos indicados por spoonacular acá
 
-router.get('/diets', (req, res) => {
-    res.send('diets')
- })
+//http://localhost:3001/types/
+router.get('/', getDiets )
  
- module.exports = router
+ module.exports = router;

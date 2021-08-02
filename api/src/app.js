@@ -25,11 +25,20 @@ server.use((req, res, next) => {
 server.use('/', routes);
 
 // Error catching endware.
+//Control de errores generalizado para front y back
 server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
   const status = err.status || 500;
   const message = err.message || err;
   console.error(err);
   res.status(status).send(message);
 });
+
+// app.use((err, req, res) => {
+//   var error = {}
+//   error.msg = err.msg || err
+//   error.status = err.status || 500;
+//   res.status.send(error)
+// }) //si estamos en produccion, no vamos a enviar el error completo
+//   //si estamos en producion, queremos sacar el stack
 
 module.exports = server;
