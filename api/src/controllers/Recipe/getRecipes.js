@@ -1,8 +1,6 @@
-const { Op } = require("sequelize");
 const axios = require('axios').default
 
-const { Recipe, Diet } = require('../../db');
-//const { v4: uuidv4 } = require('uuid');
+const { Recipe } = require('../../db');
 
 const { dbApi } = require('../../utils/config')
 
@@ -22,7 +20,7 @@ const { dbApi } = require('../../utils/config')
 
 //ASYNC AWAIT
 //if tengo query param, hago una cosa, sino busco todos. PISTA: req.query
-function getRecipes(req, res, next) {
+function getRecipes(_req, res, next) {
   const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${dbApi}&addRecipeInformation=true&number=100`
   var apiRecipePromise = axios.get(url)
   var dbRecipePromise = Recipe.findAll()
@@ -48,7 +46,7 @@ function getRecipes(req, res, next) {
         score: receta.spoonacularScore,
         healthy: receta.healthScore,
         //steps: receta.analyzedInstructions,
-        diets: receta.diets,
+        diets: receta.diets.map(d => d),
         image: receta.image,
       }
     })
@@ -60,7 +58,7 @@ function getRecipes(req, res, next) {
         score: receta.score,
         healthy: receta.healthy,
         //steps: receta.steps,
-        diets: receta.diets,
+        diets: receta.diets.map(d => d),
         image: receta.image,
       }
     })

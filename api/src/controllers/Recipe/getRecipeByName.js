@@ -25,9 +25,7 @@ function getRecipeByName(req, res, next) {
 
     const { name } = req.query
 
-    if(name === []) return res.send('La palabra ingresada no corresponde con ninguna receta') 
-
-    const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${dbApi}&addRecipeInformation=true&query=${name}`
+    const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${dbApi}&addRecipeInformation=true&query=${name}&number=100`
     var apiRecipePromise = axios.get(url)
     var dbRecipePromise = Recipe.findAll({
         where: {
@@ -45,7 +43,7 @@ function getRecipeByName(req, res, next) {
         var apiRecipes = resultados[0].data.results
         var dbRecipes = resultados[1]
 
-        if(apiRecipes.length === 0 || []) return res.send('La palabra ingresada no corresponde con ninguna receta')
+        if(apiRecipes.length === 0 || dbRecipes === 0) return res.send('La palabra ingresada no corresponde con ninguna receta')
         //aca los normalizo
         apiRecipes = apiRecipes.map((receta) => {
             return {

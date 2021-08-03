@@ -20,9 +20,15 @@
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
 
+//Lo agrego para que al iniciar el servidor precargue mi Base de Datos
+//const { getRecipes } = require('./src/controllers/Recipe/getRecipes')
+
 // Syncing all the models at once.
-conn.sync({ force: true }).then(() => {
+conn.sync({ force: true })
+//.then(() => console.log('Base de datos conectada'))
+//.then(()=> getRecipes())
+.then(() => {
   server.listen(3001, () => {
-    console.log('Listening at 3001'); // eslint-disable-line no-console
+    console.log('Server listening at port 3001'); // eslint-disable-line no-console
   });
 });
