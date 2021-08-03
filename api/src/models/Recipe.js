@@ -9,7 +9,7 @@ const { DataTypes } = require('sequelize');
 // Resumen del plato *
 // Puntuación
 // Nivel de "comida saludable"
-// Paso a paso
+// Paso a paso ES UN QUILOMBO
 
 module.exports = (sequelize) => {
   // defino el modelo
@@ -28,7 +28,7 @@ module.exports = (sequelize) => {
     },
     description: {
       type: DataTypes.TEXT,
-      //allowNull: false,
+      allowNull: false,
     },
     score: {
       type: DataTypes.INTEGER,
@@ -36,9 +36,9 @@ module.exports = (sequelize) => {
     healthy: {
       type: DataTypes.INTEGER,
     },
-    steps: {
-      type: DataTypes.TEXT,
-    },
+    // steps: {
+    //   type: DataTypes.TEXT,
+    // },
     image : {
       type: DataTypes.STRING
     }
