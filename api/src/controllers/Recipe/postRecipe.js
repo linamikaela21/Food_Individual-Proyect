@@ -1,5 +1,42 @@
-function postRecipe (req, res, next) {
-    res.send('Soy la funcion postRecipe')
+const { Recipe, Diet } = require('../../db');
+
+const { v4: uuidv4 } = require('uuid')
+
+//  POST /recipe:
+// Recibe los datos recolectados desde el formulario controlado de la ruta de creación de recetas por body
+// Crea una receta en la base de datos
+// http://localhost:3001/addrecipe
+
+// function postRecipe(req, res, next) {
+//     res.send('Soy la funcion postRecipe')
+// }
+
+// http://localhost:3001/recipes/addrecipe
+postRecipe = async (req, res) => {
+    const {
+        name,
+        description,
+        score,
+        healthy,
+        image
+    } = req.body
+
+    const createdRecipe = await Recipe.create({
+        name,
+        id: uuidv4(),
+        description,
+        score,
+        healthy,
+        image
+    })
+
+    const createdDiet = await Diet.findAll({
+        where: {
+            name: name
+        }
+    })
+    createdRecipe.addDiets(createdDiet)
+    return res.status(200).send('Personaje creado con exito')
 }
 
 // PARA EL POST DEL FORMULARIO
@@ -17,5 +54,5 @@ function postRecipe (req, res, next) {
 
 
 module.exports = {
-postRecipe
+    postRecipe
 }

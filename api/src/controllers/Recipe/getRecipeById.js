@@ -1,8 +1,6 @@
 const axios = require('axios').default
-const { Op } = require("sequelize");
 
-const { Recipe, Diet, Recipe_Diet } = require('../../db');
-//const { v4: uuidv4 } = require('uuid');
+const { Recipe, Diet} = require('../../db');
 
 const { dbApi } = require('../../utils/config')
 
