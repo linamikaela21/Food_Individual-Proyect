@@ -1,6 +1,6 @@
 const { Router } = require('express');
 
-const { getRecipes, getRecipeByName, getRecipeById, postRecipe } = require('../controllers')
+const { getRecipes, getRecipeByName, getRecipeById, postRecipe } = require('../controllers/index')
 
 const router = Router()
 
