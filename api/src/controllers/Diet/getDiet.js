@@ -9,69 +9,51 @@ const { dbApi } = require('../../utils/config')
 // }
 
 getDiets = async (req, res, next) => {
-    const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${dbApi}&addRecipeInformation=true&number=2`
-    
-    const info = await axios.get(url).then(result => result.data.results)
 
-    let diets = info.map(elem => elem.diets)
+    try {
+        const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${dbApi}&addRecipeInformation=true&number=100`
+        
+        const info = await axios.get(url).then(result => result.data.results)
     
-    diets = diets.flat()
-    
-    diets.forEach(diet => {
-        Diet.findOrCreate({
-            where: {
-                name: diet
-            }
-        })
-    })
+        let diets = info.map(elem => elem.diets)
+        
+        diets = diets.flat()
 
-    const allDiets = await Diet.findAll();
-    return res.status(200).send(allDiets)
+        console.log(diets)
+
+        const modelDiets = 
+       ['gluten_free',
+        'dairy_free',
+        'lacto_vegetarian',
+        'ovo_vegetarian',
+        'vegetarian',
+        'vegan',
+        'dairy?free',
+        'ketogenic',
+        'vegan',
+        'pescetarian',
+        'paleo',
+        'primal',
+        'whole30']
+
+        diets.forEach(diet => {
+        if(diets === []) {
+            return modelDiets
+        } else {
+                Diet.findOrCreate({
+                    where: {
+                        name: diet
+                    }
+                })
+        }})
+        
+        const allDiets = await Diet.findAll();
+        return res.status(200).send(allDiets)
+        
+    } catch (error) {
+        next(error)
+    }
 }
-
-
-// getDiets = (_req, res, next)  => {
-//     const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${dbApi}&addRecipeInformation=true&number=100`
-//     var apiRecipePromise = axios.get(url)
-//     var dbRecipePromise = Recipe.findAll()
-  
-//     return Promise.all([
-//       apiRecipePromise,
-//       dbRecipePromise
-//     ]).then(resultados => {
-//       var apiRecipes = resultados[0].data.results
-//       var dbRecipes = resultados[1]
-  
-//       apiRecipes.map(diet => (
-//           for (let i = 0; i < diet.length; i++) diet[i]})
-
-//       //   var dietsBDMap = []
-//       // dbRecipes.diets.map(diet => (
-//       //   dietsMap.push(diets.name)
-//       // ))
-  
-//       //aca los normalizo
-//       apiRecipes = apiRecipes.map((receta) => {
-//         return {
-//           id: receta.id,
-//           name: receta.title,
-//           diets: receta.diets.map(d => d),
-//         }
-//       })
-//       dbRecipes = dbRecipes.map((receta) => {
-//         return {
-//           id: receta.id,
-//           name: receta.name,
-//           diets: receta.diets.map(d => d),
-//         }
-//       })
-//       //aca los uno
-//       var allRecipes = apiRecipes.concat(dbRecipes)
-//       res.send(allRecipes)
-//     })
-//       .catch(error => next(error))
-//   }
-  
 
 module.exports = {
 getDiets
