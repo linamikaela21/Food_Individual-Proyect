@@ -33,15 +33,19 @@ module.exports = (sequelize) => {
     },
     score: {
       type: DataTypes.INTEGER,
+      allowNull: true,
     },
     healthy: {
       type: DataTypes.INTEGER,
+      allowNull: true,
     },
-    // steps: {
-    //   type: DataTypes.TEXT,
-    // },
+    steps: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
     image : {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      allowNull: true,
     }
   });
 };

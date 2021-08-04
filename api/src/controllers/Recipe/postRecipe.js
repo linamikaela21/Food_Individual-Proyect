@@ -36,7 +36,7 @@ postRecipe = async (req, res) => {
         }
     })
     createdRecipe.addDiets(createdDiet)
-    return res.status(200).send('Personaje creado con exito')
+    return res.status(200).send('Receta creada con exito // Recipe created successfully')
 }
 
 // PARA EL POST DEL FORMULARIO
