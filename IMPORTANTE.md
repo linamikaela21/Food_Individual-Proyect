@@ -11,8 +11,21 @@ DB_NAME: food
 
 API_KEY = de6f15017bd041ca9cc24bde0dac2f45
 
+**PASOS**
 
+**BD**
+*Creo mis modelos.
+*Uno mis tablas
 
+**BackEnd**
+*Creo mi index
+*Modularizo y creo mis rutas con funciones
+*Creo mis funciones
+
+**Font**
+*Creo mi store
+*Envuelvo mi app en mi Provider y store
+*Creo mis actions
 
 //PROMESAS
 // router.post('/', (req, res) => {
