@@ -4,7 +4,8 @@ import React from 'react';
 export function Nav() {
   return (
     <div>
-        <h1>SOY NAV LPM</h1>
+        <h3>Soy el Nav que tiene adentro la barra de busqueda</h3>
+        
       {/* <Link to='/'>
         <span>TODOS</span>
       </Link>

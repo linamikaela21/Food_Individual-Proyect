@@ -25,7 +25,12 @@ API_KEY = de6f15017bd041ca9cc24bde0dac2f45
 **Font**
 *Creo mi store
 *Envuelvo mi app en mi Provider y store
-*Creo mis actions
+*Creo mis reducers => index (Paso el rootReducer a la store)
+*Creo un archivo de constantes para pasar mis URL de mi BackEnd
+*Creo mis componentes
+*Creo mis actions => index
+*Creo el ruteo de mis componentes en mi app.js
+
 
 //PROMESAS
 // router.post('/', (req, res) => {

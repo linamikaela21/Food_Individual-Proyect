@@ -10,7 +10,7 @@ const { DataTypes } = require('sequelize');
 // Resumen del plato *
 // Puntuación
 // Nivel de "comida saludable"
-// Paso a paso ES UN QUILOMBO
+// Paso a paso 
 
 module.exports = (sequelize) => {
   // defino el modelo

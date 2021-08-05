@@ -5,14 +5,14 @@ const { getRecipes, getRecipeByName, getRecipeById, postRecipe } = require('../c
 const router = Router()
 
 //____________________________________________________________________________________
-
+http://localhost:3001/recipes/
 router.get('/', getRecipes); 
 
 // GET /recipes?name="...":
 // Obtener un listado de las recetas que contengan la palabra ingresada como query parameter
 // Si no existe ninguna receta mostrar un mensaje adecuado
 
-// http://localhost:3001/recipes/search?name=cake
+// http://localhost:3001/recipes/search?name=name
 router.get('/search', getRecipeByName); 
 
 //____________________________________________________________________________________
@@ -22,7 +22,7 @@ router.get('/search', getRecipeByName);
 // Debe traer solo los datos pedidos en la ruta de detalle de receta
 // Incluir los tipos de dieta asociados
 
-// http://localhost:3001/recipes/1
+// http://localhost:3001/recipes/:id
 router.get('/:id', getRecipeById);
 
 //Funcion para agregar una Dieta a una Receta ===> addTABLE 

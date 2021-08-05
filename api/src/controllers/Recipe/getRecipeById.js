@@ -10,7 +10,6 @@ const { dbApi } = require('../../utils/config')
 
 // http://localhost:3001/recipes/1
 
-
     getRecipeById = async (req, res, next) => {
         const { id } = req.params
         try {
