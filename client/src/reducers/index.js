@@ -2,6 +2,8 @@ import {
     GET_RECIPES,
     SEARCH_RECIPE_BY_NAME,
     SEARCH_RECIPE_BY_ID,
+    ORDER_RECIPE_ASC,
+    ORDER_RECIPE_DESC,
     ADD_RECIPE,
     GET_DIETS_TYPES
 } from '../actions/constants'
@@ -28,6 +30,14 @@ function rootReducer(state = initialState, action) {
             return {
                 ...state
             }
+            case ORDER_RECIPE_ASC:
+                return {
+                    ...state
+                }
+                case ORDER_RECIPE_DESC:
+                return {
+                    ...state
+                }
         case ADD_RECIPE:
             return {
                 ...state

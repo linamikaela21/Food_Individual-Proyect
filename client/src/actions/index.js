@@ -5,7 +5,6 @@ import { URL_ALL_RECIPES  } from '../constantes'
 import {
      GET_RECIPES,
 //     SEARCH_RECIPE_BY_NAME,
-     SEARCH_RECIPE_BY_ID,
 //     ADD_RECIPE,
 //     GET_DIETS_TYPES
 } from './constants'
@@ -23,6 +22,7 @@ import {
 //     }
 // }
 
+//Esto me trae todas las recetas a  'http://localhost:3001/recipes/
 //ASYNC AWAIT
 export function getRecipes() {
     return async function(dispatch) {

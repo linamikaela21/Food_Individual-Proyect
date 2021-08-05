@@ -1,12 +1,10 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getRecipes } from "../actions/index";
-import { RecipeDetails } from "./RecipeDetails";
+import { getRecipes } from "../../actions/index";
+import Recipe from "./Recipe";
 
-import { URL_ADD_RECIPE, URL_ALL_RECIPES } from "../constantes";
-
-export function Home() {
+export function Recipes() {
   //Para despachar mis acciones
   const dispatch = useDispatch();
 
@@ -30,7 +28,7 @@ export function Home() {
 
   return (
     <div className="content">
-      <Link to={URL_ADD_RECIPE}>CREA TU PROPIA RECETA</Link>
+      <Link to='/recipes/makeRecipe'>CREA TU PROPIA RECETA</Link>
       <div>
         <h1 className="title-home">Soy el titulo del HOME</h1>
       </div>
@@ -43,23 +41,23 @@ export function Home() {
           Cargar de nuevo mis recetas
         </button>
 
-        {/*El componente HOME ya trajo el estado inicial por ende exporto mi componente Details, 
-          mapeo la info de mi state y la paso por props a RecipeDetails */}
+        {/*El componente RECIPES ya trajo el estado inicial por ende exporto mi componente Recipe, 
+          mapeo la info de mi state y la paso por props a Recipe */}
 
         {
         allRecipes?.map((elem) => {
           return (
             <div className="Recipe">
-              <Link to={URL_ALL_RECIPES + elem.id}>
-                <RecipeDetails
-                  key={elem.id}
-                  name={elem.name}
-                  diet={elem.diet}
-                  score={elem.score}
-                  description={elem.description}
-                  healthy={elem.healthy}
-                  steps={elem.steps}
-                  image={elem.image}
+              <Link to={`/recipes/${elem?.id}`}>
+                <Recipe
+                  key={elem?.id}
+                  name={elem?.name}
+                  diet={elem?.diets}
+                  score={elem?.score}
+                  description={elem?.description}
+                  healthy={elem?.healthy}
+                  steps={elem?.steps}
+                  image={elem?.image}
                 />
               </Link>
             </div>
@@ -72,4 +70,4 @@ export function Home() {
   );
 }
 
-export default Home;
+export default Recipes;
