@@ -3,7 +3,7 @@ import axios from "axios";
 import { URL_ALL_RECIPES, URL_DIETS } from "../../constantes";
 
 
-export  function MakeRecipe() {
+export default function CreateRecipe() {
   //const {name, image, episodes} = req.body
 
   const [recipe, setRecipe] = useState({
@@ -11,7 +11,7 @@ export  function MakeRecipe() {
     description: "",
     score: "",
     healthy: "",
-    steps: "",
+    steps: [],
     image: "",
     diets: [],
   });
@@ -28,7 +28,6 @@ export  function MakeRecipe() {
     getDiets();
   }, []);
 
-  //Creo mi funcion onChange para el formulario para tener un estado general para todos mis inputs
   function onInputChange(e) {
     setRecipe((prevState) => {
       return {
@@ -38,8 +37,6 @@ export  function MakeRecipe() {
     });
   }
 
-  console.log(recipe)
-
   function addDietsToRecipe(id) {
     setRecipe({
       ...recipe,
@@ -47,72 +44,28 @@ export  function MakeRecipe() {
     });
   }
 
-  //Aca hago mi post a mi base de datos
   async function handleSubmit(e) {
     e.preventDefault();
     await axios.post(URL_ALL_RECIPES, recipe);
     alert("Se ha creado una nueva receta");
   }
-
   return (
     <form onSubmit={handleSubmit}>
       <p>
-        <label >Name</label>
+        <label htmlFor="">name</label>
         <input
           type="text"
           name="name"
           value={recipe.name}
-          placeholder="Recipe Name"
           onChange={onInputChange}
         />
       </p>
       <p>
-        <label>Description</label>
-        <input
-          type="text"
-          name="description"
-          value={recipe.description}
-          placeholder="Recipe Description"
-          onChange={onInputChange}
-        />
-      </p>
-      <p>
-        <label>Score</label>
-        <input
-           type="number"
-          name="score"
-          value={recipe.score}
-          placeholder="Recipe Score"
-          onChange={onInputChange}
-        />
-      </p>
-      <p>
-        <label>Healthy</label>
-        <input
-          type="number"
-          name="healthy"
-          value={recipe.healthy}
-          placeholder="Recipe Healthy"
-          onChange={onInputChange}
-        />
-      </p>
-      <p>
-        <label>Steps</label>
-        <textarea
-          type="textarea"
-          name="steps"
-          value={recipe.steps}
-          placeholder="Recipe Steps"
-          onChange={onInputChange}
-        />
-      </p>
-      <p>
-        <label>Image</label>
+        <label htmlFor="">image</label>
         <input
           type="text"
           name="image"
           value={recipe.image}
-          placeholder="Recipe Image"
           onChange={onInputChange}
         />
       </p>
@@ -120,10 +73,10 @@ export  function MakeRecipe() {
       {diets.map(diet => {
                 return <div>
                     {diet.name}
-                    <button 
+                    <buttton 
                         onClick={() => addDietsToRecipe(diet.id)}>
                             Agregar dieta
-                    </button>
+                    </buttton>
                 </div>
             })}
       </div>
@@ -131,5 +84,3 @@ export  function MakeRecipe() {
     </form>
   );
 }
-
-export default MakeRecipe;

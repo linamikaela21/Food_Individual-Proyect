@@ -36,15 +36,4 @@ export function getRecipes() {
     }
 }
 
-// export function getRecipesById() {
-//     return async function(dispatch) {
-//         var allRecipes = await axios (URL_ALL_RECIPES, {
-
-//         })
-//         return dispatch({
-//                 type: SEARCH_RECIPE_BY_ID,
-//                 payload: allRecipes.data
-//             })
-//     }
-// }
 

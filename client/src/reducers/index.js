@@ -11,7 +11,6 @@ import {
 const initialState = {
     recipes: [],
     searchRecipesByName: [],
-    searchRecipesByID: [],
     diets: []
 }
 
@@ -23,10 +22,6 @@ function rootReducer(state = initialState, action) {
                 recipes: action.payload
             }
         case SEARCH_RECIPE_BY_NAME:
-            return {
-                ...state
-            }
-        case SEARCH_RECIPE_BY_ID:
             return {
                 ...state
             }
