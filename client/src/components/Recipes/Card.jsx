@@ -1,6 +1,6 @@
-import "./Recipe.css";
+import "./Card.css";
 
-const Recipe = ({ name, diet, image }) => {
+const Card = ({ name, diet, image }) => {
   return (
     // <div className="content-recipe">
       <div className="card-recipe">
@@ -18,4 +18,4 @@ const Recipe = ({ name, diet, image }) => {
   );
 };
 
-export default Recipe;
+export default Card;

@@ -1,11 +1,8 @@
 import {
     GET_RECIPES,
-    // FILTER_BY_DIET,
-    // SEARCH_RECIPE_BY_NAME,
-    // SEARCH_RECIPE_BY_ID,
-    // ORDER_RECIPE_ASC,
-    // ORDER_RECIPE_DESC,
-    // ADD_RECIPE,
+    ORDER_RECIPE_BY_NAME,
+    ORDER_RECIPE_BY_DIET,
+    ORDER_RECIPE_BY_SCORE,
 } from '../actions/constants'
 
 const initialState = {
@@ -26,16 +23,59 @@ function rootReducer(state = initialState, action) {
                 recipes: action.payload
             }
 
-    //     case FILTER_BY_DIET:
-    //         const allRecipes = state.allRecipes
-    //         const dietsFiltered = action.payload === 'all' ? allRecipes
-    //             : allRecipes.filter(elem => elem.diets === action.payload)
+        case ORDER_RECIPE_BY_NAME:
 
-    //         console.log(allRecipes, 'allRecipes', dietsFiltered, 'dietsFiltered', state)
-    //         return {
-    //             ...state,
-    //             recipes: dietsFiltered
-    //         }
+            const orderByName = action.payload === 'asc' ?
+
+                state.allRecipes.sort(function (a, b) {
+
+                    if (a.name > b.name) {
+                        return 1;
+                    }
+
+                    if (b.name > a.name) {
+                        return -1;
+                    }
+
+                    return 0;
+                }) :
+                state.allRecipes.sort(function (a, b) {
+
+                    if (a.name > b.name) {
+                        return -1;
+                    }
+
+                    if (b.name > a.name) {
+                        return 1;
+                    }
+
+                    return 0;
+                });
+            return {
+                ...state,
+                recipes: orderByName
+            }
+
+        case ORDER_RECIPE_BY_DIET:
+            // const allRecipes = state.allRecipes
+            // const dietsFiltered = action.payload === 'all' ? allRecipes
+            //     : allRecipes.filter(elem => elem.diets === action.payload)
+
+            return {
+                ...state,
+                // recipes: dietsFiltered
+            }
+
+        case ORDER_RECIPE_BY_SCORE:
+            // const allRecipes = state.allRecipes;
+            // const scoreOrder = allRecipes.filter(i => i.score === action.payload)
+            // if(action.payload === 'mayor') 
+            return {
+                ...state,
+                // recipes: scoreOrder
+            }
+
+
         default: return state
     }
 }

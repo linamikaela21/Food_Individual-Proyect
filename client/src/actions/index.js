@@ -1,13 +1,12 @@
 import axios from 'axios'
 
-import { URL_ALL_RECIPES  } from '../constantes'
+import { URL_ALL_RECIPES, URL_RECIPES_BY_NAME  } from '../constantes'
 
 import {
-    // FILTER_BY_DIET,
-     GET_RECIPES,
-//     SEARCH_RECIPE_BY_NAME,
-//     ADD_RECIPE,
-//     GET_DIETS_TYPES
+    GET_RECIPES,
+    ORDER_RECIPE_BY_NAME,
+    ORDER_RECIPE_BY_DIET,
+    ORDER_RECIPE_BY_SCORE,
 } from './constants'
 
 //SIEMPRE DEBO TRATAR DE TENER LA MENOR LOGICA EN MI ACTIONS !
@@ -39,11 +38,38 @@ export function getRecipes() {
     }
 }
 
-//Esto es lo que me llega del componente
-//Los values de los select Diets
-// export function filterRecipeByDiet(payload) {
-//         return {
-//                 type: FILTER_BY_DIET,
-//                 payload
+//FUNCION PARA EL SEARCHBAR
+// export function searchRecipeByName(name) {
+//         return async function(dispatch) {
+//             try {
+//                 const allRecipes = await axios (URL_RECIPES_BY_NAME + `?name=${name}`)
+//                 return dispatch({
+//                     type: ORDER_RECIPE_BY_NAME,
+//                     payload: allRecipes.data
+//                 })
+//             } catch (error) {
+//                 console.log(error)
 //             }
 // }
+// }
+
+export function orderRecipeByName(payload) {
+    return {
+            type: ORDER_RECIPE_BY_NAME,
+            payload
+        }
+}
+
+export function orderRecipeByDiet(payload) {
+    return {
+            type: ORDER_RECIPE_BY_DIET,
+            payload
+        }
+}
+
+export function orderRecipeByScore(payload) {
+    return {
+            type: ORDER_RECIPE_BY_SCORE,
+            payload
+        }
+}
