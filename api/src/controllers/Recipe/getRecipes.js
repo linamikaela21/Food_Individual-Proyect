@@ -33,9 +33,9 @@ function getRecipes(_req, res, next) {
     var apiRecipes = resultados[0].data.results
     var dbRecipes = resultados[1]
 
-    //   var dietsMap = []
-    // dbRecipes.diets.map(diet => (
-    //   dietsMap.push(diets.name)
+    //   var stepsMap = []
+    // apiRecipes.analyzedInstructions.map(steps => (
+    //   stepsMap.push(steps.steps)
     // ))
 
     //aca los normalizo

@@ -1,6 +1,6 @@
 import {
     GET_RECIPES,
-    FILTER_BY_DIET,
+    // FILTER_BY_DIET,
     // SEARCH_RECIPE_BY_NAME,
     // SEARCH_RECIPE_BY_ID,
     // ORDER_RECIPE_ASC,
@@ -9,8 +9,10 @@ import {
 } from '../actions/constants'
 
 const initialState = {
+    //Estado con todas las recetas 
+    allRecipes: [],
+    //Estado con las recetas fltradas sino me filtraba sobre lo filtrado
     recipes: [],
-    searchRecipesByName: [],
     diets: []
 }
 
@@ -20,14 +22,20 @@ function rootReducer(state = initialState, action) {
         case GET_RECIPES:
             return {
                 ...state,
+                allRecipes: action.payload,
                 recipes: action.payload
             }
 
-        case FILTER_BY_DIET:
-            return {
-                ...state
-            }
+    //     case FILTER_BY_DIET:
+    //         const allRecipes = state.allRecipes
+    //         const dietsFiltered = action.payload === 'all' ? allRecipes
+    //             : allRecipes.filter(elem => elem.diets === action.payload)
 
+    //         console.log(allRecipes, 'allRecipes', dietsFiltered, 'dietsFiltered', state)
+    //         return {
+    //             ...state,
+    //             recipes: dietsFiltered
+    //         }
         default: return state
     }
 }

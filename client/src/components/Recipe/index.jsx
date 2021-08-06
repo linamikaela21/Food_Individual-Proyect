@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { URL_ALL_RECIPES, URL_DIETS } from "../../constantes";
+import './index.css'
 
-
-export  function MakeRecipe() {
+export  function RecipeForm() {
   //const {name, image, episodes} = req.body
 
   const [recipe, setRecipe] = useState({
@@ -132,4 +132,4 @@ export  function MakeRecipe() {
   );
 }
 
-export default MakeRecipe;
+export default RecipeForm;

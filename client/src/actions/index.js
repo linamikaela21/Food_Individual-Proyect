@@ -3,7 +3,7 @@ import axios from 'axios'
 import { URL_ALL_RECIPES  } from '../constantes'
 
 import {
-    FILTER_BY_DIET,
+    // FILTER_BY_DIET,
      GET_RECIPES,
 //     SEARCH_RECIPE_BY_NAME,
 //     ADD_RECIPE,
@@ -39,9 +39,11 @@ export function getRecipes() {
     }
 }
 
-export function orderRecipe() {
-        return {
-                type: FILTER_BY_DIET,
-                payload
-            }
-    }
+//Esto es lo que me llega del componente
+//Los values de los select Diets
+// export function filterRecipeByDiet(payload) {
+//         return {
+//                 type: FILTER_BY_DIET,
+//                 payload
+//             }
+// }

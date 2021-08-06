@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import './index.css'
 
 import { getRecipes } from "../../actions/index";
 
 import Recipe from "./Recipe";
-import Paginado from '../Paginado/'
-import SearchBar from "../SerchBar";
+import Paginado from "../Paginado/";
+import Filters from "../Filters";
 
 export function Recipes() {
   //Para despachar mis acciones
@@ -18,21 +19,19 @@ export function Recipes() {
 
   //Esta es mi logica del paginado
   //El estado de mi pagina actual que empieza en Pagina 1
-  const [currentPage, setCurrentPage] = useState(1)
+  const [currentPage, setCurrentPage] = useState(1);
   //Cuantas recetas quiero por pagina => 9
-    const [recipesPerPage, setRecipesPerPage] = useState(6)
-    //La posicion de mi ultima receta
-    const indexLastRecipe = currentPage * recipesPerPage
-     //La posicion de mi primer receta
-    const indexFirstRecipe = indexLastRecipe - recipesPerPage
-    //Me guardo la cuales son las recetas a renderizar dependiendo la pagina en donde estoy
-    const currentRecipes = allRecipes.slice(indexFirstRecipe, indexLastRecipe)
+  const [recipesPerPage, setRecipesPerPage] = useState(9);
+  //La posicion de mi ultima receta
+  const indexLastRecipe = currentPage * recipesPerPage;
+  //La posicion de mi primer receta
+  const indexFirstRecipe = indexLastRecipe - recipesPerPage;
+  //Me guardo la cuales son las recetas a renderizar dependiendo la pagina en donde estoy
+  const currentRecipes = allRecipes.slice(indexFirstRecipe, indexLastRecipe);
 
-
-    const paginado = (pageNumber) => {
-        setCurrentPage(pageNumber);
-    };
-
+  const paginado = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   //Traigo del estado las recetas cuando el componente se monta
   //Este Hooks es lo mismo que hacer el MapDispatchToPRops
@@ -50,52 +49,60 @@ export function Recipes() {
 
   return (
     <div className="content">
-      <Link to='/recipes/makeRecipe'>CREA TU PROPIA RECETA</Link>
       <div>
-        <h1 className="title-home">Soy el titulo del HOME</h1>
+        <h1 className="title-home">LALI RECIPES</h1>
       </div>
-        <button
-          onClick={(e) => {
-            handleClick(e);
-          }}
-        >
-          Volver a cargar todas las recetas
-        </button>
 
-        <div>
-          <Paginado
-            recipesPerPage={recipesPerPage}
-            allRecipes={allRecipes.length}
-            paginado={paginado}
-          />
-          <SearchBar />
-        </div>
+      <div>
+        <Paginado
+          recipesPerPage={recipesPerPage}
+          allRecipes={allRecipes.length}
+          paginado={paginado}
+        />
+        <Filters />
+      </div>
 
-        {/*El componente RECIPES ya trajo el estado inicial por ende exporto mi componente Recipe, 
+    <div className="link-make-recipe">
+      {/* ESTO ME LLEVA AL FORMULARIO PARA CREAR MI RECETA */}
+      <Link to="/recipes/recipe">CREA TU PROPIA RECETA</Link>
+      </div>
+
+    <div>
+      {/* POR LAS DUDAS NO CARGUEN LAS RECETAS A LA PRIMERA */}
+      <button
+        onClick={(e) => {
+          handleClick(e);
+        }}
+      >
+        Volver a cargar todas las recetas
+      </button>
+      </div>
+
+
+      {/*El componente RECIPES ya trajo el estado inicial por ende exporto mi componente Recipe, 
           mapeo la info de mi state y la paso por props a Recipe */}
 
-        {
-        currentRecipes?.map((elem) => {
-          return (
-            <div className="Recipe">
-              <Link to={`/recipes/${elem?.id}`}>
-                <Recipe
-                  key={elem?.id}
-                  name={elem?.name}
-                  diet={elem?.diets}
-                  score={elem?.score}
-                  description={elem?.description}
-                  healthy={elem?.healthy}
-                  steps={elem?.steps}
-                  image={elem?.image}
-                />
-              </Link>
-            </div>
-          );
-        })
-        }
-        
-      </div>
+      {
+      currentRecipes?.map((elem) => {
+        return (
+            <Link to={`/recipes/${elem?.id}`}>
+              <div className="recipes">
+              <Recipe
+                key={elem?.id}
+                name={elem?.name}
+                diet={elem?.diets}
+                score={elem?.score}
+                description={elem?.description}
+                healthy={elem?.healthy}
+                steps={elem?.steps}
+                image={elem?.image}
+              />
+              </div>
+            </Link>
+        );
+      })
+      }
+    </div>
   );
 }
 
