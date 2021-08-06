@@ -5,19 +5,20 @@ const { v4: uuidv4 } = require('uuid')
 //  POST /recipe:
 // Recibe los datos recolectados desde el formulario controlado de la ruta de creación de recetas por body
 // Crea una receta en la base de datos
-// http://localhost:3001/addrecipe
+// http://localhost:3001/recipes
 
 // function postRecipe(req, res, next) {
 //     res.send('Soy la funcion postRecipe')
 // }
 
-// http://localhost:3001/recipes/addrecipe
+// http://localhost:3001/recipes/
 postRecipe = async (req, res) => {
     const {
         name,
         description,
         score,
         healthy,
+        steps,
         image
     } = req.body
 
@@ -27,6 +28,7 @@ postRecipe = async (req, res) => {
         description,
         score,
         healthy,
+        steps,
         image
     })
 

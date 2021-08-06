@@ -46,7 +46,7 @@ function getRecipes(_req, res, next) {
         description: receta.summary,
         score: receta.spoonacularScore,
         healthy: receta.healthScore,
-        //steps: receta.analyzedInstructions,
+        steps: receta.analyzedInstructions,
         diets: receta.diets,
         image: receta.image,
       }
@@ -58,7 +58,7 @@ function getRecipes(_req, res, next) {
         description: receta.description,
         score: receta.score,
         healthy: receta.healthy,
-        //steps: receta.steps,
+        steps: receta.steps,
         diets: receta.diets,
         image: receta.image,
       }

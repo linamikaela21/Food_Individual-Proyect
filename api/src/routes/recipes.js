@@ -39,8 +39,8 @@ router.get('/:id', getRecipeById);
 //  POST /recipe:
 // Recibe los datos recolectados desde el formulario controlado de la ruta de creación de recetas por body
 // Crea una receta en la base de datos
-// http://localhost:3001/recipe/addrecipe
-router.post('/addrecipe', postRecipe); 
+// http://localhost:3001/recipes/
+router.post('/', postRecipe); 
 
 module.exports = router;
 

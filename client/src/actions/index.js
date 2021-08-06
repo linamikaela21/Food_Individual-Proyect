@@ -3,11 +3,14 @@ import axios from 'axios'
 import { URL_ALL_RECIPES  } from '../constantes'
 
 import {
+    FILTER_BY_DIET,
      GET_RECIPES,
 //     SEARCH_RECIPE_BY_NAME,
 //     ADD_RECIPE,
 //     GET_DIETS_TYPES
 } from './constants'
+
+//SIEMPRE DEBO TRATAR DE TENER LA MENOR LOGICA EN MI ACTIONS !
 
 //PROMESAS Puedo usar Fetch o Axios pero Fetch solo con promesas
 // export function getRecipes() {
@@ -36,4 +39,9 @@ export function getRecipes() {
     }
 }
 
-
+export function orderRecipe() {
+        return {
+                type: FILTER_BY_DIET,
+                payload
+            }
+    }

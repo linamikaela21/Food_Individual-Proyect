@@ -11,18 +11,21 @@ const { dbApi } = require('../../utils/config')
 // http://localhost:3001/recipes/1
 
     getRecipeById = async (req, res, next) => {
+
         const { id } = req.params
         try {
             if (id.length < 35) {
                 const url = `https://api.spoonacular.com/recipes/${id}/information?apiKey=${dbApi}&number=100`
                 const apiRecipes = await axios.get(url)
-                //   let analyzedInstructionsMap = []
-                //     apiRecipes.data.analyzedInstructions.map((inst) => (
-                //      inst.steps?.map((s) => (
-                //        analyzedInstructionsMap.push(s.step)
-                //      ))
-                //   ))
-                //console.log(apiRecipes.data.analyzedInstructions.steps)
+
+                //Para obetener Stes
+                  let analyzedInstructionsMap = []
+                    apiRecipes.data.analyzedInstructions.map((inst) => (
+                     inst.steps?.map((s) => (
+                       analyzedInstructionsMap.push(s.step)
+                     ))
+                  ))
+                console.log(apiRecipes.data.analyzedInstructions.steps)
                 const apiRecipesResult = apiRecipes.data
 
                 let objectResponse = {
@@ -37,7 +40,7 @@ const { dbApi } = require('../../utils/config')
                     description: apiRecipesResult.summary,
                     score: apiRecipesResult.spoonacularScore,
                     healthy: apiRecipesResult.healthScore,
-                    //analyzedInstructions: analyzedInstructionsMap
+                    analyzedInstructions: analyzedInstructionsMap
                 }
 
                 if (apiRecipesResult) return res.send(objectResponse)
@@ -75,32 +78,6 @@ const { dbApi } = require('../../utils/config')
         }
 
     }
-
-    //Funcion Mati
-    // getRecipeById = async (req, res, next) => {
-    //     const { id } = req.params
-    
-    //     if (!id) return res.next(error)
-    
-    //     try {
-    
-    //         var recipeById
-    
-    //         if (typeof (id === 'string') && id.length > 10) {
-    //             recipeById = await Recipe.findByPk(id, {
-    //                 include: Diet
-    //             })
-    //         } else {
-    //             const url = `https://api.spoonacular.com/recipes/${id}/information?apiKey=${dbApi}&number=100`
-    //             recipeById = await axios.get(url)
-    //         }
-    
-    //         return res.json(recipeById)
-    //     }
-    //     catch (error) {
-    //         next(error)
-    //     }
-
 
     module.exports = {
         getRecipeById

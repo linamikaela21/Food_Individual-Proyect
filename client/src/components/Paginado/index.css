@@ -1,0 +1,16 @@
+.pagination {
+    background-color: black;
+}
+
+.number {
+    display: inline-flex;
+    flex-direction: row;
+    margin:5px;
+}
+
+.number-a {
+    padding: 5px 10px;
+    border: solid 2px black;
+    background-color: darkorange;
+    font-weight: 700;
+}
