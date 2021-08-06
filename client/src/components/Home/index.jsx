@@ -11,9 +11,9 @@ import {
 } from "../../actions/index";
 
 import Card from "./Card";
-import Paginado from "../Paginado/";
+import Paginado from "../Paginado";
 
-export function Recipes() {
+export function Home() {
   //Para despachar mis acciones
   const dispatch = useDispatch();
 
@@ -58,12 +58,22 @@ export function Recipes() {
 
   //ACA VAN A IR MIS HANDLES PARA ORDENAR
 
+  //LOGICA HANDLE
+  //function handle(e) {
+  //   dispatch(action(target.value))
+  // }
+
+  //Creo estados locales solo para que me rendericen en el componente
+  const [orderByName, setOrderByName] = useState('')
+  const [orderByScore, setOrderByScore] = useState('')
+
   //Esta es la funcion que conecta mi accion con cada uno de los valores de mi select
   //en funcion de lo que presiona el usuario
   function handleOrderRecipeByName(e) {
     e.preventDefault();
     dispatch(orderRecipeByName(e.target.value));
-    // setFilteredRecipes(`Ordenado: ${e.target.value}`);
+    setCurrentPage(1);
+    setOrderByName(`Ordenado ${e.target.value}`);
   }
 
   function handleOrderRecipeByDiet(e) {
@@ -75,7 +85,8 @@ export function Recipes() {
   function handleOrderRecipeByScore(e) {
     e.preventDefault();
     dispatch(orderRecipeByScore(e.target.value));
-    // setFilteredRecipes(`Ordenado: ${e.target.value}`);
+    setCurrentPage(1);
+    setOrderByScore(`Ordenado ${e.target.value}`);
   }
 
   return (
@@ -162,4 +173,4 @@ export function Recipes() {
   );
 }
 
-export default Recipes;
+export default Home;

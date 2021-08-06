@@ -67,12 +67,36 @@ function rootReducer(state = initialState, action) {
             }
 
         case ORDER_RECIPE_BY_SCORE:
-            // const allRecipes = state.allRecipes;
-            // const scoreOrder = allRecipes.filter(i => i.score === action.payload)
-            // if(action.payload === 'mayor') 
+
+            const orderByScore = action.payload === 'mayor' ?
+
+                state.allRecipes.sort(function (a, b) {
+
+                    if (a.score > b.score) {
+                        return 1;
+                    }
+
+                    if (b.score > a.score) {
+                        return -1;
+                    }
+
+                    return 0;
+                }) :
+                state.allRecipes.sort(function (a, b) {
+
+                    if (a.score > b.score) {
+                        return -1;
+                    }
+
+                    if (b.score > a.score) {
+                        return 1;
+                    }
+
+                    return 0;
+                });
             return {
                 ...state,
-                // recipes: scoreOrder
+                recipes: orderByScore
             }
 
 
