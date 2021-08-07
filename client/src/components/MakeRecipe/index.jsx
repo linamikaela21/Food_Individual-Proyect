@@ -26,57 +26,92 @@ export function MakeRecipe() {
     diets: [],
   });
 
+  //VALIDACION Y MANEJO DE ERRORES
+
+  const [errors, setErrors] = useState({});
+
+  const validations = (recipe) => {
+    let errors = {};
+    if (!recipe.name || recipe.name.length < 5 || recipe.name.length > 50) {
+      errors.name = `Se requiere un nombre de entre 5 y 30 caracteres / Name is requiered between 5 and 30 characters of extension`;
+    } else if (
+      !recipe.description ||
+      recipe.description.length < 10 ||
+      recipe.description.length > 30
+    ) {
+      errors.description = `Se requiere una descripcion de la receta 10 y 30 caracteres / Recipe's description is requiered between 10 and 50 characters of extension`;
+    } else if (!recipe.score || recipe.score < 0 || recipe.score > 100) {
+      errors.score = `Se requiere una puntuacion de la receta entre 1 y 100 puntos / Recipe's score between 1 and 100 is requiered`;
+    } else if (!recipe.healthy || recipe.healthy < 0 || recipe.healthy > 100) {
+      errors.healthy = `Se requiere un puntaje de que tan saludable es la receta entre 1 y 100 puntos / Recipe's healthy between 1 and 100 is requiered`;
+    } else if (!recipe.steps || recipe.steps.length < 50) {
+      errors.steps = `Se requieren las instrucciones de la receta con al menos 50 caracteres / Recipe's score with at least 50 characters of extension is requiered`;
+    } else if (!recipe.image) {
+      errors.image = `Se requiere una imagen de la receta / Recipe's image is requiered`;
+    } else if (!recipe.diets || recipe.diets.length > 1) {
+      errors.diets = `Se requiere la/s dieta/s en la/s que esta incluida la receta / Recipe's diets is requiered`;
+    }
+    return errors;
+  };
+
+  //Me traigo todas las recetas
   useEffect(() => {
     dispatch(getDiets());
   }, [dispatch]);
 
   //Creo mi funcion onChange para el formulario para tener un estado general para todos mis inputs
   function onInputChange(e) {
-    setRecipe((prevState) => {
-      return {
-        ...prevState,
-        [e.target.name]: e.target.value,
-      };
+    setRecipe({
+      ...recipe,
+      [e.target.name]: e.target.value,
     });
-    console.log(e.target.value)
+    setErrors(
+      validations({
+        ...recipe,
+        [e.target.name]: e.target.value,
+      })
+    );
+    console.log(recipe);
   }
 
   const handleDiets = (e) => {
     setRecipe({
       ...recipe,
-      diets: [
-        ...recipe.diets, 
-        e.target.value]
+      diets: [...recipe.diets, e.target.value],
     });
-  }
+  };
 
   //Aca hago mi post a mi base de datos
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addRecipe(recipe));
-    alert("Se ha creado una nueva receta");
-    setRecipe({
-      name: "",
-      description: "",
-      score: "",
-      healthy: "",
-      steps: "",
-      image: "",
-      diets: [],
-    });
+      dispatch(addRecipe(recipe));
+      alert("Se ha creado una nueva receta");
+      setRecipe({
+        name: "",
+        description: "",
+        score: "",
+        healthy: "",
+        steps: "",
+        image: "",
+        diets: [],
+      });
     history.push("/recipes");
   };
+
+
 
   return (
     <div>
       <Link to="/recipes">
-        {" "}
-        <button>VOLVER</button>{" "}
+        <div>
+          <button>VOLVER</button>
+        </div>
       </Link>
       <h1>CREA TU PROPIA RECETA !</h1>
+
       <form onSubmit={(e) => handleSubmit(e)}>
-        <p>
-          <label>Name:</label>
+        <div>
+          <label>Nombre / Name:</label>
           <input
             type="text"
             name="name"
@@ -84,9 +119,11 @@ export function MakeRecipe() {
             placeholder="Recipe Name"
             onChange={(e) => onInputChange(e)}
           />
-        </p>
-        <p>
-          <label>Description: </label>
+          {errors.name && <p className="errors"> {errors.name} </p>}
+        </div>
+
+        <div>
+          <label>Descripcion / Description: </label>
           <input
             type="text"
             name="description"
@@ -94,9 +131,13 @@ export function MakeRecipe() {
             placeholder="Recipe Description"
             onChange={(e) => onInputChange(e)}
           />
-        </p>
-        <p>
-          <label>Score:</label>
+          {errors.description && (
+            <p className="errors"> {errors.description} </p>
+          )}
+        </div>
+
+        <div>
+          <label>Puntaje / Score:</label>
           <input
             type="number"
             name="score"
@@ -104,9 +145,11 @@ export function MakeRecipe() {
             placeholder="Recipe Score"
             onChange={(e) => onInputChange(e)}
           />
-        </p>
-        <p>
-          <label>Healthy Score:</label>
+          {errors.score && <p className="errors"> {errors.score} </p>}
+        </div>
+
+        <div>
+          <label>Puntaje Saludable / Healthy Score:</label>
           <input
             type="number"
             name="healthy"
@@ -114,9 +157,11 @@ export function MakeRecipe() {
             placeholder="Recipe Healthy"
             onChange={(e) => onInputChange(e)}
           />
-        </p>
-        <p>
-          <label>Describe steps:</label>
+          {errors.healthy && <p className="errors"> {errors.healthy} </p>}
+        </div>
+
+        <div>
+          <label>Instrucciones / Steps:</label>
           <textarea
             type="textarea"
             name="steps"
@@ -124,9 +169,11 @@ export function MakeRecipe() {
             placeholder="Recipe Steps"
             onChange={(e) => onInputChange(e)}
           />
-        </p>
-        <p>
-          <label>Load image </label>
+          {errors.steps && <p className="errors"> {errors.steps} </p>}
+        </div>
+
+        <div>
+          <label>Imagen / Image: </label>
           <input
             type="text"
             name="image"
@@ -134,22 +181,27 @@ export function MakeRecipe() {
             placeholder="Recipe Image"
             onChange={(e) => onInputChange(e)}
           />
-        </p>
+          {errors.image && <p className="errors"> {errors.image} </p>}
+        </div>
 
-          <select onChange={e => handleDiets(e)}>
-            {
-            diets.map(diet => (
-              <option value={diet.name}>{diet.name}</option>
-            ))
-            }
+        <div>
+        <label>Dietas / Diets: </label>
+        <select onChange={(e) => handleDiets(e)}>
+          {diets.map(diet => (
+            <option value={diet.name}>{diet.name}</option>
+          ))}
             <ul>
-              <li> {
-              recipe.diets.map(elem => elem + ", ")
-              } </li>
+              <li key={recipe.diets.id}> {recipe.diets.map(i => i.name)}</li>
             </ul>
-          </select>
 
-        <button type="submit">Crear Personaje</button>
+          {errors.diets && <p className="errors"> {errors.diets} </p>}
+        </select>
+        </div>
+
+        <div>
+          <button type="submit">Crear Personaje</button>
+        </div>
+
       </form>
     </div>
   );
