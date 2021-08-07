@@ -1,5 +1,6 @@
 import {
     GET_RECIPES,
+    SEARCH_RECIPE_BY_NAME,
     ORDER_RECIPE_BY_NAME,
     ORDER_RECIPE_BY_DIET,
     ORDER_RECIPE_BY_SCORE,
@@ -22,6 +23,11 @@ function rootReducer(state = initialState, action) {
                 allRecipes: action.payload,
                 recipes: action.payload
             }
+            case SEARCH_RECIPE_BY_NAME:
+                return {
+                    ...state,
+                    recipes: action.payload
+                }    
 
         case ORDER_RECIPE_BY_NAME:
 

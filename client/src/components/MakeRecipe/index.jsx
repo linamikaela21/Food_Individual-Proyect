@@ -3,7 +3,7 @@ import axios from "axios";
 import { URL_ALL_RECIPES, URL_DIETS } from "../../constantes";
 import './index.css'
 
-export  function RecipeForm() {
+export  function MakeRecipe() {
   //const {name, image, episodes} = req.body
 
   const [recipe, setRecipe] = useState({
@@ -52,6 +52,7 @@ export  function RecipeForm() {
     e.preventDefault();
     await axios.post(URL_ALL_RECIPES, recipe);
     alert("Se ha creado una nueva receta");
+    //e.target.reset(); //ESTO ES PARA QUE SE SETE EN BLANCO UNA VEZ ENVIADO
   }
 
   return (
@@ -132,4 +133,4 @@ export  function RecipeForm() {
   );
 }
 
-export default RecipeForm;
+export default MakeRecipe;

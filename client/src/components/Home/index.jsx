@@ -12,6 +12,7 @@ import {
 
 import Card from "./Card";
 import Paginado from "../Paginado";
+import SearchBar from "../SearchBar";
 
 export function Home() {
   //Para despachar mis acciones
@@ -95,9 +96,24 @@ export function Home() {
         <h1 className="title-home">LALI RECIPES</h1>
       </div>
       <div>
+
+      <div className="link-make-recipe">
+        {/* ESTO ME LLEVA AL FORMULARIO PARA CREAR MI RECETA */}
+        <Link to="/recipes/recipe">CREA TU PROPIA RECETA</Link>
+      </div>
+
         <div>
-          <input type="text" placeholder="Busca tu receta.." />
+        <SearchBar />
         </div>
+
+        <div>
+        <Paginado
+          recipesPerPage={recipesPerPage}
+          allRecipes={allRecipes.length}
+          paginado={paginado}
+        />
+      </div>
+
         <div>
           <select onChange={(e) => handleOrderRecipeByName(e)}>
             <option value="asc">A - Z</option>
@@ -123,11 +139,6 @@ export function Home() {
             <option value="Whole30">Dieta: Whole30</option>
           </select>
         </div>
-      </div>
-      
-      <div className="link-make-recipe">
-        {/* ESTO ME LLEVA AL FORMULARIO PARA CREAR MI RECETA */}
-        <Link to="/recipes/recipe">CREA TU PROPIA RECETA</Link>
       </div>
 
       <div>
@@ -162,13 +173,6 @@ export function Home() {
         );
       })}
 
-      <div>
-        <Paginado
-          recipesPerPage={recipesPerPage}
-          allRecipes={allRecipes.length}
-          paginado={paginado}
-        />
-      </div>
     </div>
   );
 }

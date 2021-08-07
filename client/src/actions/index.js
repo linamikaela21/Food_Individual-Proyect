@@ -1,9 +1,10 @@
 import axios from 'axios'
 
-import { URL_ALL_RECIPES, URL_RECIPES_BY_NAME  } from '../constantes'
+import { URL_ALL_RECIPES, URL_RECIPES_BY_NAME } from '../constantes'
 
 import {
     GET_RECIPES,
+    SEARCH_RECIPE_BY_NAME,
     ORDER_RECIPE_BY_NAME,
     ORDER_RECIPE_BY_DIET,
     ORDER_RECIPE_BY_SCORE,
@@ -38,21 +39,23 @@ export function getRecipes() {
     }
 }
 
-//FUNCION PARA EL SEARCHBAR
-// export function searchRecipeByName(name) {
-//         return async function(dispatch) {
-//             try {
-//                 const allRecipes = await axios (URL_RECIPES_BY_NAME + `?name=${name}`)
-//                 return dispatch({
-//                     type: ORDER_RECIPE_BY_NAME,
-//                     payload: allRecipes.data
-//                 })
-//             } catch (error) {
-//                 console.log(error)
-//             }
-// }
-// }
+//FUNCIONES PARA EL SEARCH BAR
+export function getRecipeByName(name) {
+        return async function(dispatch) {
+            try {
+                const recipesNames = await axios (URL_RECIPES_BY_NAME + `?name=${name}`)
+                return dispatch({
+                    type: SEARCH_RECIPE_BY_NAME,
+                    payload: recipesNames.data
+                })
+            } catch (error) {
+                console.log(error)
+            }
+}
+}
 
+
+//FUNCIONES PARA ORDENAR
 export function orderRecipeByName(payload) {
     return {
             type: ORDER_RECIPE_BY_NAME,
