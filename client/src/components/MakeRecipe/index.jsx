@@ -81,6 +81,14 @@ export function MakeRecipe() {
     });
   };
 
+  const handleDeletDietsNames = (elem) => {
+    setRecipe({
+      ...recipe,
+      diets: recipe.diets.filter(diet => diet !== elem)
+    });
+    console.log(elem)
+  };
+
   //Aca hago mi post a mi base de datos
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -190,9 +198,6 @@ export function MakeRecipe() {
           {diets.map(diet => (
             <option value={diet.name}>{diet.name}</option>
           ))}
-            <ul>
-              <li key={recipe.diets.id}> {recipe.diets.map(i => i.name)}</li>
-            </ul>
 
           {errors.diets && <p className="errors"> {errors.diets} </p>}
         </select>
@@ -203,6 +208,14 @@ export function MakeRecipe() {
         </div>
 
       </form>
+
+      {recipe.diets.map(elem => 
+      <div>
+        <ul><li>{elem}</li>
+        <button onClick={e => handleDeletDietsNames(e)} >X</button></ul>
+         
+        </div>
+      )}
     </div>
   );
 }
