@@ -99,7 +99,7 @@ export function Home() {
 
       <div className="link-make-recipe">
         {/* ESTO ME LLEVA AL FORMULARIO PARA CREAR MI RECETA */}
-        <Link to="/recipes/recipe">CREA TU PROPIA RECETA</Link>
+        <Link to="/recipe">CREA TU PROPIA RECETA</Link>
       </div>
 
         <div>

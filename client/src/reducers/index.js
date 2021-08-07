@@ -1,9 +1,11 @@
 import {
     GET_RECIPES,
+    GET_DIETS,
     SEARCH_RECIPE_BY_NAME,
     ORDER_RECIPE_BY_NAME,
     ORDER_RECIPE_BY_DIET,
     ORDER_RECIPE_BY_SCORE,
+    ADD_RECIPE,
 } from '../actions/constants'
 
 const initialState = {
@@ -11,6 +13,7 @@ const initialState = {
     allRecipes: [],
     //Estado con las recetas fltradas sino me filtraba sobre lo filtrado
     recipes: [],
+    //Este estado es para las dietas que van a ir al formulario
     diets: []
 }
 
@@ -23,11 +26,23 @@ function rootReducer(state = initialState, action) {
                 allRecipes: action.payload,
                 recipes: action.payload
             }
-            case SEARCH_RECIPE_BY_NAME:
-                return {
-                    ...state,
-                    recipes: action.payload
-                }    
+
+        case ADD_RECIPE:
+            return {
+                ...state,
+            }
+
+        case GET_DIETS:
+            console.log(state.diets)
+            return {
+                ...state,
+                diets: action.payload,
+            }
+        case SEARCH_RECIPE_BY_NAME:
+            return {
+                ...state,
+                recipes: action.payload
+            }
 
         case ORDER_RECIPE_BY_NAME:
 

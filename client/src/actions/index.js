@@ -1,13 +1,14 @@
 import axios from 'axios'
 
-import { URL_ALL_RECIPES, URL_RECIPES_BY_NAME } from '../constantes'
+import { URL_ALL_RECIPES, URL_DIETS, URL_RECIPES_BY_NAME } from '../constantes'
 
 import {
     GET_RECIPES,
+    GET_DIETS,
     SEARCH_RECIPE_BY_NAME,
     ORDER_RECIPE_BY_NAME,
     ORDER_RECIPE_BY_DIET,
-    ORDER_RECIPE_BY_SCORE,
+    ORDER_RECIPE_BY_SCORE
 } from './constants'
 
 //SIEMPRE DEBO TRATAR DE TENER LA MENOR LOGICA EN MI ACTIONS !
@@ -38,6 +39,26 @@ export function getRecipes() {
             })
     }
 }
+
+//CREACION DE RECETA  
+export function getDiets() {
+    return async (dispatch) => {
+        var allDiets = await axios.get (URL_DIETS)
+        return dispatch({
+                type: GET_DIETS,
+                payload: allDiets.data
+            })
+    }
+}
+
+export function addRecipe(payload) {
+    return async function(dispatch) {
+        var addRecipe = await axios.post(URL_ALL_RECIPES, payload)
+        console.log(payload)
+        return addRecipe
+    }
+}
+
 
 //FUNCIONES PARA EL SEARCH BAR
 export function getRecipeByName(name) {

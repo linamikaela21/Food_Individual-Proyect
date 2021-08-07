@@ -1,10 +1,17 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
-import { URL_ALL_RECIPES, URL_DIETS } from "../../constantes";
-import './index.css'
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom"
+import "./index.css";
 
-export  function MakeRecipe() {
-  //const {name, image, episodes} = req.body
+import { addRecipe, getDiets } from "../../actions";
+
+export function MakeRecipe() {
+  //const {name, description, score, healthy, image, steps, diets} = req.body
+
+  const dispatch = useDispatch()
+
+  //Me estoy trayendo el estado de diets
+  const diets = useSelector(state => state.diets)
 
   const [recipe, setRecipe] = useState({
     name: "",
@@ -16,29 +23,21 @@ export  function MakeRecipe() {
     diets: [],
   });
 
-  const [diets, setDiets] = useState([]);
-
-  function getDiets() {
-    axios(URL_DIETS).then((response) => {
-      setDiets(response.data);
-    });
-  }
-
   useEffect(() => {
-    getDiets();
-  }, []);
+    dispatch(getDiets())
+  }, [dispatch]);
 
   //Creo mi funcion onChange para el formulario para tener un estado general para todos mis inputs
-  function onInputChange(e) {
-    setRecipe((prevState) => {
-      return {
-        ...prevState,
-        [e.target.name]: e.target.value,
-      };
-    });
-  }
+  // function onInputChange(e) {
+  //   setRecipe((prevState) => {
+  //     return {
+  //       ...prevState,
+  //       [e.target.name]: e.target.value,
+  //     };
+  //   });
+  // }
 
-  console.log(recipe)
+  console.log(recipe);
 
   function addDietsToRecipe(id) {
     setRecipe({
@@ -50,86 +49,84 @@ export  function MakeRecipe() {
   //Aca hago mi post a mi base de datos
   async function handleSubmit(e) {
     e.preventDefault();
-    await axios.post(URL_ALL_RECIPES, recipe);
+    dispatch(addRecipe(recipe))
     alert("Se ha creado una nueva receta");
-    //e.target.reset(); //ESTO ES PARA QUE SE SETE EN BLANCO UNA VEZ ENVIADO
   }
 
   return (
+    <div>
+    <Link to='/recipes'> <button>VOLVER</button> </Link>
+    <h1>CREA TU PROPIA RECETA !</h1>
     <form onSubmit={handleSubmit}>
       <p>
-        <label >Name</label>
+        <label>Name:</label>
         <input
           type="text"
           name="name"
           value={recipe.name}
           placeholder="Recipe Name"
-          onChange={onInputChange}
         />
       </p>
       <p>
-        <label>Description</label>
+        <label>Description: </label>
         <input
           type="text"
           name="description"
           value={recipe.description}
           placeholder="Recipe Description"
-          onChange={onInputChange}
         />
       </p>
       <p>
-        <label>Score</label>
+        <label>Score:</label>
         <input
-           type="number"
+          type="number"
           name="score"
           value={recipe.score}
           placeholder="Recipe Score"
-          onChange={onInputChange}
         />
       </p>
       <p>
-        <label>Healthy</label>
+        <label>Healthy Score:</label>
         <input
           type="number"
           name="healthy"
           value={recipe.healthy}
           placeholder="Recipe Healthy"
-          onChange={onInputChange}
         />
       </p>
       <p>
-        <label>Steps</label>
+        <label>Describe steps:</label>
         <textarea
           type="textarea"
           name="steps"
           value={recipe.steps}
           placeholder="Recipe Steps"
-          onChange={onInputChange}
         />
       </p>
       <p>
-        <label>Image</label>
+        <label>Load image </label>
         <input
           type="text"
           name="image"
           value={recipe.image}
           placeholder="Recipe Image"
-          onChange={onInputChange}
         />
       </p>
       <div>
-      {diets.map(diet => {
-                return <div>
-                    {diet.name}
-                    <button 
-                        onClick={() => addDietsToRecipe(diet.id)}>
-                            Agregar dieta
-                    </button>
-                </div>
-            })}
+        {diets.map((diet) => {
+          return (
+            <div>
+              {diet.name}
+              <button onClick={() => addDietsToRecipe(diet.id)}>
+                Agregar dieta
+              </button>
+            </div>
+          );
+        })}
       </div>
-      <input type="submit" />
+      <button type='submit'>Crear Receta</button>
     </form>
+    </div>
   );
 }
 
