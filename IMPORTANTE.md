@@ -9,7 +9,7 @@ DB_PASSWORD=Lali
 DB_HOST=localhost
 DB_NAME: food
 
-API_KEY = de6f15017bd041ca9cc24bde0dac2f45
+API_KEY = 
 
 **PASOS**
 
