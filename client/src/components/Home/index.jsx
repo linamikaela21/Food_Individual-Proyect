@@ -8,7 +8,7 @@ import {
   getRecipes,
   orderRecipeByName,
   // orderRecipeByDiet,
-  // orderRecipeByScore,
+orderRecipeByScore,
 } from "../../actions/index";
 
 import Card from "./Card";
@@ -67,7 +67,7 @@ export function Home() {
 
 
  const [orderByName, setOrderByName] = useState('')
-  // const [orderByScore, setOrderByScore] = useState('')
+  const [orderByScore, setOrderByScore] = useState('')
   // const [orderByDiets, setOrderByDiets] = useState('')
 
   //Esta es la funcion que conecta mi accion con cada uno de los valores de mi select
@@ -85,12 +85,12 @@ export function Home() {
   //   setFilteredRecipes(`Ordenado: ${e.target.value}`);
   // }
 
-  // function handleOrderRecipeByScore(e) {
-  //   e.preventDefault();
-  //   dispatch(orderRecipeByScore(e.target.value));
-  //   setCurrentPage(1);
-  //   setOrderByScore(`Ordenado ${e.target.value}`);
-  // }
+  function handleOrderRecipeByScore(e) {
+    e.preventDefault();
+    dispatch(orderRecipeByScore(e.target.value));
+    setCurrentPage(1);
+    setOrderByScore(`Ordenado ${e.target.value}`);
+  }
 
   return (
     <div className={style.content}>
@@ -121,7 +121,7 @@ export function Home() {
             <option value="desc">Z - A</option>
           </select>
 
-          <select >
+          <select onChange={(e) => handleOrderRecipeByScore(e)}>
             <option value="mayor">Mayor - Menor</option>
             <option value="menor">Menor - Mayor</option>
           </select>
