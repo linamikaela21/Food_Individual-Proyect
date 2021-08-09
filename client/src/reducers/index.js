@@ -1,16 +1,22 @@
 import {
     GET_RECIPES,
-    FILTER_BY_DIET,
-    // SEARCH_RECIPE_BY_NAME,
-    // SEARCH_RECIPE_BY_ID,
-    // ORDER_RECIPE_ASC,
-    // ORDER_RECIPE_DESC,
-    // ADD_RECIPE,
+    GET_DIETS,
+    SEARCH_RECIPE_BY_NAME,
+    SEARCH_RECIPE_BY_ID,
+    ORDER_RECIPE_BY_NAME,
+    ORDER_RECIPE_BY_DIET,
+    ORDER_RECIPE_BY_SCORE,
+    ADD_RECIPE,
 } from '../actions/constants'
 
 const initialState = {
+    //Estado con todas las recetas 
+    allRecipes: [],
+    //Estado con los detalles todas las recetas 
+    details: [],
+    //Estado con las recetas fltradas sino me filtraba sobre lo filtrado
     recipes: [],
-    searchRecipesByName: [],
+    //Este estado es para las dietas que van a ir al formulario
     diets: []
 }
 
@@ -20,13 +26,107 @@ function rootReducer(state = initialState, action) {
         case GET_RECIPES:
             return {
                 ...state,
+                allRecipes: action.payload,
                 recipes: action.payload
             }
 
-        case FILTER_BY_DIET:
+        case ADD_RECIPE:
             return {
-                ...state
+                ...state,
             }
+
+        case GET_DIETS:
+            return {
+                ...state,
+                diets: action.payload,
+            }
+        case SEARCH_RECIPE_BY_ID:
+            return {
+                ...state,
+                details: action.payload
+            }
+        case SEARCH_RECIPE_BY_NAME:
+            return {
+                ...state,
+                recipes: action.payload
+            }
+
+        case ORDER_RECIPE_BY_NAME:
+
+            const orderByName = action.payload === 'asc' ?
+
+                state.allRecipes.sort((a, b) =>{
+
+                    if (a.name > b.name) {
+                        return 1;
+                    }
+
+                    if (b.name > a.name) {
+                        return -1;
+                    }
+
+                    return 0;
+                }) :
+                state.allRecipes.sort((a, b) =>{
+
+                    if (a.name > b.name) {
+                        return -1;
+                    }
+
+                    if (b.name > a.name) {
+                        return 1;
+                    }
+
+                    return 0;
+                });
+            return {
+                ...state,
+                recipes: orderByName
+            }
+
+        case ORDER_RECIPE_BY_DIET:
+            // const allRecipes = state.allRecipes
+            // const dietsFiltered = action.payload === 'all' ? allRecipes
+            //     : allRecipes.filter(elem => elem.diets === action.payload)
+
+            return {
+                ...state,
+                // recipes: dietsFiltered
+            }
+
+        case ORDER_RECIPE_BY_SCORE:
+
+            const orderByScore = action.payload === 'mayor' ?
+
+                state.allRecipes.sort((a, b) => {
+
+                    if (a.score - b.score) {
+                        return 1;
+                    }
+
+                    if (b.score - a.score) {
+                        return -1;
+                    }
+
+                    return 0;
+                }) :
+                state.allRecipes.sort((a, b) =>{
+
+                    if (a.score - b.score) {
+                        return -1;
+                    }
+
+                    if (b.score - a.score) {
+                        return 1;
+                    }
+
+                    return 0;
+                });
+            return {
+                ...state,
+                recipes: orderByScore
+            }
+
 
         default: return state
     }

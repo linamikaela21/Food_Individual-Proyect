@@ -1,0 +1,16 @@
+cardRecipe {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+    padding: 10px;
+    text-align: center;
+    background-color: hsl(51, 53%, 53%);
+    margin: auto;
+  }
+  
+contentRecipe {
+    background-color: #babd0e;
+    text-align: center;
+    font-size: 25px;
+    width: 350px;
+  }
+  
+  
