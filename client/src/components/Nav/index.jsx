@@ -1,11 +1,7 @@
 // import React from 'react';
 // import { NavLink} from 'react-router-dom';
 // import logoHenry from '../img/logoHenry.png'
-<<<<<<< HEAD
-// import './Nav.css'
-=======
 // import './index.module.css'
->>>>>>> 2faedd5
 
 // export default function Nav() {
 //     return (

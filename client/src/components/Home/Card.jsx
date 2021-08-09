@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import style from "./Card.module.css";
 
 //MODIFICAR CSS

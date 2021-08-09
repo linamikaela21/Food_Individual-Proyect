@@ -1,12 +1,9 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
-<<<<<<< HEAD
-import './index.css'
-=======
+
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import './index.module.css'
->>>>>>> 2faedd5
 
 import { getRecipeById } from "../../actions";
 
@@ -29,33 +26,18 @@ export function RecipeDetails () {
 const [loading, setLoading] = useState(false);
 
   return (
-<<<<<<< HEAD
-    <div>
-      {
-        <div className="content">
-            <h2 className="nameDetails"> {recipe.name} </h2>
-          <h3 className="dietDetails"> {recipe.diets} </h3>
-          <h4 className="healthyDetails"> Score : {recipe.score} </h4>
-          <h4 className="scoreDetails"> Healthy: {recipe.healthy} </h4>
-          <h5 className="descriptionDetails"> {recipe.description} </h5>
-          <h5 className="stepsDetails"> Steps: {recipe.steps} </h5>
-          <img
-=======
     <div className="recipeDetails">
       { loading ?
         <div className="contentRecipeDetails">
             <h1 className="nameDetails"> {recipeDetails.name} </h1>
             <img
->>>>>>> 2faedd5
+
             className="imgDetails"
             src={recipeDetails.image}
             alt="Not found"
             width="400"
             height="400"
-          ></img>
-<<<<<<< HEAD
-          </div>
-=======
+          />
             <h3>Diets:</h3>
           <h3 className="dietDetails"> {recipeDetails.diets} </h3>
           <h3> Score:</h3>
@@ -69,7 +51,6 @@ const [loading, setLoading] = useState(false);
           </div>
           : 
           <p>Loading...</p>
->>>>>>> 2faedd5
       }
       <Link to='/recipes'><button>Volver / Go back</button></Link>
     </div>

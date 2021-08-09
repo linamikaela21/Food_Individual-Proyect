@@ -2,11 +2,8 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getRecipeByName } from "../../actions/index";
 
-<<<<<<< HEAD
-=======
 import style from './index.module.css'
 
->>>>>>> 2faedd5
 function SearchBar() {
   const [name, setName] = useState("");
 
@@ -26,19 +23,17 @@ function SearchBar() {
   }
 
   return (
-    <div>
+    <div className={style.containerSearchBar}>
       <input
         type="text"
-<<<<<<< HEAD
-        placeholder="Busca tu receta"
-        onChange={(e) => handleChangeSearchBar(e)}
-=======
         placeholder="Busca tu receta.."
         onChange={(e) => handleChangeSearchBar(e)}
-        className={style.input}
->>>>>>> 2faedd5
+        className={style.inputSearchBar}
       />
-      <button type="submit" onClick={(e) => handleSubmitSearchBar(e)}>Enviar</button>
+      <button 
+      type="submit" 
+      className={style.buttonSearchBar}
+      onClick={(e) => handleSubmitSearchBar(e)}>Enviar</button>
     </div>
   );
 }

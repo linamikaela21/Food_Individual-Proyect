@@ -1,5 +1,6 @@
-import React from 'react';
-import './index.module.css'
+
+import RecipeDetails from '../RecipeDetails';
+import style from './index.module.css'
 
 //Me traigo las propiedades desde Recipes
 function Paginado({recipesPerPage, allRecipes, paginado}) {
@@ -14,15 +15,11 @@ function Paginado({recipesPerPage, allRecipes, paginado}) {
     
     return (
         <nav>
-            <ul className='pagination'>
+            <ul className={style.pagination}>
                 { //Por cada pagina quiero que me imprima el numero de pagina
                 pageNumbers?.map(number => (
-                    <li className='number' key={number}>
-<<<<<<< HEAD
-                        <a href="value" className='number-a' onClick={() => paginado(number)}> {number} </a>
-=======
-                        <a href={number} className='number-a'onClick={() => paginado(number)}>{number}</a>
->>>>>>> 2faedd5
+                    <li className={style.number} key={number}>
+                        <a className={style.numberA} onClick={() => paginado(number)}>{number}</a>
                     </li>
                 ))
                 }
@@ -32,8 +29,3 @@ function Paginado({recipesPerPage, allRecipes, paginado}) {
 };
 
 export default Paginado;
-
-
-/* 
-
-    */ 
