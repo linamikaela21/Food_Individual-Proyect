@@ -1,7 +1,11 @@
 import './App.css';
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+<<<<<<< HEAD
 import { LandingPage } from './components/LandingPage/';
+=======
+import { LandingPage } from './components/LandingPage';
+>>>>>>> 2faedd5
 import { Home } from './components/Home';
 import { RecipeDetails } from './components/RecipeDetails/';
 import MakeRecipe from './components/MakeRecipe';

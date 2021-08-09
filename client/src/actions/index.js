@@ -6,6 +6,7 @@ import {
     GET_RECIPES,
     GET_DIETS,
     SEARCH_RECIPE_BY_NAME,
+    SEARCH_RECIPE_BY_ID,
     ORDER_RECIPE_BY_NAME,
     ORDER_RECIPE_BY_DIET,
     ORDER_RECIPE_BY_SCORE
@@ -75,6 +76,20 @@ export function getRecipeByName(name) {
 }
 }
 
+//FUNCION PARA DETALLE DE LA RECETA
+export function getRecipeById(id) {
+    return async function(dispatch) {
+        try {
+            const recipeId = await axios (URL_ALL_RECIPES + `${id}`)
+            return dispatch({
+                type: SEARCH_RECIPE_BY_ID,
+                payload: recipeId.data
+            })
+        } catch (error) {
+            console.log(error)
+        }
+}
+}
 
 //FUNCIONES PARA ORDENAR
 export function orderRecipeByName(payload) {
@@ -96,4 +111,5 @@ export function orderRecipeByScore(payload) {
             type: ORDER_RECIPE_BY_SCORE,
             payload
         }
+
 }
