@@ -1,4 +1,4 @@
-cardRecipe {
+.cardRecipe {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
     padding: 10px;
     text-align: center;
@@ -6,7 +6,7 @@ cardRecipe {
     margin: auto;
   }
   
-contentRecipe {
+.contentRecipe {
     background-color: #babd0e;
     text-align: center;
     font-size: 25px;

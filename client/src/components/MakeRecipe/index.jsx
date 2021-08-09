@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import style from "./index.moduless.css";
+import style from "./index.module.css";
 
 import { addRecipe, getDiets } from "../../actions";
 
@@ -109,17 +109,18 @@ export function MakeRecipe() {
 
 
   return (
-    <div>
+    <div className={style.formFondo}>
+    <div className={style.formContainer}>
       <Link to="/recipes">
         <div>
-          <button>VOLVER</button>
+          <button className={style.formButton}>VOLVER</button>
         </div>
       </Link>
-      <h1>CREA TU PROPIA RECETA !</h1>
+      <h1 className={style.formTitle}>CREA TU PROPIA RECETA !</h1>
 
       <form onSubmit={(e) => handleSubmit(e)}>
-        <div>
-          <label>Nombre / Name:</label>
+      <label className={style.labelInput}>Nombre / Name:</label>
+        <div  className={style.divInput}>
           <input
             type="text"
             name="name"
@@ -128,11 +129,11 @@ export function MakeRecipe() {
             onChange={(e) => onInputChange(e)}
             className={style.input}
           />
-          {errors.name && <p className="errors"> {errors.name} </p>}
+          {errors.name && <p className={style.errors}> {errors.name} </p>}
         </div>
 
-        <div>
-          <label>Descripcion / Description: </label>
+        <div className={style.divInput}>
+          <label className={style.labelInput}>Descripcion / Description: </label>
           <input
             type="text"
             name="description"
@@ -142,12 +143,13 @@ export function MakeRecipe() {
             className={style.input}
           />
           {errors.description && (
-            <p className="errors"> {errors.description} </p>
+            <p className={style.errors}> {errors.description} </p>
           )}
         </div>
 
-        <div>
-          <label>Puntaje / Score:</label>
+        <label className={style.labelInput}>Puntaje / Score:</label>
+        <div className={style.divInput}>
+
           <input
             type="number"
             name="score"
@@ -156,11 +158,11 @@ export function MakeRecipe() {
             onChange={(e) => onInputChange(e)}
             className={style.input}
           />
-          {errors.score && <p className="errors"> {errors.score} </p>}
+          {errors.score && <p className={style.errors}> {errors.score} </p>}
         </div>
-
+        <label className={style.labelInput}>Puntaje Saludable / Healthy Score:</label>
         <div>
-          <label>Puntaje Saludable / Healthy Score:</label>
+
           <input
             type="number"
             name="healthy"
@@ -169,11 +171,11 @@ export function MakeRecipe() {
             onChange={(e) => onInputChange(e)}
             className={style.input}
           />
-          {errors.healthy && <p className="errors"> {errors.healthy} </p>}
+          {errors.healthy && <p className={style.errors}> {errors.healthy} </p>}
         </div>
+        <label className={style.labelInput}>Instrucciones / Steps:</label>
+        <div className={style.divInput}>
 
-        <div>
-          <label>Instrucciones / Steps:</label>
           <textarea
             type="textarea"
             name="steps"
@@ -182,11 +184,11 @@ export function MakeRecipe() {
             onChange={(e) => onInputChange(e)}
             className={style.input}
           />
-          {errors.steps && <p className="errors"> {errors.steps} </p>}
+          {errors.steps && <p className={style.errors}> {errors.steps} </p>}
         </div>
-
+        <label className={style.labelInput}>Imagen / Image: </label>
         <div>
-          <label>Imagen / Image: </label>
+
           <input
             type="text"
             name="image"
@@ -195,22 +197,22 @@ export function MakeRecipe() {
             onChange={(e) => onInputChange(e)}
             className={style.input}
           />
-          {errors.image && <p className="errors"> {errors.image} </p>}
+          {errors.image && <p className={style.errors}> {errors.image} </p>}
         </div>
+        <label className={style.labelInput}>Dietas / Diets: </label>
+        <div className={style.divInput}>
 
-        <div>
-        <label>Dietas / Diets: </label>
         <select onChange={(e) => handleDiets(e)}>
           {diets.map(diet => (
             <option value={diet.name}>{diet.name}</option>
           ))}
 
-          {errors.diets && <p className="errors"> {errors.diets} </p>}
+          {errors.diets && <p className={style.errors}> {errors.diets} </p>}
         </select>
         </div>
 
         <div>
-          <button type="submit">Crear Personaje</button>
+          <button className={style.formButtonCrear} type="submit">Crear Personaje</button>
         </div>
 
       </form>
@@ -222,6 +224,7 @@ export function MakeRecipe() {
          
         </div>
       )}
+    </div>
     </div>
   );
 }

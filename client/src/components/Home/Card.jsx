@@ -1,4 +1,4 @@
-import style from "./Card.moduless.css";
+import style from "./Card.module.css";
 
 //MODIFICAR CSS
 const Card = ({ name, diet, image }) => {
@@ -10,7 +10,7 @@ const Card = ({ name, diet, image }) => {
         <img
           className={style.imgRecipe}
           src={image}
-          alt="Not found"
+          alt="No encontrada / Not found"
           width="250"
           height="250"
         ></img>

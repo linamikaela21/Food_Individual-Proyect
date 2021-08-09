@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import style from './index.moduless.css'
+import style from './index.module.css'
 
 import {
   getRecipes,
@@ -13,6 +13,7 @@ import {
 import Card from "./Card";
 import Paginado from "../Paginado";
 import SearchBar from "../SearchBar";
+import Footer from "../Footer";
 
 export function Home() {
   //Para despachar mis acciones
@@ -95,9 +96,9 @@ export function Home() {
         <h1 className={style.titleHome}>Soy el titulo del HOME</h1>
       </div>
 
-      <div className={style.linkMakeRecipe}>
+      <div className={style.linkMakeRecipeContainer}>
         {/* ESTO ME LLEVA AL FORMULARIO PARA CREAR MI RECETA */}
-        <Link to="/recipe">CREA TU PROPIA RECETA</Link>
+        <button className={style.linkMakeRecipe}><Link className={style.LinklinkMakeRecipe}to="/recipe">CREA TU PROPIA RECETA</Link></button>
       </div>
 
         <div>
@@ -144,6 +145,7 @@ export function Home() {
         <div>
         {/* POR LAS DUDAS NO CARGUEN LAS RECETAS A LA PRIMERA */}
         <button
+        className={style.bottonRecargar}
           onClick={(e) => {
             handleClick(e);
           }}
@@ -174,9 +176,11 @@ export function Home() {
               />
             </div>
           </Link>
+
         );
       })}
         
+        < Footer />
       </div>
   );
 }

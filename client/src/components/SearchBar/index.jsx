@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getRecipeByName } from "../../actions/index";
 
-import style from './index.moduless.css'
+import style from './index.module.css'
 
 function SearchBar() {
   const [name, setName] = useState("");

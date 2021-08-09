@@ -1,0 +1,13 @@
+.fondo {
+    background-image: url("../../Images/muchasRecetasFormulario.jpg");
+    height: 700px;
+    align-items: center;
+}
+
+.title {
+    font-weight: bold 900;
+}
+
+.button {
+    color: aqua;
+}

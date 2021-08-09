@@ -1,5 +1,5 @@
 import React from 'react';
-import './index.moduless.css'
+import './index.module.css'
 
 //Me traigo las propiedades desde Recipes
 function Paginado({recipesPerPage, allRecipes, paginado}) {

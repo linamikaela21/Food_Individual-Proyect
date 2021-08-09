@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import './index.moduless.css'
+import './index.module.css'
 
 import { getRecipeById } from "../../actions";
 
