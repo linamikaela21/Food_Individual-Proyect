@@ -8,7 +8,7 @@ const { dbApi } = require('../../utils/config')
 //     res.send('Soy la funcion getDiets')
 // }
 
-getDiets = async (req, res, next) => {
+getDiets = async (_req, res, next) => {
 
     try {
         const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${dbApi}&addRecipeInformation=true&number=100`
@@ -19,18 +19,22 @@ getDiets = async (req, res, next) => {
 
         diets = diets.flat()
 
+        diets = diets.filter((elem, index )=> {
+            return diets.indexOf(elem) === index
+        })
+
         const modelDiets =
-            ['Gluten free',
+            [
+                'Gluten free',
                 'Dairy Free',
-                'Lacto Vegetarian',
-                'Ovo Vegetarian',
-                'Vegetarian',
                 'Vegan',
-                'Ketogenic',
+                'Lacto Ovo Vegetarian',
+                'Vegetarian',
                 'Pescetarian',
-                'Paleo',
+                'Paleo / Paleolithic',
                 'Primal',
-                'Whole30']
+                'Whole30'
+            ]
 
         diets.forEach(diet => {
             if (diets === []) {

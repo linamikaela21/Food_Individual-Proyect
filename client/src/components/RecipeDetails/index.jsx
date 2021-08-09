@@ -25,6 +25,10 @@ export function RecipeDetails () {
 
 const [loading, setLoading] = useState(false);
 
+ const funcDescription = () => {
+  return  {__html: recipeDetails.description};
+ }
+
   return (
     <div className="recipeDetails">
       { loading ?
@@ -45,8 +49,8 @@ const [loading, setLoading] = useState(false);
           <h3> Healthy:</h3>
           <h3 className="scoreDetails"> {recipeDetails.healthy} </h3>
           <h3>Description: </h3>
-          <h4 className="descriptionDetails">{recipeDetails.description} </h4>
-          <h4>Steps: </h4>
+          <h4 className="descriptionDetails" dangerouslySetInnerHTML={funcDescription()}></h4>
+          <h4>Instructions: </h4>
           <h5 className="stepsDetails"> {recipeDetails.steps} </h5>
           </div>
           : 

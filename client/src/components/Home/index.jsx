@@ -121,6 +121,7 @@ export function Home() {
         </select>
 
         <select onChange={(e) => handleOrderRecipeByScore(e)}>
+        <option value="">Score</option>
           <option value="mayor">Mayor - Menor</option>
           <option value="menor">Menor - Mayor</option>
         </select>
@@ -130,9 +131,8 @@ export function Home() {
           <option value="">All</option>
           <option value="Gluten free">Dieta: Gluten Free</option>
           <option value="Dairy Free">Dieta: Dairy Free</option>
-          <option value="Lacto Vegetarian">Dieta: LactoVegetarian</option>
-          <option value="Ovo Vegetarian"> Dieta: OvoVegetarian</option>
           <option value="Vegetarian">Dieta: Vegetarian</option>
+          <option value="Lacto Ovo Vegetarian">Dieta: LactoVegetarian</option>
           <option value="Vegan">Dieta: Vegan</option>
           <option value="Pescetarian">Dieta: Pescetarian</option>
           <option value="Paleo">Dieta: Paleo</option>

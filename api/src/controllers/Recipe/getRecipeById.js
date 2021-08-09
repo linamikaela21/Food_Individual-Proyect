@@ -18,14 +18,14 @@ const { dbApi } = require('../../utils/config')
                 const url = `https://api.spoonacular.com/recipes/${id}/information?apiKey=${dbApi}&number=100`
                 const apiRecipes = await axios.get(url)
 
-                //Para obetener Stes
-                  let analyzedInstructionsMap = []
+                //Para obetener Steps
+                  let stepsMap = []
                     apiRecipes.data.analyzedInstructions.map((inst) => (
                      inst.steps?.map((s) => (
-                       analyzedInstructionsMap.push(s.step)
+                        stepsMap.push(s.step)
                      ))
                   ))
-                console.log(apiRecipes.data.analyzedInstructions.steps)
+                  
                 const apiRecipesResult = apiRecipes.data
 
                 let objectResponse = {
@@ -35,12 +35,11 @@ const { dbApi } = require('../../utils/config')
                     glutenFree: apiRecipesResult.glutenFree,
                     name: apiRecipesResult.title,
                     image: apiRecipesResult.image,
-                    diets: apiRecipesResult.diets,
-                    dishTypes: apiRecipesResult.dishTypes,
+                    diets: apiRecipesResult.diets.map(elem => elem.toUpperCase() + ` - `),
                     description: apiRecipesResult.summary,
                     score: apiRecipesResult.spoonacularScore,
                     healthy: apiRecipesResult.healthScore,
-                    analyzedInstructions: analyzedInstructionsMap
+                    steps: stepsMap
                 }
 
                 if (apiRecipesResult) return res.send(objectResponse)
@@ -55,7 +54,7 @@ const { dbApi } = require('../../utils/config')
 
                 let dietsMap = []
                 dbRecipeId.diets.map((diet) => (
-                    dietsMap.push(diet.name)
+                    dietsMap.push(diet.name + ` `)
                 ))
 
                 let objectResponse = {

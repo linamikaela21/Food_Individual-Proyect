@@ -222,7 +222,7 @@ export function MakeRecipe() {
       {recipe.diets.map(elem => 
       <div>
         <ul><li>{elem}</li>
-        <button onClick={e => handleDeletDietsNames(e)} >X</button></ul>
+        <button onClick={e => handleDeletDietsNames(elem)} >X</button></ul>
          
         </div>
       )}

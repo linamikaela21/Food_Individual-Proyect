@@ -43,7 +43,7 @@ function getRecipeByName(req, res, next) {
         var apiRecipes = resultados[0].data.results
         var dbRecipes = resultados[1]
 
-        if(apiRecipes.length === 0 || dbRecipes === 0) return res.send('La palabra ingresada no corresponde con ninguna receta')
+        if(apiRecipes.length === 0 || dbRecipes === 0) return res.send(`La palabra ingresada no corresponde con ninguna receta / Your request doesn't with any recipe`)
         //aca los normalizo
         apiRecipes = apiRecipes.map((receta) => {
             return {

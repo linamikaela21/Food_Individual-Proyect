@@ -33,11 +33,6 @@ function getRecipes(_req, res, next) {
     var apiRecipes = resultados[0].data.results
     var dbRecipes = resultados[1]
 
-    //   var stepsMap = []
-    // apiRecipes.analyzedInstructions.map(steps => (
-    //   stepsMap.push(steps.steps)
-    // ))
-
     //aca los normalizo
     apiRecipes = apiRecipes.map((receta) => {
       return {
@@ -47,7 +42,7 @@ function getRecipes(_req, res, next) {
         score: receta.spoonacularScore,
         healthy: receta.healthScore,
         steps: receta.analyzedInstructions,
-        diets: receta.diets,
+        diets: receta.diets.map(elem => elem.toUpperCase() + ` - `),
         image: receta.image,
       }
     })
