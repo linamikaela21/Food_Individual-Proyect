@@ -2,13 +2,13 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import style from './index.module.css'
+import style from "./index.module.css";
 
 import {
   getRecipes,
   orderRecipeByName,
-  // orderRecipeByDiet,
-orderRecipeByScore,
+  orderRecipeByDiet,
+  orderRecipeByScore,
 } from "../../actions/index";
 
 import Card from "./Card";
@@ -24,23 +24,21 @@ export function Home() {
   //Me estoy trayendo todo lo que esta en el estado de recipes
   const allRecipes = useSelector((state) => state.recipes);
 
-   //Esta es mi logica del paginado
+  //Esta es mi logica del paginado
   //El estado de mi pagina actual que empieza en Pagina 1
-  const [currentPage, setCurrentPage] = useState(1)
+  const [currentPage, setCurrentPage] = useState(1);
   //Cuantas recetas quiero por pagina => 9
-    const [recipesPerPage, setRecipesPerPage] = useState(9)
-    //La posicion de mi ultima receta
-    const indexLastRecipe = currentPage * recipesPerPage
-     //La posicion de mi primer receta
-    const indexFirstRecipe = indexLastRecipe - recipesPerPage
-    //Me guardo la cuales son las recetas a renderizar dependiendo la pagina en donde estoy
-    const currentRecipes = allRecipes.slice(indexFirstRecipe, indexLastRecipe)
+  const [recipesPerPage, setRecipesPerPage] = useState(9);
+  //La posicion de mi ultima receta
+  const indexLastRecipe = currentPage * recipesPerPage;
+  //La posicion de mi primer receta
+  const indexFirstRecipe = indexLastRecipe - recipesPerPage;
+  //Me guardo la cuales son las recetas a renderizar dependiendo la pagina en donde estoy
+  const currentRecipes = allRecipes.slice(indexFirstRecipe, indexLastRecipe);
 
-
-    const paginado = (pageNumber) => {
-        setCurrentPage(pageNumber);
-    };
-
+  const paginado = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   //Traigo del estado las recetas cuando el componente se monta
   //Este Hooks es lo mismo que hacer el MapDispatchToPRops
@@ -65,10 +63,9 @@ export function Home() {
 
   //Creo estados locales solo para que me rendericen en el componente
 
-
- const [orderByName, setOrderByName] = useState('')
-  const [orderByScore, setOrderByScore] = useState('')
-  // const [orderByDiets, setOrderByDiets] = useState('')
+  const [orderByName, setOrderByName] = useState("");
+  const [orderByScore, setOrderByScore] = useState("");
+  const [orderByDiets, setOrderByDiets] = useState("");
 
   //Esta es la funcion que conecta mi accion con cada uno de los valores de mi select
   //en funcion de lo que presiona el usuario
@@ -79,11 +76,11 @@ export function Home() {
     setOrderByName(`Ordenado ${e.target.value}`);
   }
 
-  // function handleOrderRecipeByDiet(e) {
-  //   e.preventDefault();
-  //   dispatch(orderRecipeByDiet(e.target.value));
-  //   setFilteredRecipes(`Ordenado: ${e.target.value}`);
-  // }
+  function handleOrderRecipeByDiet(e) {
+    e.preventDefault();
+    dispatch(orderRecipeByDiet(e.target.value));
+    setOrderByDiets(`Ordenado: ${e.target.value}`);
+  }
 
   function handleOrderRecipeByScore(e) {
     e.preventDefault();
@@ -94,60 +91,61 @@ export function Home() {
 
   return (
     <div className={style.content}>
-   
       <div>
         <h1 className={style.titleHome}>Soy el titulo del HOME</h1>
       </div>
 
       <div className={style.linkMakeRecipeContainer}>
         {/* ESTO ME LLEVA AL FORMULARIO PARA CREAR MI RECETA */}
-        <button className={style.linkMakeRecipe}><Link className={style.LinklinkMakeRecipe}to="/recipe">CREA TU PROPIA RECETA</Link></button>
+        <button className={style.linkMakeRecipe}>
+          <Link className={style.LinklinkMakeRecipe} to="/recipe">
+            CREA TU PROPIA RECETA
+          </Link>
+        </button>
       </div>
 
-        <div>
+      <div>
         <SearchBar />
-        </div>
+      </div>
 
-        <Paginado
-            recipesPerPage={recipesPerPage}
-            allRecipes={allRecipes.length}
-            paginado={paginado}
-          />
+      <Paginado
+        recipesPerPage={recipesPerPage}
+        allRecipes={allRecipes.length}
+        paginado={paginado}
+      />
 
+      <div>
+        <select onChange={(e) => handleOrderRecipeByName(e)}>
+          <option value="asc">A - Z</option>
+          <option value="desc">Z - A</option>
+        </select>
 
-        <div>
-          <select onChange={(e) => handleOrderRecipeByName(e)}>
-            <option value="asc">A - Z</option>
-            <option value="desc">Z - A</option>
-          </select>
+        <select onChange={(e) => handleOrderRecipeByScore(e)}>
+          <option value="mayor">Mayor - Menor</option>
+          <option value="menor">Menor - Mayor</option>
+        </select>
+        {/*Es importante que en el value le ponga lo que me llega por back porque va a ser lo que me va a filtrar mi action.payload */}
 
-          <select onChange={(e) => handleOrderRecipeByScore(e)}>
-            <option value="mayor">Mayor - Menor</option>
-            <option value="menor">Menor - Mayor</option>
-          </select>
-          {/*Es importante que en el value le ponga lo que me llega por back porque va a ser lo que me va a filtrar mi action.payload */}
+        <select onChange={(e) => handleOrderRecipeByDiet(e)}>
+          <option value="">All</option>
+          <option value="Gluten free">Dieta: Gluten Free</option>
+          <option value="Dairy Free">Dieta: Dairy Free</option>
+          <option value="Lacto Vegetarian">Dieta: LactoVegetarian</option>
+          <option value="Ovo Vegetarian"> Dieta: OvoVegetarian</option>
+          <option value="Vegetarian">Dieta: Vegetarian</option>
+          <option value="Vegan">Dieta: Vegan</option>
+          <option value="Pescetarian">Dieta: Pescetarian</option>
+          <option value="Paleo">Dieta: Paleo</option>
+          <option value="Ketogenic">Dieta: Ketogenic</option>
+          <option value="Primal">Dieta: Primal</option>
+          <option value="Whole30">Dieta: Whole30</option>
+        </select>
+      </div>
 
-          <select >
-            <option value="">All</option>
-            <option value="Gluten free">Dieta: Gluten Free</option>
-            <option value="Dairy Free">Dieta: Dairy Free</option>
-            <option value="Lacto Vegetarian">Dieta: LactoVegetarian</option>
-            <option value="Ovo Vegetarian"> Dieta: OvoVegetarian</option>
-            <option value="Vegetarian">Dieta: Vegetarian</option>
-            <option value="Vegan">Dieta: Vegan</option>
-            <option value="Pescetarian">Dieta: Pescetarian</option>
-            <option value="Paleo">Dieta: Paleo</option>
-            <option value="Ketogenic">Dieta: Ketogenic</option>
-            <option value="Primal">Dieta: Primal</option>
-            <option value="Whole30">Dieta: Whole30</option>
-          </select>
-        </div>
-
-
-        <div>
+      <div>
         {/* POR LAS DUDAS NO CARGUEN LAS RECETAS A LA PRIMERA */}
         <button
-        className={style.bottonRecargar}
+          className={style.bottonRecargar}
           onClick={(e) => {
             handleClick(e);
           }}
@@ -156,13 +154,11 @@ export function Home() {
         </button>
       </div>
 
-
-         {/*El componente RECIPES ya trajo el estado inicial por ende exporto mi componente Recipe, 
+      {/*El componente RECIPES ya trajo el estado inicial por ende exporto mi componente Recipe, 
           mapeo la info de mi state y la paso por props a Recipe */}
       {currentRecipes?.map((elem) => {
         return (
           <Link to={`/recipes/${elem?.id}`}>
-
             <div className={style.recipes}>
               <Card
                 key={elem?.id}
@@ -176,12 +172,11 @@ export function Home() {
               />
             </div>
           </Link>
-
         );
       })}
-        
-        < Footer />
-      </div>
+
+      <Footer />
+    </div>
   );
 }
 
