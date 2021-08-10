@@ -14,7 +14,82 @@ const { v4: uuidv4 } = require('uuid')
 // }
 
 // http://localhost:3001/recipes/
-postRecipe = async (req, res) => {
+// postRecipe = async (req, res, next) => {
+//     const {
+//         name,
+//         description,
+//         score,
+//         healthy,
+//         steps,
+//         image,
+//         diets
+//     } = req.body
+    
+//     try {
+//     if (!name || !description) return res.status(404).json({})
+    
+//     const createdRecipe = await Recipe.create({
+//             name,
+//             id: uuidv4(),
+//             description,
+//             score,
+//             healthy,
+//             steps,
+//             image,
+//         })
+    
+//        for (let i = 0; i < diets.length; i++) {
+//         await createdRecipe.addDiet(diets[i], { through: 'Recipes_Diets' })
+//     }
+    
+    
+//         const createDiet = await Diet.findAll({        
+//             where: {
+//                 name: name
+//               },
+//               include: Diet
+//         })
+//         console.log(createDiet)
+
+//         return res.status(200).send('Receta creada con exito // Recipe created successfully')
+// } catch (error) {
+//     next(error)
+// }    
+
+
+// PARA EL POST DEL FORMULARIO
+//MATI
+// postRecipe = (req, res, next) => {
+//     const {
+//         name,
+//         description,
+//         score,
+//         healthy,
+//         steps,
+//         image,
+//         diets
+//     } = req.body
+
+//     Recipe.create({
+//         name,
+//         id: uuidv4(),
+//         description,
+//         score,
+//         healthy,
+//         steps,
+//         image,
+//     }).then(createdRecipe => {
+//         return createdRecipe.setDiets(diets)
+//     })
+//         .then((recipeWithDiets) => {
+//             res.json(recipeWithDiets)
+//         })
+//         .catch(error => next(error))
+
+//     }
+
+const postRecipe = async (req, res, next) => {
+
     const {
         name,
         description,
@@ -25,9 +100,13 @@ postRecipe = async (req, res) => {
         diets
     } = req.body
 
-    const createdRecipe = await Recipe.create({
+    const id = uuidv4();
+try {
+
+    if (!name || !description) return res.status(404).json({})
+    const newRecipe = await Recipe.create({
         name,
-        id: uuidv4(),
+        id,
         description,
         score,
         healthy,
@@ -35,36 +114,23 @@ postRecipe = async (req, res) => {
         image,
     })
 
-    
-    const createDiet = await Diet.findAll({        
+    for (let i = 0; i < diets.length; i++) {
+        await newRecipe.addDiet(diets[i], { through: 'Recipes_Diets' })
+    }
+
+    const recipes_diets = await Recipe.findOne({
         where: {
             name: name
-          }
+        },
+        include: Diet
     })
 
-    let createdDiet = []
-    createDiet.map(elem => {
-        createDiet.push(elem.name)
-    })
-
-    console.log(createdDiet)
-    await createdRecipe.addDiets(createdDiet)
-    return res.status(200).send('Receta creada con exito // Recipe created successfully')
+    return res.json(recipes_diets)
+    
+} catch (error) {
+    next(error)
 }
-
-// PARA EL POST DEL FORMULARIO
-
-// router.post('/', (req, res) => {
-//     const {name, image} = req.body
-//     Recipe.create({
-//         name,
-//         image
-//     })
-// }).then(createdRecipe => {
-//     res.json(createdRecipe)
-// })
-// .catch(error => res.sendStatus(404))
-
+}
 
 module.exports = {
     postRecipe

@@ -10,9 +10,62 @@ const { dbApi } = require('../../utils/config')
 
 // http://localhost:3001/recipes/1
 
+// router.get('/:id', async (req, res, next) => {
+//     const id = req.params.id
+//     if(!id) {
+//         return next({msg: 'No me mandaste el id', status: 500})
+//     } //esta roto
+//     var character
+//     try {
+//         if(typeof id === 'string' && id.length > 10) {
+//             character = await Character.findByPk(id, {
+//                 include: Episode
+//             })
+//             character = {
+//                 id: character.id,
+//                 name: character.name,
+//                 image: character.image,
+//                 episodes: character.Episodes.map((episode) => {
+//                     return {
+//                         id: episode.id,
+//                         name: episode.name
+//                     }
+//                 })
+//             }
+//         } else {
+//             var characterResponse = await axios.get('https://rickandmortyapi.com/api/character/' + id)
+//             characterResponse = characterResponse.data
+//             episodesList = characterResponse.episode.map((episode) => {
+//                 return episode.split('/').pop()
+//             })
+            
+//             episodesList = episodesList.join(',')
+//             var episodes = await axios.get('https://rickandmortyapi.com/api/episode/' + episodesList)
+//             episodes = episodes.data
+//             episodes = episodes.map((episode) => {
+//                 return {
+//                     id: episode.id,
+//                     name: episode.name
+//                 }
+//             })
+//             character = {
+//                 id: characterResponse.id,
+//                 name: characterResponse.name,
+//                 image: characterResponse.image,
+//                 episodes: episodes
+//             }
+//         }
+//         return res.json(character)
+//     } catch(error) {
+//         next(error)
+//     }
+
+// })
+
     getRecipeById = async (req, res, next) => {
 
         const { id } = req.params
+        
         try {
             if (id.length < 35) {
                 const url = `https://api.spoonacular.com/recipes/${id}/information?apiKey=${dbApi}&number=100`
