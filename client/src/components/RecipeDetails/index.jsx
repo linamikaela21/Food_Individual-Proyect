@@ -56,7 +56,7 @@ const [loading, setLoading] = useState(false);
           : 
           <p>Loading...</p>
       }
-      <Link to='/recipes'><button>Volver / Go back</button></Link>
+      <Link to='/recipes'><button className={style.buttonVolver}>Volver / Go back</button></Link>
     </div>
   )
 

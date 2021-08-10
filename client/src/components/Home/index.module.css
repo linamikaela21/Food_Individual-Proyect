@@ -1,3 +1,6 @@
+
+/* FORMULARIO */
+
 .linkMakeRecipeContainer {
     background-color: rgb(77, 28, 212);
     padding: 15px;
@@ -36,7 +39,14 @@
       padding: 2%;
     }
   
-    .bottonRecargar {
+    
+  /* boton recargar */
+
+  .buttonRecargarContainer {
+    background-color: coral;
+    padding: 10px;
+  }
+    .buttonRecargar {
       padding-top: 10px;
         padding-left: 20px;
         padding-bottom: 10px;
@@ -55,4 +65,27 @@
       background-color: chocolate;
       border: solid 4px cadetblue;
   }
+
+
+/* SELECTS */
   
+.containerSelect {
+  display: flex;
+  justify-content: center;
+  background-color: blueviolet;
+  padding: 10px;
+}
+
+.containerSelect select {
+padding: 10px;
+font-size: medium;
+font-weight: 400;
+border-radius: 5px;
+margin: 10px;
+}
+
+.containerSelect select option {
+  padding: 10px;
+  font-size: medium;
+  font-weight: 300;
+  }

@@ -115,7 +115,7 @@ export function Home() {
         paginado={paginado}
       />
 
-      <div>
+      <div className={style.containerSelect}>
         <select onChange={(e) => handleOrderRecipeByName(e)}>
           <option value="asc">A - Z</option>
           <option value="desc">Z - A</option>
@@ -141,10 +141,10 @@ export function Home() {
         </select>
       </div>
 
-      <div>
+      <div className={style.buttonRecargarContainer}>
         {/* POR LAS DUDAS NO CARGUEN LAS RECETAS A LA PRIMERA */}
         <button
-          className={style.bottonRecargar}
+          className={style.buttonRecargar}
           onClick={(e) => {
             handleClick(e);
           }}
