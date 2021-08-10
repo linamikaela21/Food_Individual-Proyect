@@ -100,7 +100,6 @@ export function orderRecipeByName(payload) {
 }
 
 export function orderRecipeByDiet(payload) {
-    console.log(payload)
     return {
             type: ORDER_RECIPE_BY_DIET,
             payload

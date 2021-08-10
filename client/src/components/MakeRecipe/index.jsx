@@ -56,7 +56,7 @@ export function MakeRecipe() {
     return errors;
   };
 
-  //Me traigo todas las recetas
+  //Me traigo todas las dietas
   useEffect(() => {
     dispatch(getDiets());
   }, [dispatch]);
@@ -79,11 +79,14 @@ export function MakeRecipe() {
   const handleDiets = (e) => {
     setRecipe({
       ...recipe,
-      diets: [...recipe.diets, e.target.value],
+      diets: [
+        ...recipe.diets, 
+        e.target.value]
     });
+    console.log(recipe)
   };
 
-  const handleDeletDietsNames = (elem) => {
+  const handleDeleteDietsNames = (elem) => {
     setRecipe({
       ...recipe,
       diets: recipe.diets.filter(diet => diet !== elem)
@@ -201,10 +204,11 @@ export function MakeRecipe() {
           />
           {errors.image && <p className={style.errors}> {errors.image} </p>}
         </div>
+
         <label className={style.labelInput}>Dietas / Diets: </label>
         <div className={style.divInput}>
 
-        <select onChange={(e) => handleDiets(e)}>
+        <select onChange={e => handleDiets(e)}>
           {diets.map(diet => (
             <option value={diet.name}>{diet.name}</option>
           ))}
@@ -222,7 +226,7 @@ export function MakeRecipe() {
       {recipe.diets.map(elem => 
       <div>
         <ul><li>{elem}</li>
-        <button onClick={e => handleDeletDietsNames(elem)} >X</button></ul>
+        <button onClick={e => handleDeleteDietsNames(elem)} >X</button></ul>
          
         </div>
       )}

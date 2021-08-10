@@ -79,6 +79,7 @@ export function Home() {
   function handleOrderRecipeByDiet(e) {
     e.preventDefault();
     dispatch(orderRecipeByDiet(e.target.value));
+    setCurrentPage(1);
     setOrderByDiets(`Ordenado: ${e.target.value}`);
   }
 
@@ -121,7 +122,6 @@ export function Home() {
         </select>
 
         <select onChange={(e) => handleOrderRecipeByScore(e)}>
-        <option value="">Score</option>
           <option value="mayor">Mayor - Menor</option>
           <option value="menor">Menor - Mayor</option>
         </select>
@@ -129,14 +129,15 @@ export function Home() {
 
         <select onChange={(e) => handleOrderRecipeByDiet(e)}>
           <option value="">All</option>
-          <option value="Gluten free">Dieta: Gluten Free</option>
           <option value="Dairy Free">Dieta: Dairy Free</option>
+          <option value="Gluten free">Dieta: Gluten Free</option>
+          <option value="Ketogenic">Dieta: Ketogenic</option>
           <option value="Vegetarian">Dieta: Vegetarian</option>
-          <option value="Lacto Ovo Vegetarian">Dieta: LactoVegetarian</option>
+          <option value="Lacto Vegetarian">Dieta: LactoVegetarian</option>
+          <option value="Ovo Vegetarian">Dieta: LactoVegetarian</option>
           <option value="Vegan">Dieta: Vegan</option>
           <option value="Pescetarian">Dieta: Pescetarian</option>
-          <option value="Paleo">Dieta: Paleo</option>
-          <option value="Ketogenic">Dieta: Ketogenic</option>
+          <option value="Paleo / Paleolithic">Dieta: Paleo / Paleolithic</option>
           <option value="Primal">Dieta: Primal</option>
           <option value="Whole30">Dieta: Whole30</option>
         </select>
@@ -156,14 +157,14 @@ export function Home() {
 
       {/*El componente RECIPES ya trajo el estado inicial por ende exporto mi componente Recipe, 
           mapeo la info de mi state y la paso por props a Recipe */}
-      {currentRecipes?.map((elem) => {
+      {currentRecipes.map((elem) => {
         return (
           <Link to={`/recipes/${elem?.id}`}>
             <div className={style.recipes}>
               <Card
                 key={elem?.id}
                 name={elem?.name}
-                diet={elem?.diets}
+                diets={elem?.diets}
                 score={elem?.score}
                 description={elem?.description}
                 healthy={elem?.healthy}

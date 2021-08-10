@@ -1,5 +1,4 @@
 
-import RecipeDetails from '../RecipeDetails';
 import style from './index.module.css'
 
 //Me traigo las propiedades desde Recipes

@@ -46,6 +46,7 @@ function getRecipes(_req, res, next) {
         image: receta.image,
       }
     })
+    
     dbRecipes = dbRecipes.map((receta) => {
       return {
         id: receta.id,

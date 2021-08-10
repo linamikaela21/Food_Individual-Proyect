@@ -1,5 +1,7 @@
 const { Recipe, Diet } = require('../../db');
 
+const { Op } = require("sequelize");
+
 const { v4: uuidv4 } = require('uuid')
 
 //  POST /recipe:
@@ -19,7 +21,8 @@ postRecipe = async (req, res) => {
         score,
         healthy,
         steps,
-        image
+        image,
+        diets
     } = req.body
 
     const createdRecipe = await Recipe.create({
@@ -29,15 +32,23 @@ postRecipe = async (req, res) => {
         score,
         healthy,
         steps,
-        image
+        image,
     })
 
-    const createdDiet = await Diet.findAll({
+    
+    const createDiet = await Diet.findAll({        
         where: {
             name: name
-        }
+          }
     })
-    createdRecipe.addDiets(createdDiet)
+
+    let createdDiet = []
+    createDiet.map(elem => {
+        createDiet.push(elem.name)
+    })
+
+    console.log(createdDiet)
+    await createdRecipe.addDiets(createdDiet)
     return res.status(200).send('Receta creada con exito // Recipe created successfully')
 }
 

@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import './index.module.css'
+import style from './index.module.css'
 
 import { getRecipeById } from "../../actions";
 
@@ -30,10 +30,10 @@ const [loading, setLoading] = useState(false);
  }
 
   return (
-    <div className="recipeDetails">
+    <div className={style.content}>
       { loading ?
-        <div className="contentRecipeDetails">
-            <h1 className="nameDetails"> {recipeDetails.name} </h1>
+        <div className={style.contentRecipeDetails}>
+            <h1 className={style.tituloNameRecipeDetails}> {recipeDetails.name} </h1>
             <img
 
             className="imgDetails"
@@ -42,16 +42,16 @@ const [loading, setLoading] = useState(false);
             width="400"
             height="400"
           />
-            <h3>Diets:</h3>
-          <h3 className="dietDetails"> {recipeDetails.diets} </h3>
-          <h3> Score:</h3>
-          <h3 className="healthyDetails">{recipeDetails.score} </h3>
-          <h3> Healthy:</h3>
-          <h3 className="scoreDetails"> {recipeDetails.healthy} </h3>
-          <h3>Description: </h3>
-          <h4 className="descriptionDetails" dangerouslySetInnerHTML={funcDescription()}></h4>
-          <h4>Instructions: </h4>
-          <h5 className="stepsDetails"> {recipeDetails.steps} </h5>
+            <h3 className={style.tituloRecipeDetails}>DIETS / DIETAS:</h3>
+          <h3 className={style.detalleRecipeDetails}> {recipeDetails.diets} </h3>
+          <h3 className={style.tituloRecipeDetails}> SCORE / PUNTAJE:</h3>
+          <h3 className={style.detalleRecipeDetails}>{recipeDetails.score} </h3>
+          <h3 className={style.tituloRecipeDetails}> HEALTHY / PUNTAJE SALUDABLE:</h3>
+          <h3 className={style.detalleRecipeDetails}> {recipeDetails.healthy} </h3>
+          <h3 className={style.tituloRecipeDetails}>DESCRIPTION / DESCRIPCION: </h3>
+          <h4 className={style.detalleRecipeDetails} dangerouslySetInnerHTML={funcDescription()}></h4>
+          <h4 className={style.tituloRecipeDetails}>INSTRUCTIONS / INSTRUCCIONES: </h4>
+          <h4 className={style.detalleRecipeDetails}> {recipeDetails.steps} </h4>
           </div>
           : 
           <p>Loading...</p>

@@ -52,10 +52,10 @@ const { dbApi } = require('../../utils/config')
                     include: Diet
                 })
 
-                let dietsMap = []
-                dbRecipeId.diets.map((diet) => (
-                    dietsMap.push(diet.name + ` `)
-                ))
+                // let dietsMap = []
+                // dbRecipeId.diets.map((diet) => (
+                //     dietsMap.push(diet.name + ` `)
+                // ))
 
                 let objectResponse = {
                     id: dbRecipeId.id,
@@ -63,7 +63,7 @@ const { dbApi } = require('../../utils/config')
                     description: dbRecipeId.description,
                     score: dbRecipeId.score,
                     healthy: dbRecipeId.healthy,
-                    diets: dietsMap,
+                    diets: dbRecipeId.diets.map(elem => elem.toUpperCase() + ` - `),
                     steps: dbRecipeId.steps,
                     image: dbRecipeId.image
                 }
