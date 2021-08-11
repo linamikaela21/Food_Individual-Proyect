@@ -21,7 +21,7 @@ const { dbApi } = require('../../utils/config')
 //ASYNC AWAIT
 //if tengo query param, hago una cosa, sino busco todos. PISTA: req.query
 
-function getRecipes(_req, res, next) {
+ const getRecipes = (_req, res, next) => {
   const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${dbApi}&addRecipeInformation=true&number=100`
   var apiRecipePromise = axios.get(url)
   var dbRecipePromise = Recipe.findAll()

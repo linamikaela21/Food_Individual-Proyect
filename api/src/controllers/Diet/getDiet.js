@@ -30,8 +30,8 @@ getDiets = async (_req, res, next) => {
             'lacto ovo vegetarian',
             'vegan',
             'paleolithic',
-            'primal',
             'pescatarian',
+            'primal',
             'fodmap friendly',
             'whole 30',
         ]

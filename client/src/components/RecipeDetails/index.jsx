@@ -68,19 +68,19 @@ export default RecipeDetails;
 // import axios from "axios";
 // import { useParams } from "react-router";
 // import { Link } from "react-router-dom";
-// import './index.css'
+// import style from './index.module.css'
 
 // import { URL_ALL_RECIPES } from "../../constantes";
 
 // export function RecipeDetails () {
 
-//   const [recipe, setRecipe] = useState({});
+//   const [recipeDetails, setrecipeDetails] = useState({});
 
 //   const { id } = useParams();
 
 //   function getRecipesById(id) {
 //     axios(URL_ALL_RECIPES + id).then((recipe) => {
-//       setRecipe(recipe.data);
+//       setrecipeDetails(recipe.data);
 //     });
 //   }
 
@@ -88,28 +88,35 @@ export default RecipeDetails;
 //     getRecipesById(id);
 //   }, [])
 
+//    const funcDescription = () => {
+//   return  {__html: recipeDetails.description};
+//  }
 //   return (
-//     <div>
-//       {
-//         <div className="content">
-//             <h2 className="nameDetails"> {recipe.name} </h2>
-//           <h3 className="dietDetails"> {recipe.diets} </h3>
-//           <h4 className="healthyDetails"> Score : {recipe.score} </h4>
-//           <h4 className="scoreDetails"> Healthy: {recipe.healthy} </h4>
-//           <h5 className="descriptionDetails"> {recipe.description} </h5>
-//           <h5 className="stepsDetails"> Steps: {recipe.steps} </h5>
-//           <img
-//             className="imgDetails"
-//             src={recipe.image}
-//             alt="Not found"
-//             width="400"
-//             height="400"
-//           ></img>
-//           </div>
-//       }
-// <Link to='/recipes'><button>Volver / Go back</button></Link> 
-//     </div>
-//   )
+//   <div className={style.content}>
+//     <div className={style.contentRecipeDetails}>
+//         <h1 className={style.tituloNameRecipeDetails}> {recipeDetails.name} </h1>
+//         <img
+
+//         className="imgDetails"
+//         src={recipeDetails.image}
+//         alt="Not found"
+//         width="400"
+//         height="400"
+//       />
+//         <h3 className={style.tituloRecipeDetails}>DIETS / DIETAS:</h3>
+//       <h3 className={style.detalleRecipeDetails}> {recipeDetails.diets} </h3>
+//       <h3 className={style.tituloRecipeDetails}> SCORE / PUNTAJE:</h3>
+//       <h3 className={style.detalleRecipeDetails}>{recipeDetails.score} </h3>
+//       <h3 className={style.tituloRecipeDetails}> HEALTHY / PUNTAJE SALUDABLE:</h3>
+//       <h3 className={style.detalleRecipeDetails}> {recipeDetails.healthy} </h3>
+//       <h3 className={style.tituloRecipeDetails}>DESCRIPTION / DESCRIPCION: </h3>
+//       <h4 className={style.detalleRecipeDetails} dangerouslySetInnerHTML={funcDescription()}></h4>
+//       <h4 className={style.tituloRecipeDetails}>INSTRUCTIONS / INSTRUCCIONES: </h4>
+//       <h4 className={style.detalleRecipeDetails}> {recipeDetails.steps} </h4>
+//       </div>
+//   <Link to='/recipes'><button className={style.buttonVolver}>Volver / Go back</button></Link>
+// </div>
+// )
 
 // }
 

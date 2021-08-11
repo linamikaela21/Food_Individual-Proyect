@@ -83,7 +83,6 @@ export function MakeRecipe() {
         ...recipe.diets, 
         e.target.value]
     });
-    console.log(recipe)
   };
 
   const handleDeleteDietsNames = (elem) => {
@@ -91,7 +90,6 @@ export function MakeRecipe() {
       ...recipe,
       diets: recipe.diets.filter(diet => diet !== elem)
     });
-    console.log(elem)
   };
 
   //Aca hago mi post a mi base de datos
@@ -208,7 +206,7 @@ export function MakeRecipe() {
         <label className={style.labelInput}>Dietas / Diets: </label>
         <div className={style.divInput}>
 
-        <select onChange={e => handleDiets(e)}>
+        <select className={style.containerSelect} onChange={e => handleDiets(e)}>
           {diets.map(diet => (
             <option value={diet.name}>{diet.name}</option>
           ))}
@@ -224,8 +222,8 @@ export function MakeRecipe() {
       </form>
 
       {recipe.diets.map(elem => 
-      <div>
-        <ul><li>{elem}</li>
+      <div className={style.divLI}>
+        <ul><li className={style.li}>{elem}</li>
         <button onClick={e => handleDeleteDietsNames(elem)} >X</button></ul>
          
         </div>

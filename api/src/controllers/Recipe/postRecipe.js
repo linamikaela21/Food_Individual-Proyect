@@ -24,10 +24,10 @@ const { v4: uuidv4 } = require('uuid')
 //         image,
 //         diets
 //     } = req.body
-    
+
 //     try {
 //     if (!name || !description) return res.status(404).json({})
-    
+
 //     const createdRecipe = await Recipe.create({
 //             name,
 //             id: uuidv4(),
@@ -37,12 +37,12 @@ const { v4: uuidv4 } = require('uuid')
 //             steps,
 //             image,
 //         })
-    
+
 //        for (let i = 0; i < diets.length; i++) {
 //         await createdRecipe.addDiet(diets[i], { through: 'Recipes_Diets' })
 //     }
-    
-    
+
+
 //         const createDiet = await Diet.findAll({        
 //             where: {
 //                 name: name
@@ -100,36 +100,47 @@ const postRecipe = async (req, res, next) => {
         diets
     } = req.body
 
-    const id = uuidv4();
-try {
+    // const id = uuidv4();
+    try {
 
-    if (!name || !description) return res.status(404).json({})
-    const newRecipe = await Recipe.create({
-        name,
-        id,
-        description,
-        score,
-        healthy,
-        steps,
-        image,
-    })
+        if (!name || !description) return res.status(404).json({})
 
-    for (let i = 0; i < diets.length; i++) {
-        await newRecipe.addDiet(diets[i], { through: 'Recipes_Diets' })
+        const newRecipe = await Recipe.create({
+            name,
+            id: uuidv4(),
+            description,
+            score,
+            healthy,
+            steps,
+            image,
+        })
+
+        //forma Sofi
+        // for (let i = 0; i < diets.length; i++) {
+        //     await newRecipe.addDiets(diets[i], { through: 'Recipe_Diet' })
+        // }
+
+        // const dietasBD = await Recipe.findOne({
+        //     where: {
+        //         name: name
+        //     },
+        //     include: Diet
+        // })
+
+        //forma profe
+        const dietasBD = await Diet.findAll({
+            where: {
+                name: diets
+            }
+        })
+
+        newRecipe.addDiets(dietasBD)
+
+        return res.status(200).send('Receta creado con exito')
+
+    } catch (error) {
+        next(error)
     }
-
-    const recipes_diets = await Recipe.findOne({
-        where: {
-            name: name
-        },
-        include: Diet
-    })
-
-    return res.json(recipes_diets)
-    
-} catch (error) {
-    next(error)
-}
 }
 
 module.exports = {

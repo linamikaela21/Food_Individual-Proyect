@@ -58,8 +58,6 @@
     border: solid 4px cadetblue;
 }
 
-
-
 .formButtonCrear {
     padding-top: 10px;
     padding-left: 20px;
@@ -86,3 +84,23 @@
     font-weight: 500;
     color: rgb(114, 8, 8);
 }
+
+/* DIETS LI */
+
+.divLI {
+    padding: 10px;
+    background-color: brown;
+}
+
+.li {
+font-size: large;
+font-weight: 500;
+}
+
+  .divInput select {
+  padding: 10px;
+  font-size: medium;
+  font-weight: 400;
+  border-radius: 5px;
+  margin: 10px;
+  }

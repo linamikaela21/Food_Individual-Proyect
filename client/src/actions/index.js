@@ -9,7 +9,8 @@ import {
     SEARCH_RECIPE_BY_ID,
     ORDER_RECIPE_BY_NAME,
     ORDER_RECIPE_BY_DIET,
-    ORDER_RECIPE_BY_SCORE
+    ORDER_RECIPE_BY_SCORE,
+    ADD_RECIPE
 } from './constants'
 
 //SIEMPRE DEBO TRATAR DE TENER LA MENOR LOGICA EN MI ACTIONS !
@@ -56,7 +57,11 @@ export function addRecipe(payload) {
     return async function(dispatch) {
         var addRecipe = await axios.post(URL_ALL_RECIPES, payload)
         console.log(payload)
-        return addRecipe
+        //dispatch
+        return {
+            type: ADD_RECIPE,
+            addRecipe
+        }
     }
 }
 
