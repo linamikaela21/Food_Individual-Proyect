@@ -15,6 +15,7 @@ import Card from "./Card";
 import Paginado from "../Paginado";
 import SearchBar from "../SearchBar";
 import Footer from "../Footer";
+import Nav from "../Nav"
 
 export function Home() {
   //Para despachar mis acciones
@@ -46,6 +47,7 @@ export function Home() {
   //Dentro de [] puedo poner un state diciendo que necesito que este este state para que se ejecute el UseEffect sino no se ejecuta
   useEffect(() => {
     dispatch(getRecipes());
+    //getDiet y map al select y useSelector
   }, [dispatch]);
 
   //Para resetear las recetas en caso de que no se hallan cargado bien
@@ -62,7 +64,6 @@ export function Home() {
   // }
 
   //Creo estados locales solo para que me rendericen en el componente
-
   const [orderByName, setOrderByName] = useState("");
   const [orderByScore, setOrderByScore] = useState("");
   const [orderByDiets, setOrderByDiets] = useState("");
@@ -93,7 +94,7 @@ export function Home() {
   return (
     <div className={style.content}>
       <div>
-        <h1 className={style.titleHome}>Soy el titulo del HOME</h1>
+        <Nav />
       </div>
 
       <div className={style.linkMakeRecipeContainer}>
@@ -116,28 +117,30 @@ export function Home() {
       />
 
       <div className={style.containerSelect}>
+        <label>Name</label>
         <select onChange={(e) => handleOrderRecipeByName(e)}>
           <option value="asc">A - Z</option>
           <option value="desc">Z - A</option>
         </select>
 
+       <label>Score</label>
         <select onChange={(e) => handleOrderRecipeByScore(e)}>
           <option value="mayor">Mayor - Menor</option>
           <option value="menor">Menor - Mayor</option>
         </select>
-        
         {/*Es importante que en el value le ponga lo que me llega por back porque va a ser lo que me va a filtrar mi action.payload */}
 
+        <label>Diets</label>
         <select onChange={(e) => handleOrderRecipeByDiet(e)}>
           <option value="">All</option>
-          <option value="gluten free">Dieta: Gluten Free</option>
           <option value="dairy free">Dieta: Dairy Free</option>
+          <option value="gluten free">Dieta: Gluten Free</option>
           <option value="lacto ovo vegetarian">Dieta: Lacto Ovo Vegetarian</option>
           <option value="vegan">Dieta: Vegan</option>
-           <option value="paleolithic">Dieta: Paleo / Paleolithic</option>
           <option value="pescatarian">Dieta: Pescatarian</option>
-          <option value="primal">Dieta: Primal</option>
+          <option value="paleolithic">Dieta: Paleo / Paleolithic</option>
           <option value="fodmap friendly">Dieta: Fodmap Friendly</option>
+          <option value="primal">Dieta: Primal</option>
           <option value="whole 30">Dieta: Whole 30</option>
         </select>
       </div>

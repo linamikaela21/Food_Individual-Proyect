@@ -88,7 +88,7 @@ const { dbApi } = require('../../utils/config')
                         vegetarian: apiRecipesResult.vegetarian,
                         vegan: apiRecipesResult.vegan,
                         glutenFree: apiRecipesResult.glutenFree,
-                        name: apiRecipesResult.title,
+                        name: apiRecipesResult.title.toUpperCase(),
                         image: apiRecipesResult.image,
                         diets: apiRecipesResult.diets.map(elem => elem.toUpperCase() + ` - `),
                         description: apiRecipesResult.summary,

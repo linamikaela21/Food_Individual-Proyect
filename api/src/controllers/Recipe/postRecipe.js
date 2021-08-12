@@ -1,6 +1,6 @@
 const { Recipe, Diet } = require('../../db');
 
-const { Op } = require("sequelize");
+const { Op, where } = require("sequelize");
 
 const { v4: uuidv4 } = require('uuid')
 
@@ -14,51 +14,10 @@ const { v4: uuidv4 } = require('uuid')
 // }
 
 // http://localhost:3001/recipes/
-// postRecipe = async (req, res, next) => {
-//     const {
-//         name,
-//         description,
-//         score,
-//         healthy,
-//         steps,
-//         image,
-//         diets
-//     } = req.body
 
-//     try {
-//     if (!name || !description) return res.status(404).json({})
+// PARA EL POST DEL FORMULARIO PROMESAS
 
-//     const createdRecipe = await Recipe.create({
-//             name,
-//             id: uuidv4(),
-//             description,
-//             score,
-//             healthy,
-//             steps,
-//             image,
-//         })
-
-//        for (let i = 0; i < diets.length; i++) {
-//         await createdRecipe.addDiet(diets[i], { through: 'Recipes_Diets' })
-//     }
-
-
-//         const createDiet = await Diet.findAll({        
-//             where: {
-//                 name: name
-//               },
-//               include: Diet
-//         })
-//         console.log(createDiet)
-
-//         return res.status(200).send('Receta creada con exito // Recipe created successfully')
-// } catch (error) {
-//     next(error)
-// }    
-
-
-// PARA EL POST DEL FORMULARIO
-//MATI
+//MATI no funciona
 // postRecipe = (req, res, next) => {
 //     const {
 //         name,
@@ -88,6 +47,100 @@ const { v4: uuidv4 } = require('uuid')
 
 //     }
 
+
+//ESTE FUNCIONA SIN DIETS
+// const postRecipe = async (req, res, next) => {
+
+//     const {
+//         name,
+//         description,
+//         score,
+//         healthy,
+//         steps,
+//         image,
+//         diets
+//     } = req.body
+
+//     0
+//     try {
+
+//         if (!name || !description) return res.status(404).json({})
+
+//         const newRecipe = await Recipe.create({
+//             name,
+//             id: uuidv4(),
+//             description,
+//             score,
+//             healthy,
+//             steps,
+//             image,
+//         })
+
+//         console.log(diets)
+
+//         //Ignacio
+//         diets.forEach(async diet => {
+//             const dietasBD = await Diet.findOne({
+//                 where: {
+//                     name: diet
+//                 }
+//             })
+//             newRecipe.addDiet(dietasBD)
+//         })
+//     }
+
+//     catch (error) {
+//         next(error)
+//     }
+
+//     const Response = await Recipe.findOne({
+//         where: {
+//             name: name
+//         },
+//         include: Diet
+//     })
+
+//     return res.status(200).send(Response)
+
+// }
+
+//EJEMPLO VISTO CON IGNACIO ME TRAE DIET VACIO
+// const postRecipe = async (req, res, next) => {
+
+//     const {
+//         name,
+//         description,
+//         score,
+//         healthy,
+//         steps,
+//         image,
+//         diets
+//     } = req.body
+
+//     if (name && description) {
+//         try {
+
+//             const newRecipe = await Recipe.create({
+//                 name,
+//                 description,
+//                 score,
+//                 healthy,
+//                 steps,
+//                 image,
+//             })
+
+//             newRecipe = await newRecipe.addDiets(diets)
+
+//             res.status(200).send(newRecipe)
+
+//         } catch (error) {
+//             next(error)
+//         }
+//     } else {
+//         res.status(400).json("Faltan datos")
+//     }
+// }
+
 const postRecipe = async (req, res, next) => {
 
     const {
@@ -100,14 +153,10 @@ const postRecipe = async (req, res, next) => {
         diets
     } = req.body
 
-    // const id = uuidv4();
     try {
-
-        if (!name || !description) return res.status(404).json({})
 
         const newRecipe = await Recipe.create({
             name,
-            id: uuidv4(),
             description,
             score,
             healthy,
@@ -115,28 +164,18 @@ const postRecipe = async (req, res, next) => {
             image,
         })
 
-        //forma Sofi
-        // for (let i = 0; i < diets.length; i++) {
-        //     await newRecipe.addDiets(diets[i], { through: 'Recipe_Diet' })
-        // }
-
-        // const dietasBD = await Recipe.findOne({
-        //     where: {
-        //         name: name
-        //     },
-        //     include: Diet
-        // })
-
-        //forma profe
-        const dietasBD = await Diet.findAll({
+        const recipeDB = await Diet.findAll({
             where: {
                 name: diets
             }
         })
+        console.log(diets, 'soy DIEEEEEEEEEETS')
+        console.log(recipeDB, 'ACA DEBERIA ENCONTRAR LA RECETA PARA HACER MATCH')
+        console.log(newRecipe, 'SOY LA RECETA CREAAAAAAADAAAAAAA')
+        newRecipe.addDiet(recipeDB)
+        
 
-        newRecipe.addDiets(dietasBD)
-
-        return res.status(200).send('Receta creado con exito')
+        res.send('Recipe create succefully // Receta creada exitosamente')
 
     } catch (error) {
         next(error)

@@ -1,22 +1,41 @@
+.content {
+    display: block;
+    justify-content: center;
+}
+
 .contentRecipeDetails {
     background-color: teal;
+    width: 80%;
+    margin-top: 5%;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
 .tituloNameRecipeDetails {
-
+ color: white;
+ padding-top: 3%;
+ padding-bottom: 2%;
+ font-size: 50px;
 }
 
 .tituloRecipeDetails {
     color: white;
     font-size: large;
+    font-size: 25px;
 
 }
 
 .detalleRecipeDetails {
 color: rgb(189, 192, 34);
-font-size: medium;
+margin: 10px auto;
+padding-left: 10%;
+padding-right: 10%;
+padding-bottom: 2%;
 }
 
+h2 {
+font-size: 40px;
+}
 
 .buttonVolver {
     padding-top: 10px;
@@ -31,6 +50,7 @@ font-size: medium;
     border-radius: 10px;
     border: solid 4px rgb(214, 15, 15);
     margin-top: 20px;
+    margin-bottom: 3%;
 } 
 
 .buttonVolver:hover {

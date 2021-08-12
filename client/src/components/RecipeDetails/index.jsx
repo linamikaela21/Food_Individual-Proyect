@@ -39,19 +39,19 @@ const [loading, setLoading] = useState(false);
             className="imgDetails"
             src={recipeDetails.image}
             alt="Not found"
-            width="400"
-            height="400"
+            width="500"
+            height="500"
           />
             <h3 className={style.tituloRecipeDetails}>DIETS / DIETAS:</h3>
-          <h3 className={style.detalleRecipeDetails}> {recipeDetails.diets} </h3>
+          <h2 className={style.detalleRecipeDetails}> {recipeDetails.diets} </h2>
           <h3 className={style.tituloRecipeDetails}> SCORE / PUNTAJE:</h3>
-          <h3 className={style.detalleRecipeDetails}>{recipeDetails.score} </h3>
+          <h2 className={style.detalleRecipeDetails}>{recipeDetails.score} </h2>
           <h3 className={style.tituloRecipeDetails}> HEALTHY / PUNTAJE SALUDABLE:</h3>
-          <h3 className={style.detalleRecipeDetails}> {recipeDetails.healthy} </h3>
+          <h2 className={style.detalleRecipeDetails}> {recipeDetails.healthy} </h2>
           <h3 className={style.tituloRecipeDetails}>DESCRIPTION / DESCRIPCION: </h3>
-          <h4 className={style.detalleRecipeDetails} dangerouslySetInnerHTML={funcDescription()}></h4>
-          <h4 className={style.tituloRecipeDetails}>INSTRUCTIONS / INSTRUCCIONES: </h4>
-          <h4 className={style.detalleRecipeDetails}> {recipeDetails.steps} </h4>
+          <h3 className={style.detalleRecipeDetails} dangerouslySetInnerHTML={funcDescription()}></h3>
+          <h3 className={style.tituloRecipeDetails}>INSTRUCTIONS / INSTRUCCIONES: </h3>
+          <h3 className={style.detalleRecipeDetails}> {recipeDetails.steps} </h3>
           </div>
           : 
           <p>Loading...</p>

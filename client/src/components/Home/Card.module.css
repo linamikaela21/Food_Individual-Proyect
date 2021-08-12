@@ -2,23 +2,25 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
   padding: 10px;
   text-align: center;
-  background-color: hsl(51, 53%, 53%);
+  background-image: url('../../Images/Post-it.jpg');
   margin: auto;
+  background-position: center;
   /* overflow: hidden;
   white-space: nowrap; */
 }
 
 .contentRecipe {
-  background-color: #babd0e;
   text-align: center;
   font-size: 20px;
+  width: 50px min-content;
 }
 
-/* .nameRecipe {
-  text-overflow: ellipsis;
-  font-size: large;
+.nameRecipe {
+  font-size: xx-large;
+  color: white;
 }
 
 .dietsRecipe {
   font-size: large;
-} */
+  color: rgb(250, 213, 4);
+} 
