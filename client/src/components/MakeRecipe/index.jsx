@@ -37,11 +37,9 @@ export function MakeRecipe() {
     if (!recipe.name || recipe.name.length < 5 || recipe.name.length > 50) {
       errors.name = `Se requiere un nombre de entre 5 y 30 caracteres / Name is requiered between 5 and 30 characters of extension`;
     } else if (
-      !recipe.description ||
-      recipe.description.length < 10 ||
-      recipe.description.length > 30
+      !recipe.description || recipe.description.length < 10 || recipe.description.length > 50
     ) {
-      errors.description = `Se requiere una descripcion de la receta 10 y 30 caracteres / Recipe's description is requiered between 10 and 50 characters of extension`;
+      errors.description = `Se requiere una descripcion de la receta 10 y 50 caracteres / Recipe's description is requiered between 10 and 50 characters of extension`;
     } else if (!recipe.score || recipe.score < 0 || recipe.score > 100) {
       errors.score = `Se requiere una puntuacion de la receta entre 1 y 100 puntos / Recipe's score between 1 and 100 is requiered`;
     } else if (!recipe.healthy || recipe.healthy < 0 || recipe.healthy > 100) {

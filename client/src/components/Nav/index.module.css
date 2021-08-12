@@ -1,16 +1,21 @@
 .navContainer {
-    display: block;
-    justify-content: start;
-    background-color:black;
+  display: flex;
+  justify-content: space-around;
+  background-color: black;
 }
 
-h1 {
-    color: white;
+.navLinks {
+  display: flex;
+  align-items: center;
+}
+
+.navContainer img {
+    margin: 20px;
 }
 
 .navLink {
- padding: 10px;
- font-size: x-large;
- color: white;
- font-weight: bold;
+  margin: 20px;
+  font-size: x-large;
+  color: white;
+  font-weight: bold;
 }
