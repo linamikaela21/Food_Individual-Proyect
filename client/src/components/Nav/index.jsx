@@ -11,9 +11,9 @@ export default function Nav() {
                 <h1>Aca va el titulo y una imagen</h1>
             </div>
             <div className={style.navLinks}>
-                <NavLink to="/recipes" activeClassName="nav-link-active" className='nav-link'>HOME / INICIO</NavLink>
-                <NavLink to="/about" activeClassName="nav-link-active" className='nav-link'>ABOUT / ACERCA</NavLink>
-                <NavLink to="/contact" activeClassName="nav-link-active" className='nav-link'>CONTACT / CONTACTO</NavLink>
+                <NavLink to="/recipes" activeClassName="nav-link-active" className={style.navLink}>HOME / INICIO</NavLink>
+                <NavLink to="/about" activeClassName="nav-link-active" className={style.navLink}>ABOUT / ACERCA</NavLink>
+                <NavLink to="/contact" activeClassName="nav-link-active" className={style.navLink}>CONTACT / CONTACTO</NavLink>
             </div>
             <span className='nav-text'>Proyecto Individual FT13</span>
         </div>

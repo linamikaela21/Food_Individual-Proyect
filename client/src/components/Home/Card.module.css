@@ -1,5 +1,5 @@
 .cardRecipe {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+  box-shadow: 5px 8px 10px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
   padding: 10px;
   text-align: center;
   background-image: url('../../Images/Post-it.jpg');

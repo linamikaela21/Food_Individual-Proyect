@@ -1,78 +1,85 @@
 .content {
-  background-image: url('../../Images/FondoB&W.jpg');
+  background-image: url("../../Images/FondoB&W.jpg");
 }
-
 
 /* FORMULARIO */
 
 .linkMakeRecipeContainer {
-    background-color: rgb(77, 28, 212);
-    padding: 15px;
-    font-weight: 600;
-  }
+  background-color:blueviolet;
+  margin: 10px;
+  padding: 15px;
+  font-weight: 600;
+}
 
-  .linkMakeRecipe {
-    padding-top: 10px;
-      padding-left: 20px;
-      padding-bottom: 10px;
-      padding-right: 20px;
-      font-size: x-large;
-      font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-      font-size: 20px;
-      font-weight: 300;
-      border-radius: 10px;
-      border: solid 4px rgb(214, 15, 15);
-    background-color: turquoise;
-  }
+.linkMakeRecipe {
+  padding-top: 10px;
+  padding-left: 20px;
+  padding-bottom: 10px;
+  padding-right: 20px;
+  font-size: x-large;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-size: 20px;
+  font-weight: 300;
+  border-radius: 10px;
+  border: solid 4px rgb(0, 0, 0);
+  background-color: darkorange;
+}
 
-  .linkMakeRecipe:hover {
-    color: cadetblue;
-    background-color: chocolate;
-    border: solid 4px cadetblue;
+.linkMakeRecipe:hover {
+  color: rgb(255, 255, 255);
+  background-color: rgb(86, 11, 113);
+  border: solid 5px rgb(255, 255, 255);
 }
 
 .LinklinkMakeRecipe {
   text-decoration: none;
-  color: white;
+  color: rgb(255, 255, 255);
+  font-size: xx-large;
+  font-family: fantasy;
+  font-variant: inherit;
 }
-  
+
 .recipes {
-      display: inline-block;
-      align-content: flex-start;
-      width: 28%;
-      padding: 2%;
-    }
-  
-    
-  /* boton recargar */
+  display: inline-block;
+  align-content: flex-start;
+  width: 28%;
+  padding: 2%;
+}
 
-  .buttonRecargarContainer {
-    background-color: coral;
-    padding: 10px;
-  }
-    .buttonRecargar {
-      padding-top: 10px;
-        padding-left: 20px;
-        padding-bottom: 10px;
-        padding-right: 20px;
-        font-size: x-large;
-        font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-        font-size: 20px;
-        font-weight: 300;
-        border-radius: 10px;
-        border: solid 4px rgb(214, 15, 15);
-      background-color: turquoise;
-    }
-  
-    .bottonRecargar:hover {
-      color: cadetblue;
-      background-color: chocolate;
-      border: solid 4px cadetblue;
-  }
+.recipes img {
+  border: 10px solid darkorange;
+}
 
+/* boton recargar */
+.buttonRecargarContainer {
+  padding: 10px;
+  margin: 10px;
+}
+.buttonRecargar {
+  padding-top: 10px;
+  padding-left: 20px;
+  padding-bottom: 10px;
+  padding-right: 20px;
+  font-size: x-large;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 10px;
+  border: solid 6px rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
+}
+
+
+.bottonRecargar:hover {
+  color: rgb(255, 255, 255);
+  background-color: rgb(0, 0, 0);
+  border: solid 4px rgb(255, 255, 255);
+}
 
 /* SELECTS */
-  
+
 .containerSelect {
   display: flex;
   justify-content: center;
@@ -81,11 +88,11 @@
 }
 
 .containerSelect select {
-padding: 10px;
-font-size: medium;
-font-weight: 400;
-border-radius: 5px;
-margin: 10px;
+  padding: 10px;
+  font-size: medium;
+  font-weight: 400;
+  border-radius: 5px;
+  margin: 10px;
 }
 
 .containerSelect label {
@@ -93,10 +100,10 @@ margin: 10px;
   font-size: x-large;
   font-weight: 500;
   color: white;
-  }
+}
 
 .containerSelect select option {
   padding: 10px;
   font-size: medium;
   font-weight: 300;
-  }
+}

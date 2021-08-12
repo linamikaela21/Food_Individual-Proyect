@@ -47,7 +47,7 @@
     font-size: x-large;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     border-radius: 10px;
-    border: solid 5px rgb(10, 3, 3);
+    border: solid 5px rgb(189, 9, 24);
     margin-top: 20px;
 } 
 
@@ -65,8 +65,9 @@
     font-size: x-large;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     border-radius: 10px;
-    border: solid 5px rgb(10, 3, 3);
+    border: solid 5px rgb(189, 9, 24);
     margin: 20px auto;
+    font-weight: bold;
 }
 
 .formButtonCrear:hover {

@@ -1,3 +1,16 @@
 .navContainer {
+    display: block;
+    justify-content: start;
     background-color:black;
+}
+
+h1 {
+    color: white;
+}
+
+.navLink {
+ padding: 10px;
+ font-size: x-large;
+ color: white;
+ font-weight: bold;
 }
