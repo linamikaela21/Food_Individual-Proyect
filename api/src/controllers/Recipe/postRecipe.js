@@ -146,6 +146,7 @@ const postRecipe = async (req, res, next) => {
     const {
         name,
         description,
+        dishes,
         score,
         healthy,
         steps,
@@ -158,21 +159,26 @@ const postRecipe = async (req, res, next) => {
         const newRecipe = await Recipe.create({
             name,
             description,
+            dishes,
             score,
             healthy,
             steps,
             image,
         })
 
-        const recipeDB = await Diet.findAll({
+        //ACA LO ENCUENTRA
+        const recipeDB = await Diet.findOne({
             where: {
                 name: diets
+                //id: diets
             }
         })
+
         console.log(diets, 'soy DIEEEEEEEEEETS')
         console.log(recipeDB, 'ACA DEBERIA ENCONTRAR LA RECETA PARA HACER MATCH')
-        console.log(newRecipe, 'SOY LA RECETA CREAAAAAAADAAAAAAA')
+
         newRecipe.addDiet(recipeDB)
+        console.log(newRecipe, 'SOY LA RECETA CREAAAAAAADAAAAAAA')
         
 
         res.send('Recipe create succefully // Receta creada exitosamente')

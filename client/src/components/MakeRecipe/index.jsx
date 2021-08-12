@@ -36,10 +36,10 @@ export function MakeRecipe() {
     let errors = {};
     if (!recipe.name || recipe.name.length < 5 || recipe.name.length > 50) {
       errors.name = `Se requiere un nombre de entre 5 y 30 caracteres / Name is requiered between 5 and 30 characters of extension`;
-    } else if (
-      !recipe.description || recipe.description.length < 10 || recipe.description.length > 50
-    ) {
+    } else if (!recipe.description || recipe.description.length < 10 || recipe.description.length > 50) {
       errors.description = `Se requiere una descripcion de la receta 10 y 50 caracteres / Recipe's description is requiered between 10 and 50 characters of extension`;
+    } else if (!recipe.dishes || recipe.dishes.length < 4) {
+      errors.dishes = `Se requiere un tipo de plato de la receta de al menos 4 caracteres / Recipe's type of dish with at least 5 characters of extension is requiered`;
     } else if (!recipe.score || recipe.score < 0 || recipe.score > 100) {
       errors.score = `Se requiere una puntuacion de la receta entre 1 y 100 puntos / Recipe's score between 1 and 100 is requiered`;
     } else if (!recipe.healthy || recipe.healthy < 0 || recipe.healthy > 100) {
@@ -49,7 +49,7 @@ export function MakeRecipe() {
     } else if (!recipe.image) {
       errors.image = `Se requiere una imagen de la receta / Recipe's image is requiered`;
     } else if (!recipe.diets || recipe.diets.length > 1) {
-      errors.diets = `Se requiere la/s dieta/s en la/s que esta incluida la receta / Recipe's diets is requiered`;
+      errors.diets = `Se requiere el/los tipos de dieta/s en la/s que esta incluida la receta / Recipe's diets is requiered`;
     }
     return errors;
   };
@@ -98,6 +98,7 @@ export function MakeRecipe() {
       setRecipe({
         name: "",
         description: "",
+        dishes: "",
         score: "",
         healthy: "",
         steps: "",
@@ -146,6 +147,21 @@ export function MakeRecipe() {
           />
           {errors.description && (
             <p className={style.errors}> {errors.description} </p>
+          )}
+        </div>
+
+        <div className={style.divInput}>
+          <label className={style.labelInput}>Tipo/s de Plato/s / Type of Dish: </label>
+          <input
+            type="text"
+            name="dishes"
+            value={recipe.dishes}
+            placeholder="Recipe Dishes Types"
+            onChange={(e) => onInputChange(e)}
+            className={style.input}
+          />
+          {errors.dishes && (
+            <p className={style.errors}> {errors.dishes} </p>
           )}
         </div>
 

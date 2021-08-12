@@ -19,9 +19,9 @@ getDiets = async (_req, res, next) => {
 
         diets = diets.flat()
 
-        // diets = diets.filter((elem, index )=> {
-        //     return diets.indexOf(elem) === index
-        // })
+        diets = diets.filter((elem, index )=> {
+            return diets.indexOf(elem) === index
+        })
 
         const modelDiets =
         [

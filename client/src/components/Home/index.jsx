@@ -167,6 +167,7 @@ export function Home() {
                 key={elem?.id}
                 name={elem?.name}
                 diets={elem?.diets}
+                dishes={elem?.dishes}
                 score={elem?.score}
                 description={elem?.description}
                 healthy={elem?.healthy}

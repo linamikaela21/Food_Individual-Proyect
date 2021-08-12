@@ -77,7 +77,7 @@ const { dbApi } = require('../../utils/config')
                     let stepsMap = []
                     apiRecipes.data.analyzedInstructions.map((inst) => (
                         inst.steps?.map((s) => (
-                            stepsMap.push(s.step)
+                            stepsMap.push(` * ${s.step}`)
                         ))
                     ))
 
@@ -85,12 +85,10 @@ const { dbApi } = require('../../utils/config')
 
                     let objectResponse = {
                         id: apiRecipesResult.id,
-                        vegetarian: apiRecipesResult.vegetarian,
-                        vegan: apiRecipesResult.vegan,
-                        glutenFree: apiRecipesResult.glutenFree,
                         name: apiRecipesResult.title.toUpperCase(),
                         image: apiRecipesResult.image,
                         diets: apiRecipesResult.diets.map(elem => elem.toUpperCase() + ` - `),
+                        dishes: apiRecipesResult.dishTypes.map(elem => elem.toUpperCase() + ` - `),
                         description: apiRecipesResult.summary,
                         score: apiRecipesResult.spoonacularScore,
                         healthy: apiRecipesResult.healthScore,
@@ -117,6 +115,7 @@ const { dbApi } = require('../../utils/config')
                         id: dbRecipeId.id,
                         name: dbRecipeId.name,
                         description: dbRecipeId.description,
+                        dishes: apiRecipesResult.dishes,
                         score: dbRecipeId.score,
                         healthy: dbRecipeId.healthy,
                         diets: dbRecipeId.diets,

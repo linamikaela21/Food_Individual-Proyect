@@ -37,8 +37,9 @@ const { dbApi } = require('../../utils/config')
     apiRecipes = apiRecipes.map((receta) => {
       return {
         id: receta.id,
-        name: receta.title,
+        name: receta.title.toUpperCase(),
         description: receta.summary,
+        dishes: receta.dishTypes,
         score: receta.spoonacularScore,
         healthy: receta.healthScore,
         steps: receta.analyzedInstructions,
@@ -52,6 +53,7 @@ const { dbApi } = require('../../utils/config')
         id: receta.id,
         name: receta.name,
         description: receta.description,
+        dishes: receta.dishes,
         score: receta.score,
         healthy: receta.healthy,
         steps: receta.steps,

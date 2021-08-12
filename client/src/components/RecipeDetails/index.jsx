@@ -29,6 +29,7 @@ const [loading, setLoading] = useState(false);
   return  {__html: recipeDetails.description};
  }
 
+
   return (
     <div className={style.content}>
       { loading ?
@@ -42,10 +43,13 @@ const [loading, setLoading] = useState(false);
             width="500"
             height="500"
           />
-            <h3 className={style.tituloRecipeDetails}>DIETS / DIETAS:</h3>
+
+          <h3 className={style.tituloRecipeDetails}>DIETS / DIETAS:</h3>
           <h2 className={style.detalleRecipeDetails}> {recipeDetails.diets} </h2>
           <h3 className={style.tituloRecipeDetails}> SCORE / PUNTAJE:</h3>
           <h2 className={style.detalleRecipeDetails}>{recipeDetails.score} </h2>
+          <h3 className={style.tituloRecipeDetails}> DISH TYPES / TIPO DE PLATO:</h3>
+          <h2 className={style.detalleRecipeDetails}>{recipeDetails.dishes} </h2>
           <h3 className={style.tituloRecipeDetails}> HEALTHY / PUNTAJE SALUDABLE:</h3>
           <h2 className={style.detalleRecipeDetails}> {recipeDetails.healthy} </h2>
           <h3 className={style.tituloRecipeDetails}>DESCRIPTION / DESCRIPCION: </h3>

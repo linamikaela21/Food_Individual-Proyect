@@ -31,6 +31,10 @@ module.exports = (sequelize) => {
       type: DataTypes.TEXT,
       allowNull: false,
     },
+    dishes: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
     score: {
       type: DataTypes.INTEGER,
       allowNull: true,
