@@ -1,5 +1,5 @@
 .content {
-  display: block;
+  display: inline;
   justify-content: center;
   background-image: url("../../Images/FondoB&W.jpg");
 }
@@ -36,6 +36,18 @@
   padding-bottom: 2%;
 }
 
+.detalleRecipeUl {
+  display: flex;
+  justify-content: left;
+}
+
+.detalleRecipeLi {
+  color: rgb(189, 192, 34);
+  font-size: large;
+  font-weight: 500;
+  padding: 10px;
+}
+
 .contentRecipeDetails img {
   border: 10px solid darkorange;
 }
@@ -65,3 +77,4 @@ h2 {
   background-color: rgb(0, 0, 0);
   border: solid 4px rgb(255, 255, 255);
 }
+

@@ -235,7 +235,8 @@ export function MakeRecipe() {
 
       </form>
 
-      {recipe.diets.map(elem => 
+      {
+      recipe.diets.map(elem => 
       <div className={style.divLI}>
         <ul><li className={style.li}>{elem}</li>
         <button onClick={e => handleDeleteDietsNames(elem)} >X</button></ul>

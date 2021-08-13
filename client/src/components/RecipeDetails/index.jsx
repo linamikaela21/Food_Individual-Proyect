@@ -3,40 +3,39 @@ import { useParams } from "react-router";
 
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import style from './index.module.css'
+import style from "./index.module.css";
 
 import { getRecipeById } from "../../actions";
 
-export function RecipeDetails () {
+export function RecipeDetails() {
+  const dispatch = useDispatch();
 
- const dispatch = useDispatch()
-
- const { id } = useParams();
- //Si le paso props a RecipeDetails puedo hacerlo asi
-// const {id} = props.match.params;
+  const { id } = useParams();
+  //Si le paso props a RecipeDetails puedo hacerlo asi
+  // const {id} = props.match.params;
 
   useEffect(() => {
-    dispatch(getRecipeById(id))
-    setLoading(true)
-  }, [id, dispatch])
+    dispatch(getRecipeById(id));
+    setLoading(true);
+  }, [id, dispatch]);
 
   //Me traigo el estado desde el reducer
- const recipeDetails = useSelector(state => state.details)
+  const recipeDetails = useSelector((state) => state.details);
 
-const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
- const funcDescription = () => {
-  return  {__html: recipeDetails.description};
- }
-
+  const funcDescription = () => {
+    return { __html: recipeDetails.description };
+  };
 
   return (
     <div className={style.content}>
-      { loading ?
+      {loading ? (
         <div className={style.contentRecipeDetails}>
-            <h1 className={style.tituloNameRecipeDetails}> {recipeDetails.name} </h1>
-            <img
-
+          <h1 className={style.tituloNameRecipeDetails}>
+            {recipeDetails.name}
+          </h1>
+          <img
             className="imgDetails"
             src={recipeDetails.image}
             alt="Not found"
@@ -45,25 +44,42 @@ const [loading, setLoading] = useState(false);
           />
 
           <h3 className={style.tituloRecipeDetails}>DIETS / DIETAS:</h3>
-          <h2 className={style.detalleRecipeDetails}> {recipeDetails.diets} </h2>
+          <h2 className={style.detalleRecipeDetails}>{recipeDetails.diets}</h2>
           <h3 className={style.tituloRecipeDetails}> SCORE / PUNTAJE:</h3>
           <h2 className={style.detalleRecipeDetails}>{recipeDetails.score} </h2>
-          <h3 className={style.tituloRecipeDetails}> DISH TYPES / TIPO DE PLATO:</h3>
-          <h2 className={style.detalleRecipeDetails}>{recipeDetails.dishes} </h2>
-          <h3 className={style.tituloRecipeDetails}> HEALTHY / PUNTAJE SALUDABLE:</h3>
-          <h2 className={style.detalleRecipeDetails}> {recipeDetails.healthy} </h2>
-          <h3 className={style.tituloRecipeDetails}>DESCRIPTION / DESCRIPCION: </h3>
-          <h3 className={style.detalleRecipeDetails} dangerouslySetInnerHTML={funcDescription()}></h3>
-          <h3 className={style.tituloRecipeDetails}>INSTRUCTIONS / INSTRUCCIONES: </h3>
-          <h3 className={style.detalleRecipeDetails}> {recipeDetails.steps} </h3>
-          </div>
-          : 
-          <p>Loading...</p>
-      }
-      <Link to='/recipes'><button className={style.buttonVolver}>Volver / Go back</button></Link>
+          <h3 className={style.tituloRecipeDetails}>
+            DISH TYPES / TIPO DE PLATO:
+          </h3>
+          <h2 className={style.detalleRecipeDetails}>{recipeDetails.dishes}</h2>
+          <h3 className={style.tituloRecipeDetails}>
+            HEALTHY / PUNTAJE SALUDABLE:
+          </h3>
+          <h2 className={style.detalleRecipeDetails}>
+            {recipeDetails.healthy}
+          </h2>
+          <h3 className={style.tituloRecipeDetails}>
+            DESCRIPTION / DESCRIPCION:
+          </h3>
+          <h3
+            className={style.detalleRecipeDetails}
+            dangerouslySetInnerHTML={funcDescription()}
+          ></h3>
+          <h3 className={style.tituloRecipeDetails}>
+            INSTRUCTIONS / INSTRUCCIONES:
+          </h3>
+          
+          {recipeDetails.steps.map(elem => 
+           <div><ul className={style.detalleRecipeUl}><li key={elem.step} className={style.detalleRecipeLi}> {elem.step}</li></ul></div>
+          )}
+        </div>
+      ) : (
+        <p>Loading...</p>
+      )}
+      <Link to="/recipes">
+        <button className={style.buttonVolver}>Volver / Go back</button>
+      </Link>
     </div>
-  )
-
+  );
 }
 
 export default RecipeDetails;

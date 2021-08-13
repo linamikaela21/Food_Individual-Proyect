@@ -73,15 +73,15 @@ const { dbApi } = require('../../utils/config')
                     const url = `https://api.spoonacular.com/recipes/${id}/information?apiKey=${dbApi}&number=100`
                     const apiRecipes = await axios.get(url)
 
+                    const apiRecipesResult = apiRecipes.data
+
                     //Para obetener Steps
                     let stepsMap = []
-                    apiRecipes.data.analyzedInstructions.map((inst) => (
+                    apiRecipesResult.analyzedInstructions.map((inst) => (
                         inst.steps?.map((s) => (
-                            stepsMap.push(` * ${s.step}`)
+                            stepsMap.push(s)
                         ))
                     ))
-
-                    const apiRecipesResult = apiRecipes.data
 
                     let objectResponse = {
                         id: apiRecipesResult.id,
@@ -93,6 +93,7 @@ const { dbApi } = require('../../utils/config')
                         score: apiRecipesResult.spoonacularScore,
                         healthy: apiRecipesResult.healthScore,
                         steps: stepsMap
+                        // steps: apiRecipesResult.analyzedInstructions.map(s => s.steps)
                     }
 
                     if (apiRecipesResult) return res.send(objectResponse)

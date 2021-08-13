@@ -132,15 +132,15 @@ export function Home() {
 
         <label>Diets</label>
         <select onChange={(e) => handleOrderRecipeByDiet(e)}>
-          <option value="">All</option>
-          <option value="dairy free">Dieta: Dairy Free</option>
+          <option value="all">All</option>
           <option value="gluten free">Dieta: Gluten Free</option>
+          <option value="dairy free">Dieta: Dairy Free</option>
           <option value="lacto ovo vegetarian">Dieta: Lacto Ovo Vegetarian</option>
           <option value="vegan">Dieta: Vegan</option>
-          <option value="pescatarian">Dieta: Pescatarian</option>
           <option value="paleolithic">Dieta: Paleo / Paleolithic</option>
-          <option value="fodmap friendly">Dieta: Fodmap Friendly</option>
+          <option value="pescatarian">Dieta: Pescatarian</option>
           <option value="primal">Dieta: Primal</option>
+          <option value="fodmap friendly">Dieta: Fodmap Friendly</option>
           <option value="whole 30">Dieta: Whole 30</option>
         </select>
       </div>
