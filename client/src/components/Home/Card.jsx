@@ -1,6 +1,5 @@
 import style from "./Card.module.css";
 
-//MODIFICAR CSS
 const Card = ({ name, diets, image }) => {
   return (
       <div className={style.cardRecipe}>

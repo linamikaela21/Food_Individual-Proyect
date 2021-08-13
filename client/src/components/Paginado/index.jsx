@@ -18,7 +18,7 @@ function Paginado({recipesPerPage, allRecipes, paginado}) {
                 { //Por cada pagina quiero que me imprima el numero de pagina
                 pageNumbers?.map(number => (
                     <li className={style.number} key={number}>
-                        <a className={style.numberA} onClick={() => paginado(number)}>{number}</a>
+                        <a href="#0" className={style.numberA} onClick={() => paginado(number)}>{number}</a>
                     </li>
                 ))
                 }

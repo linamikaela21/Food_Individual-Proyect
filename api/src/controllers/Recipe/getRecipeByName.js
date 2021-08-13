@@ -25,7 +25,7 @@ function getRecipeByName(req, res, next) {
 
     const { name } = req.query
 
-    const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${dbApi}&addRecipeInformation=true&query=${name}&number=100`
+    const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${dbApi}&addRecipeInformation=true&query=${name}`
     var apiRecipePromise = axios.get(url)
     var dbRecipePromise = Recipe.findAll({
         where: {

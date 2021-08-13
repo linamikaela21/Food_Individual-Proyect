@@ -67,10 +67,15 @@ export function RecipeDetails() {
           <h3 className={style.tituloRecipeDetails}>
             INSTRUCTIONS / INSTRUCCIONES:
           </h3>
-          
-          {recipeDetails.steps.map(elem => 
-           <div><ul className={style.detalleRecipeUl}><li key={elem.step} className={style.detalleRecipeLi}> {elem.step}</li></ul></div>
-          )}
+            {recipeDetails.steps.map(s => {
+              return (
+              <ul className={style.detalleRecipeUl}>
+                <li key={s} className={style.detalleRecipeLi}>
+                  {s.step}
+                </li>
+                </ul>
+              )
+            })}
         </div>
       ) : (
         <p>Loading...</p>

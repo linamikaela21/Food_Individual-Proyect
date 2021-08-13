@@ -15,38 +15,50 @@ const { v4: uuidv4 } = require('uuid')
 
 // http://localhost:3001/recipes/
 
-// PARA EL POST DEL FORMULARIO PROMESAS
+// FUNCIONAAAAA CON DIETAAAAAAAAAAAAAAAAAS PERO PASANDOLE ID
 
-//MATI no funciona
-// postRecipe = (req, res, next) => {
-//     const {
-//         name,
-//         description,
-//         score,
-//         healthy,
-//         steps,
-//         image,
-//         diets
-//     } = req.body
+async function postRecipe(req, res) {
+    const {
+        name,
+        description,
+        dishes,
+        score,
+        healthy,
+        steps,
+        image,
+        diets
+    } = req.body
 
-//     Recipe.create({
-//         name,
-//         id: uuidv4(),
-//         description,
-//         score,
-//         healthy,
-//         steps,
-//         image,
-//     }).then(createdRecipe => {
-//         return createdRecipe.setDiets(diets)
-//     })
-//         .then((recipeWithDiets) => {
-//             res.json(recipeWithDiets)
-//         })
-//         .catch(error => next(error))
 
-//     }
+      if (!name || !description) return res.status(404).json({})
 
+        const newRecipe = await Recipe.create({
+                name: name,
+                description: description,
+                dishes: dishes,
+                score: score,
+                healthy: healthy,
+                image: image, 
+                steps: steps
+        }) 
+
+        for(let i = 0; i < diets.length; i++) {
+          await newRecipe.addDiet(diets[i], {through: 'recipe_diet'})
+        }
+
+        console.log(newRecipe, 'soooooooy new con dieeeeeeeeeeeeeets')
+
+        const recipes_diets = await Recipe.findAll({
+          where: {
+            name: name
+          },
+          include: Diet 
+        })
+
+        console.log(recipes_diets, 'heeeeeeeeeeellowwwwwwwwwwwwwwwww')
+    
+        return res.json(recipes_diets) 
+    } 
 
 //ESTE FUNCIONA SIN DIETS
 // const postRecipe = async (req, res, next) => {
@@ -54,6 +66,7 @@ const { v4: uuidv4 } = require('uuid')
 //     const {
 //         name,
 //         description,
+//         dishes,
 //         score,
 //         healthy,
 //         steps,
@@ -70,6 +83,7 @@ const { v4: uuidv4 } = require('uuid')
 //             name,
 //             id: uuidv4(),
 //             description,
+//             dishes,
 //             score,
 //             healthy,
 //             steps,
@@ -110,6 +124,7 @@ const { v4: uuidv4 } = require('uuid')
 //     const {
 //         name,
 //         description,
+//         dishes,
 //         score,
 //         healthy,
 //         steps,
@@ -123,6 +138,7 @@ const { v4: uuidv4 } = require('uuid')
 //             const newRecipe = await Recipe.create({
 //                 name,
 //                 description,
+//                 dishes,
 //                 score,
 //                 healthy,
 //                 steps,
@@ -141,52 +157,55 @@ const { v4: uuidv4 } = require('uuid')
 //     }
 // }
 
-const postRecipe = async (req, res, next) => {
 
-    const {
-        name,
-        description,
-        dishes,
-        score,
-        healthy,
-        steps,
-        image,
-        diets
-    } = req.body
+///ULTIMA PRUEBAAAAAAAAAAAAAAAAAAAAAAA
 
-    try {
+// const postRecipe = async (req, res, next) => {
 
-        const newRecipe = await Recipe.create({
-            name,
-            description,
-            dishes,
-            score,
-            healthy,
-            steps,
-            image,
-        })
+//     const {
+//         name,
+//         description,
+//         dishes,
+//         score,
+//         healthy,
+//         steps,
+//         image,
+//         diets
+//     } = req.body
 
-        //ACA LO ENCUENTRA
-        const recipeDB = await Diet.findOne({
-            where: {
-                name: diets
-                //id: diets
-            }
-        })
+//     try {
 
-        console.log(diets, 'soy DIEEEEEEEEEETS')
-        console.log(recipeDB, 'ACA DEBERIA ENCONTRAR LA RECETA PARA HACER MATCH')
+//         const newRecipe = await Recipe.create({
+//             name,
+//             description,
+//             dishes,
+//             score,
+//             healthy,
+//             steps,
+//             image,
+//         })
 
-        newRecipe.addDiet(recipeDB)
-        console.log(newRecipe, 'SOY LA RECETA CREAAAAAAADAAAAAAA')
+//         //ACA LO ENCUENTRA
+//         const recipeDB = await Diet.findOne({
+//             where: {
+//                 name: diets
+//                 //id: diets
+//             }
+//         })
+
+//         console.log(diets, 'soy DIEEEEEEEEEETS')
+//         console.log(recipeDB, 'ACA DEBERIA ENCONTRAR LA RECETA PARA HACER MATCH')
+
+//         newRecipe.addDiet(recipeDB)
+//         console.log(newRecipe, 'SOY LA RECETA CREAAAAAAADAAAAAAA')
         
 
-        res.send('Recipe create succefully // Receta creada exitosamente')
+//         res.send('Recipe create succefully // Receta creada exitosamente')
 
-    } catch (error) {
-        next(error)
-    }
-}
+//     } catch (error) {
+//         next(error)
+//     }
+// }
 
 module.exports = {
     postRecipe

@@ -36,9 +36,11 @@
   padding-bottom: 2%;
 }
 
+/* INSTRUCCIONES */
+
 .detalleRecipeUl {
-  display: flex;
-  justify-content: left;
+  display: inline;
+  justify-items: right;
 }
 
 .detalleRecipeLi {
@@ -55,6 +57,8 @@
 h2 {
   font-size: 40px;
 }
+
+/* BOTON PARA VOLVER */
 
 .buttonVolver {
   padding-top: 10px;

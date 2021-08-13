@@ -70,7 +70,7 @@ const { dbApi } = require('../../utils/config')
 
             try {
                 if (id.length < 10) {
-                    const url = `https://api.spoonacular.com/recipes/${id}/information?apiKey=${dbApi}&number=100`
+                    const url = `https://api.spoonacular.com/recipes/${id}/information?apiKey=${dbApi}`
                     const apiRecipes = await axios.get(url)
 
                     const apiRecipesResult = apiRecipes.data

@@ -97,15 +97,6 @@ export function Home() {
         <Nav />
       </div>
 
-      <div className={style.linkMakeRecipeContainer}>
-        {/* ESTO ME LLEVA AL FORMULARIO PARA CREAR MI RECETA */}
-        <button className={style.linkMakeRecipe}>
-          <Link className={style.LinklinkMakeRecipe} to="/recipe">
-            CREA TU PROPIA RECETA
-          </Link>
-        </button>
-      </div>
-
       <div>
         <SearchBar />
       </div>
@@ -162,7 +153,7 @@ export function Home() {
       {currentRecipes.map((elem) => {
         return (
           <Link to={`/recipes/${elem?.id}`}>
-            <div className={style.recipes}>
+            <div className={style.recipes} name={elem.id}>
               <Card
                 key={elem?.id}
                 name={elem?.name}
