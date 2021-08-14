@@ -175,7 +175,7 @@ export function MakeRecipe() {
 
           <div className={style.divInput}>
             <label className={style.labelInput}>
-              Descripcion / Description:{" "}
+              Descripcion / Description:
             </label>
             <input
               type="text"
@@ -192,7 +192,7 @@ export function MakeRecipe() {
 
           <div className={style.divInput}>
             <label className={style.labelInput}>
-              Tipo/s de Plato/s / Type of Dish:{" "}
+              Tipo/s de Plato/s / Type of Dish:
             </label>
             <input
               type="text"
@@ -245,7 +245,7 @@ export function MakeRecipe() {
             />
             {errors.steps && <p className={style.errors}> {errors.steps} </p>}
           </div>
-          <label className={style.labelInput}>Imagen / Image: </label>
+          <label className={style.labelInput}>Imagen / Image:</label>
           <div>
             <input
               type="text"
