@@ -1,6 +1,6 @@
 const axios = require('axios').default
 
-const { Recipe } = require('../../db');
+const { Recipe, Diet } = require('../../db');
 
 const { dbApi } = require('../../utils/config')
 
@@ -24,7 +24,7 @@ const { dbApi } = require('../../utils/config')
  const getRecipes = (_req, res, next) => {
   const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${dbApi}&addRecipeInformation=true&number=100`
   var apiRecipePromise = axios.get(url)
-  var dbRecipePromise = Recipe.findAll()
+  var dbRecipePromise = Recipe.findAll({include: Diet})
 
   return Promise.all([
     apiRecipePromise,
@@ -37,13 +37,13 @@ const { dbApi } = require('../../utils/config')
     apiRecipes = apiRecipes.map((receta) => {
       return {
         id: receta.id,
-        name: receta.title.toUpperCase(),
+        name: receta.title,
         description: receta.summary,
         dishes: receta.dishTypes,
         score: receta.spoonacularScore,
         healthy: receta.healthScore,
         steps: receta.analyzedInstructions,
-        diets: receta.diets.map(elem => elem.toUpperCase() + ` - `),
+        diets: receta.diets,
         image: receta.image,
       }
     })
@@ -57,7 +57,7 @@ const { dbApi } = require('../../utils/config')
         score: receta.score,
         healthy: receta.healthy,
         steps: receta.steps,
-        diets: receta.diets,
+        diets: receta.Diets.map(elem => elem.name),
         image: receta.image,
       }
     })

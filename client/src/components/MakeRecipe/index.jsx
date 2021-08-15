@@ -61,9 +61,9 @@ export function MakeRecipe() {
     if (!recipe.image) {
       errors.image = `Recipe's image is requiered / Se requiere una imagen de la receta`;
     }
-    if (recipe.diets.length < 1) {
-      errors.diets = `Recipe's diets is requiered / Se requiere el/los tipos de dieta/s en la/s que esta incluida la receta`;
-    }
+    // if (recipe.diets.length < 1) {
+    //   errors.diets = `Recipe's diets is requiered / Se requiere el/los tipos de dieta/s en la/s que esta incluida la receta`;
+    // }
     return errors;
   };
 
@@ -103,6 +103,7 @@ export function MakeRecipe() {
   // };
 
   const handleCheckbox = (e) => {
+    console.log(e.target.value)
     if (e.target.checked) {
       setRecipe({ 
         ...recipe,
@@ -111,7 +112,7 @@ export function MakeRecipe() {
     } else {
       setRecipe({
         ...recipe,
-        diets: recipe.diets.filter((diet) => diet !== e.target.value),
+        diets: recipe.diets.filter(diet => diet !== e.target.value),
       });
     }
   };
@@ -144,10 +145,7 @@ export function MakeRecipe() {
   } else {
     alert("Some ingredients are missing :(")
   }
-  };
-
-  console.log(errors, "soy erroreesssssssssssssssssssssss");
-  console.log(recipe, "soy recipeeeeeeeeeeeeeeeeeees");
+  }
 
   return (
     <div className={style.formFondo}>
@@ -272,7 +270,6 @@ export function MakeRecipe() {
 
           <div className={style.diets_checkbox}>
             <label className={style.labelInput}>Choose your diets</label>
-            <div className={style.containerSelect}>
               {diets.map(diet => (
                 <span className="keys" key={diet.name}>
                   <input
@@ -285,9 +282,8 @@ export function MakeRecipe() {
                   <label name={diet}>{diet.name}</label>
                 </span>
               ))}
-              {errors.diets.length && <p className={style.errors}> {errors.diets} </p>}
+              {/* {errors.diets && <p className={style.errors}> {errors.diets} </p>} */}
             </div>
-          </div>
 
           <div>
             <button

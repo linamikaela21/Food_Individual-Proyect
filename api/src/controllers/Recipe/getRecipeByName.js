@@ -48,7 +48,7 @@ function getRecipeByName(req, res, next) {
         apiRecipes = apiRecipes.map((receta) => {
             return {
                 id: receta.id,
-                name: receta.title.toUpperCase(),
+                name: receta.title,
                 description: receta.summary,
                 dishes: receta.dishTypes,
                 score: receta.spoonacularScore,

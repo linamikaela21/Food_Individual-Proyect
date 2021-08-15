@@ -64,76 +64,135 @@ const { dbApi } = require('../../utils/config')
 //             next(error)
 //         }
 // }
-        getRecipeById = async (req, res, next) => {
 
-            const { id } = req.params
 
-            try {
-                if (id.length < 10) {
-                    const url = `https://api.spoonacular.com/recipes/${id}/information?apiKey=${dbApi}`
-                    const apiRecipes = await axios.get(url)
+getRecipeById = async (req, res, next) => {
 
-                    const apiRecipesResult = apiRecipes.data
+    const { id } = req.params
 
-                    //Para obetener Steps
-                    let stepsMap = []
-                    apiRecipesResult.analyzedInstructions.map((inst) => (
-                        inst.steps?.map((s) => (
-                            stepsMap.push(s)
-                        ))
-                    ))
+    try {
+        if (id.length < 8) {
+            const url = `https://api.spoonacular.com/recipes/${id}/information?apiKey=${dbApi}`
+            const apiRecipes = await axios.get(url)
 
-                    let objectResponse = {
-                        id: apiRecipesResult.id,
-                        name: apiRecipesResult.title.toUpperCase(),
-                        image: apiRecipesResult.image,
-                        diets: apiRecipesResult.diets.map(elem => elem.toUpperCase() + ` - `),
-                        dishes: apiRecipesResult.dishTypes.map(elem => elem.toUpperCase() + ` - `),
-                        description: apiRecipesResult.summary,
-                        score: apiRecipesResult.spoonacularScore,
-                        healthy: apiRecipesResult.healthScore,
-                        steps: stepsMap
-                        // steps: apiRecipesResult.analyzedInstructions.map(s => s.steps)
-                    }
+            const apiRecipesResult = apiRecipes.data
 
-                    if (apiRecipesResult) return res.send(objectResponse)
+            //Para obetener Steps
+            let stepsMap = []
+            apiRecipesResult.analyzedInstructions.map(inst => (
+                inst.steps?.map((s) => (
+                    stepsMap.push(s)
+                ))
+            ))
 
-                } else {
-                    console.log(id, 'idATR')
-                    const dbRecipeId = await Recipe.findOne({
-                        where: {
-                            id: id
-                        },
-                        include: Diet
-                    })
-
-                    // let dietsMap = []
-                    // dbRecipeId.diets.map((diet) => (
-                    //     dietsMap.push(diet.name + ` `)
-                    // ))
-
-                    let objectResponse = {
-                        id: dbRecipeId.id,
-                        name: dbRecipeId.name,
-                        description: dbRecipeId.description,
-                        dishes: apiRecipesResult.dishes,
-                        score: dbRecipeId.score,
-                        healthy: dbRecipeId.healthy,
-                        diets: dbRecipeId.diets,
-                        steps: dbRecipeId.steps,
-                        image: dbRecipeId.image
-                    }
-
-                    if (!dbRecipeId) return res.status(400).send('Invalid ID')
-                    return res.send(objectResponse)
-                }
-            }
-            catch (error) {
-                next(error)
+            let objectResponse = {
+                id: apiRecipesResult.id,
+                name: apiRecipesResult.title,
+                image: apiRecipesResult.image,
+                diets: apiRecipesResult.diets,
+                dishes: apiRecipesResult.dishTypes,
+                description: apiRecipesResult.summary,
+                score: apiRecipesResult.spoonacularScore,
+                healthy: apiRecipesResult.healthScore,
+                steps: stepsMap
             }
 
-        }
+            if (apiRecipesResult) return res.send(objectResponse)
+        } else {
+            const dbRecipeId = await Recipe.findOne({
+                where: {
+                    id: id
+                },
+                include: Diet
+            })
 
-        module.exports = {
-            getRecipeById
+            let objectResponse = {
+                id: dbRecipeId.id,
+                name: dbRecipeId.name,
+                description: dbRecipeId.description,
+                dishes: dbRecipeId.dishes,
+                score: dbRecipeId.score,
+                healthy: dbRecipeId.healthy,
+                diets: dbRecipeId.Diets.map(elem => elem.name),
+                steps: dbRecipeId.steps,
+                image: dbRecipeId.image
+            }
+
+            if (!dbRecipeId) return res.status(400).send('Invalid ID')
+            return res.send(objectResponse)
         }
+    } catch (error) {
+        next(error)
+    }
+}
+
+
+
+// getRecipeById = async (req, res, next) => {
+
+//     const { id } = req.params
+
+//     try {
+
+//         if (id.length < 8) {
+
+//             const url = `https://api.spoonacular.com/recipes/${id}/information?apiKey=${dbApi}`
+//             const apiRecipes = await axios.get(url)
+
+//             const apiRecipesResult = apiRecipes.data
+
+//             //Para obetener Steps
+//             let stepsMap = []
+//             apiRecipesResult.analyzedInstructions.map(inst => (
+//                 inst.steps?.map((s) => (
+//                     stepsMap.push(s)
+//                 ))
+//             ))
+
+//             let objectResponse = {
+//                 id: apiRecipesResult.id,
+//                 name: apiRecipesResult.title,
+//                 image: apiRecipesResult.image,
+//                 diets: apiRecipesResult.diets,
+//                 dishes: apiRecipesResult.dishTypes,
+//                 description: apiRecipesResult.summary,
+//                 score: apiRecipesResult.spoonacularScore,
+//                 healthy: apiRecipesResult.healthScore,
+//                 steps: stepsMap
+//             }
+
+//             if (apiRecipesResult) return res.send(objectResponse)
+
+//         } else {
+//             const dbRecipeId = await Recipe.findOne({
+//                 where: {
+//                     id: id
+//                 },
+//                 include: Diet
+//             })
+
+//             let objectResponse = {
+//                 id: dbRecipeId.id,
+//                 name: dbRecipeId.name,
+//                 description: dbRecipeId.description,
+//                 dishes: apiRecipesResult.dishes,
+//                 score: dbRecipeId.score,
+//                 healthy: dbRecipeId.healthy,
+//                 diets: dbRecipeId.diets,
+//                 steps: dbRecipeId.steps,
+//                 image: dbRecipeId.image
+//             }
+
+//             if (!dbRecipeId) return res.status(400).send('Invalid ID')
+//             return res.send(objectResponse)
+//         }
+//     }
+//     catch (error) {
+//         next(error)
+//     }
+
+// }
+
+module.exports = {
+    getRecipeById
+}

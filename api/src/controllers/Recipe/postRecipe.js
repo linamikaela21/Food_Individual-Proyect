@@ -46,16 +46,12 @@ async function postRecipe(req, res) {
           await newRecipe.addDiet(diets[i], {through: 'recipe_diet'})
         }
 
-        console.log(newRecipe, 'soooooooy new con dieeeeeeeeeeeeeets')
-
         const recipes_diets = await Recipe.findAll({
           where: {
             name: name
           },
           include: Diet 
         })
-
-        console.log(recipes_diets, 'heeeeeeeeeeellowwwwwwwwwwwwwwwww')
     
         return res.json(recipes_diets) 
     } 
