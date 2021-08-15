@@ -8,6 +8,10 @@
   align-items: center;
 }
 
+.footerElements img {
+  width: 100px;
+}
+
 .span {
   color: white;
   font-size: medium;
@@ -17,4 +21,3 @@
   width: 100px;
   padding: 15px;
 }
-

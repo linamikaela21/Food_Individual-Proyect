@@ -88,11 +88,11 @@ function rootReducer(state = initialState, action) {
 
             const orderByScore = action.payload === 'menor' ?
 
-            state.allRecipes.sort((a , b) => a.score - b.score)
-            :
-            state.allRecipes.sort((a , b) => b.score - a.score)
-            
-            console.log(action.payload,'soy action.payload')
+                state.allRecipes.sort((a, b) => a.score - b.score)
+                :
+                state.allRecipes.sort((a, b) => b.score - a.score)
+
+            console.log(action.payload, 'soy action.payload')
             console.log(orderByScore)
             return {
                 ...state,

@@ -40,8 +40,8 @@
   background-color: rgb(0, 0, 0);
   color: rgb(189, 192, 34);
   margin: 10px auto;
-  padding-left: 10%;
-  padding-right: 10%;
+  padding-left: 8%;
+  padding-right: 8%;
   padding-bottom: 2%;
   text-align: justify;
 }
@@ -53,14 +53,15 @@
   color: rgb(189, 192, 34);
   font-size: large;
   font-weight: 500;
-  padding-left: 10%;
-  padding-right: 10%;
+  padding-left: 5%;
+  padding-right: 5%;
   text-align: justify;
   padding-bottom: 2%;
 }
 
 .contentRecipeDetails img {
   border: 10px solid darkorange;
+  object-fit: cover;
 }
 
 h2 {
@@ -90,4 +91,3 @@ h2 {
   background-color: rgb(0, 0, 0);
   border: solid 4px rgb(255, 255, 255);
 }
-

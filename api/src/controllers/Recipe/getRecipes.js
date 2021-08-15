@@ -21,10 +21,10 @@ const { dbApi } = require('../../utils/config')
 //ASYNC AWAIT
 //if tengo query param, hago una cosa, sino busco todos. PISTA: req.query
 
- const getRecipes = (_req, res, next) => {
+const getRecipes = (_req, res, next) => {
   const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${dbApi}&addRecipeInformation=true&number=100`
   var apiRecipePromise = axios.get(url)
-  var dbRecipePromise = Recipe.findAll({include: Diet})
+  var dbRecipePromise = Recipe.findAll({ include: Diet })
 
   return Promise.all([
     apiRecipePromise,
@@ -47,7 +47,7 @@ const { dbApi } = require('../../utils/config')
         image: receta.image,
       }
     })
-    
+
     dbRecipes = dbRecipes.map((receta) => {
       return {
         id: receta.id,
@@ -61,6 +61,7 @@ const { dbApi } = require('../../utils/config')
         image: receta.image,
       }
     })
+
     //aca los uno
     var allRecipes = apiRecipes.concat(dbRecipes)
     res.send(allRecipes)

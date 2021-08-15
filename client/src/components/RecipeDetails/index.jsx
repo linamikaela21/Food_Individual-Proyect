@@ -28,8 +28,6 @@ export function RecipeDetails() {
     return { __html: recipeDetails?.description };
   };
 
-  
-
   return (
     <div className={style.content}>
       {loading ? (
@@ -46,16 +44,23 @@ export function RecipeDetails() {
           />
 
           <h3 className={style.tituloRecipeDetails}>DIETS / DIETAS:</h3>
-          <h2 className={style.detalleRecipeDetails}>{recipeDetails?.diets?.map(elem => elem.toUpperCase() + ' - ')}</h2>
+          <h2 className={style.detalleRecipeDetails}>
+            {recipeDetails?.diets?.map((elem) => elem.toUpperCase() + " - ")}
+          </h2>
           <h3 className={style.tituloRecipeDetails}> SCORE / PUNTAJE:</h3>
-          <h2 className={style.detalleRecipeDetails}>{recipeDetails?.score} </h2>
+          <h2 className={style.detalleRecipeDetails}>
+            {recipeDetails?.score}{" "}
+          </h2>
           <h3 className={style.tituloRecipeDetails}>
             DISH TYPES / TIPO DE PLATO:
           </h3>
           <h2 className={style.detalleRecipeDetails}>
-            { typeof recipeDetails?.dishes === "string" ? recipeDetails?.dishes.toUpperCase()
-           : recipeDetails?.dishes?.map(elem => elem.toUpperCase() + ' - ')}
-           </h2>
+            {typeof recipeDetails?.dishes === "string"
+              ? recipeDetails?.dishes.toUpperCase()
+              : recipeDetails?.dishes?.map(
+                  (elem) => elem.toUpperCase() + " - "
+                )}
+          </h2>
           <h3 className={style.tituloRecipeDetails}>
             HEALTHY / PUNTAJE SALUDABLE:
           </h3>
@@ -73,15 +78,18 @@ export function RecipeDetails() {
             INSTRUCTIONS / INSTRUCCIONES:
           </h3>
 
-            <ol>
-            {
-              typeof recipeDetails?.steps === "string" ? recipeDetails?.steps
-              : recipeDetails?.steps.map(s => {
-                return (
-                 <li key={s.step} className={style.detalleRecipeSteps}> {s.step} </li>
-              )})
-            }
-            </ol>
+          <ol>
+            {typeof recipeDetails?.steps === "string"
+              ? <ul><li key={recipeDetails.step} className={style.detalleRecipeSteps}>{recipeDetails?.steps}</li></ul> 
+              : recipeDetails?.steps?.map((s) => {
+                  return (
+                    <li key={s.step} className={style.detalleRecipeSteps}>
+                      {" "}
+                      {s.step}{" "}
+                    </li>
+                  );
+                })}
+          </ol>
         </div>
       ) : (
         <p>Loading...</p>

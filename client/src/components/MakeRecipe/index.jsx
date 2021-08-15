@@ -34,27 +34,33 @@ export function MakeRecipe() {
 
   const validations = (recipe) => {
     let errors = {};
-    if (!recipe.name) errors.name = `Name is requiered / El nombre es requerido`
+    if (!recipe.name)
+      errors.name = `Name is requiered / El nombre es requerido`;
     else if (recipe.name.length < 5 || recipe.name.length > 50) {
       errors.name = `Name should be between 5 and 30 characters of extension / El nombre debe contener entre 5 y 30 caracteres`;
     }
-  if (!recipe.description) errors.description =`Description is requiered / La descripcion es requerida`
-  else if (recipe.description.length < 10 || recipe.description.length > 50) {
-    errors.name = `Recipe's description should be between 10 and 50 characters of extension / La descripcion debe contener entre 5 y 30 caracteres`;
-    } 
-    if (!recipe.dishes) errors.dishes = `Recipe's type of dish is requiered / Se requiere un tipo de plato`;
+    if (!recipe.description)
+      errors.description = `Description is requiered / La descripcion es requerida`;
+    else if (recipe.description.length < 10 || recipe.description.length > 50) {
+      errors.name = `Recipe's description should be between 10 and 50 characters of extension / La descripcion debe contener entre 5 y 30 caracteres`;
+    }
+    if (!recipe.dishes)
+      errors.dishes = `Recipe's type of dish is requiered / Se requiere un tipo de plato`;
     else if (recipe.dishes.length < 4) {
       errors.dishes = `Recipe's type of dish should be at least 5 characters of extension / El tipo de plato de la receta debe ser de al menos 4 caracteres`;
-    } 
-    if (!recipe.score) errors.score = `Recipe's score is requiered / Se requiere una puntuacion de la receta`;
+    }
+    if (!recipe.score)
+      errors.score = `Recipe's score is requiered / Se requiere una puntuacion de la receta`;
     else if (recipe.score < 1 || recipe.score > 100) {
       errors.score = `Recipe's score should be between 1 and 100 / La puntuacion de la receta debe ser entre 1 y 100 puntos`;
-    } 
-    if (!recipe.healthy) errors.healthy = `Recipe's healthy is requiered / Se requiere un puntaje de que tan saludable es la receta`;
+    }
+    if (!recipe.healthy)
+      errors.healthy = `Recipe's healthy is requiered / Se requiere un puntaje de que tan saludable es la receta`;
     else if (recipe.healthy < 1 || recipe.healthy > 100) {
       errors.healthy = `Recipe's healthy should be between 1 and 100 / La puntuacion saludable debe ser entre 1 y 100 puntos`;
-    } 
-    if (!recipe.steps) errors.steps = `Recipe's instructions is requiered / Se requiere las instrucciones de la receta`;
+    }
+    if (!recipe.steps)
+      errors.steps = `Recipe's instructions is requiered / Se requiere las instrucciones de la receta`;
     else if (recipe.steps.length < 50) {
       errors.steps = `Recipe's  should be between at least 50 characters of extension / Las instrucciones deben contener al menos 50 caracteres`;
     }
@@ -74,26 +80,26 @@ export function MakeRecipe() {
 
   //Creo mi funcion onChange para el formulario para tener un estado general para todos mis inputs
   function onInputChange(e) {
-    if(e.target.name === "diets") {
-      const dietsSelection = recipe[e.target.name]
+    if (e.target.name === "diets") {
+      const dietsSelection = recipe[e.target.name];
       setRecipe({
         ...recipe,
-        [e.target.name]: dietsSelection.concat(e.target.value)
-      })
+        [e.target.name]: dietsSelection.concat(e.target.value),
+      });
     } else {
-    setRecipe({
-      ...recipe,
-      [e.target.name]: e.target.value,
-    });
-    setErrors(
-      validations({
+      setRecipe({
         ...recipe,
         [e.target.name]: e.target.value,
-      })
-    );
-    console.log(recipe, "soy la receta que estas creando");
+      });
+      setErrors(
+        validations({
+          ...recipe,
+          [e.target.name]: e.target.value,
+        })
+      );
+      console.log(recipe, "soy la receta que estas creando");
+    }
   }
-}
   // const handleDiets = (e) => {
   //   const newDiets = new Set(recipe.diets);
   //   setRecipe({
@@ -103,16 +109,16 @@ export function MakeRecipe() {
   // };
 
   const handleCheckbox = (e) => {
-    console.log(e.target.value)
+    console.log(e.target.value);
     if (e.target.checked) {
-      setRecipe({ 
+      setRecipe({
         ...recipe,
         diets: [...recipe.diets, e.target.value],
       });
     } else {
       setRecipe({
         ...recipe,
-        diets: recipe.diets.filter(diet => diet !== e.target.value),
+        diets: recipe.diets.filter((diet) => diet !== e.target.value),
       });
     }
   };
@@ -128,24 +134,26 @@ export function MakeRecipe() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(Object.keys(errors).length === 0)
-    {dispatch(addRecipe(recipe));
-    alert("Your delicious recipe has been created! / Su deliciosa receta se ha creado");
-    setRecipe({
-      name: "",
-      description: "",
-      dishes: "",
-      score: "",
-      healthy: "",
-      steps: "",
-      image: "",
-      diets: [],
-    });
-    history.push("/recipes");
-  } else {
-    alert("Some ingredients are missing :(")
-  }
-  }
+    if (Object.keys(errors).length === 0) {
+      dispatch(addRecipe(recipe));
+      alert(
+        "Your delicious recipe has been created! / Su deliciosa receta se ha creado"
+      );
+      setRecipe({
+        name: "",
+        description: "",
+        dishes: "",
+        score: "",
+        healthy: "",
+        steps: "",
+        image: "",
+        diets: [],
+      });
+      history.push("/recipes");
+    } else {
+      alert("Some ingredients are missing :(");
+    }
+  };
 
   return (
     <div className={style.formFondo}>
@@ -218,7 +226,7 @@ export function MakeRecipe() {
           <label className={style.labelInput}>
             Puntaje Saludable / Healthy Score:
           </label>
-          <div>
+          <div className={style.divInput}>
             <input
               type="number"
               name="healthy"
@@ -244,7 +252,7 @@ export function MakeRecipe() {
             {errors.steps && <p className={style.errors}> {errors.steps} </p>}
           </div>
           <label className={style.labelInput}>Imagen / Image:</label>
-          <div>
+          <div className={style.divInput}>
             <input
               type="text"
               name="image"
@@ -268,27 +276,28 @@ export function MakeRecipe() {
         </select>
         </div> */}
 
-          <div className={style.diets_checkbox}>
-            <label className={style.labelInput}>Choose your diets</label>
-              {diets.map(diet => (
-                <span className="keys" key={diet.name}>
-                  <input
-                    className={style.input}
-                    type="checkbox"
-                    name="diets"
-                    value={diet.id}
-                    onChange={e => handleCheckbox(e)}
-                  />
-                  <label name={diet}>{diet.name}</label>
-                </span>
-              ))}
-              {/* {errors.diets && <p className={style.errors}> {errors.diets} </p>} */}
-            </div>
+          <label className={style.labelInput}>Choose your diets</label>
+          <div className={style.dietsCheckbox}>
+            {diets.map((diet) => (
+              <span className={style.checkboxsNames} key={diet.name}>
+                <input
+                  className={style.checkboxs}
+                  type="checkbox"
+                  name="diets"
+                  value={diet.id}
+                  onChange={(e) => handleCheckbox(e)}
+                />
+                <label name={diet}>{diet?.name?.toUpperCase()}</label>
+              </span>
+            ))}
+            {/* {errors.diets && <p className={style.errors}> {errors.diets} </p>} */}
+          </div>
 
           <div>
             <button
               className={style.formButtonCrear}
               type="submit"
+              disabled={!(Object.keys(errors).length === 0)}
             >
               MAKE YOUR RECIPE / CREAR RECETA
             </button>

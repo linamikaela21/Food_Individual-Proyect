@@ -22,9 +22,9 @@ module.exports = (sequelize) => {
         notEmpty: true,
       }
     },
-    id: { 
+    id: {
       type: DataTypes.UUID,
-      primaryKey: true, 
+      primaryKey: true,
       defaultValue: DataTypes.UUIDV4,
     },
     description: {
@@ -47,7 +47,7 @@ module.exports = (sequelize) => {
       type: DataTypes.TEXT,
       allowNull: true,
     },
-    image : {
+    image: {
       type: DataTypes.TEXT,
       allowNull: true,
     }

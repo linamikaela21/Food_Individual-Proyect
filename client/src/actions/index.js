@@ -31,30 +31,30 @@ import {
 //Esto me trae todas las recetas a  'http://localhost:3001/recipes/
 //ASYNC AWAIT
 export function getRecipes() {
-    return async function(dispatch) {
-        var allRecipes = await axios (URL_ALL_RECIPES, {
+    return async function (dispatch) {
+        var allRecipes = await axios(URL_ALL_RECIPES, {
 
         })
         return dispatch({
-                type: GET_RECIPES,
-                payload: allRecipes.data
-            })
+            type: GET_RECIPES,
+            payload: allRecipes.data
+        })
     }
 }
 
 //CREACION DE RECETA  
 export function getDiets() {
     return async (dispatch) => {
-        var allDiets = await axios.get (URL_DIETS)
+        var allDiets = await axios.get(URL_DIETS)
         return dispatch({
-                type: GET_DIETS,
-                payload: allDiets.data
-            })
+            type: GET_DIETS,
+            payload: allDiets.data
+        })
     }
 }
 
 export function addRecipe(payload) {
-    return async function(dispatch) {
+    return async function (dispatch) {
         var addRecipe = await axios.post(URL_ALL_RECIPES, payload)
         console.log(payload)
         //dispatch
@@ -68,24 +68,24 @@ export function addRecipe(payload) {
 
 //FUNCIONES PARA EL SEARCH BAR
 export function getRecipeByName(name) {
-        return async function(dispatch) {
-            try {
-                const recipesNames = await axios (URL_RECIPES_BY_NAME + `?name=${name}`)
-                return dispatch({
-                    type: SEARCH_RECIPE_BY_NAME,
-                    payload: recipesNames.data
-                })
-            } catch (error) {
-                console.log(error)
-            }
-}
+    return async function (dispatch) {
+        try {
+            const recipesNames = await axios(URL_RECIPES_BY_NAME + `?name=${name}`)
+            return dispatch({
+                type: SEARCH_RECIPE_BY_NAME,
+                payload: recipesNames.data
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
 }
 
 //FUNCION PARA DETALLE DE LA RECETA
 export function getRecipeById(id) {
-    return async function(dispatch) {
+    return async function (dispatch) {
         try {
-            const recipeId = await axios (URL_ALL_RECIPES + `${id}`)
+            const recipeId = await axios(URL_ALL_RECIPES + `${id}`)
             return dispatch({
                 type: SEARCH_RECIPE_BY_ID,
                 payload: recipeId.data
@@ -93,28 +93,28 @@ export function getRecipeById(id) {
         } catch (error) {
             console.log(error)
         }
-}
+    }
 }
 
 //FUNCIONES PARA ORDENAR
 export function orderRecipeByName(payload) {
     return {
-            type: ORDER_RECIPE_BY_NAME,
-            payload
-        }
+        type: ORDER_RECIPE_BY_NAME,
+        payload
+    }
 }
 
 export function orderRecipeByDiet(payload) {
     return {
-            type: ORDER_RECIPE_BY_DIET,
-            payload
-        }
+        type: ORDER_RECIPE_BY_DIET,
+        payload
+    }
 }
 
 export function orderRecipeByScore(payload) {
     return {
-            type: ORDER_RECIPE_BY_SCORE,
-            payload
-        }
+        type: ORDER_RECIPE_BY_SCORE,
+        payload
+    }
 
 }

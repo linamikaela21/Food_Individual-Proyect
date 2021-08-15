@@ -2,8 +2,8 @@
   background-image: url("../../Images/Landind.jpg");
   height: 700px;
   display: flex;
-  justify-items: center;
   align-items: center;
+  background-size: cover;
 }
 
 .title {

@@ -15,7 +15,7 @@ import Card from "./Card";
 import Paginado from "../Paginado";
 import SearchBar from "../SearchBar";
 import Footer from "../Footer";
-import Nav from "../Nav"
+import Nav from "../Nav";
 
 export function Home() {
   //Para despachar mis acciones
@@ -114,7 +114,7 @@ export function Home() {
           <option value="desc">Z - A</option>
         </select>
 
-       <label>Score</label>
+        <label>Score</label>
         <select onChange={(e) => handleOrderRecipeByScore(e)}>
           <option value="mayor">Mayor - Menor</option>
           <option value="menor">Menor - Mayor</option>
@@ -126,7 +126,9 @@ export function Home() {
           <option value="all">All</option>
           <option value="gluten free">Dieta: Gluten Free</option>
           <option value="dairy free">Dieta: Dairy Free</option>
-          <option value="lacto ovo vegetarian">Dieta: Lacto Ovo Vegetarian</option>
+          <option value="lacto ovo vegetarian">
+            Dieta: Lacto Ovo Vegetarian
+          </option>
           <option value="vegan">Dieta: Vegan</option>
           <option value="paleolithic">Dieta: Paleo / Paleolithic</option>
           <option value="pescatarian">Dieta: Pescatarian</option>
@@ -144,7 +146,7 @@ export function Home() {
             handleClick(e);
           }}
         >
-          Volver a cargar todas las recetas
+          VOLVER A CARGAR TODAS LAS RECETAS
         </button>
       </div>
 

@@ -19,22 +19,22 @@ getDiets = async (_req, res, next) => {
 
         diets = diets.flat()
 
-        diets = diets.filter((elem, index )=> {
+        diets = diets.filter((elem, index) => {
             return diets.indexOf(elem) === index
         })
 
         const modelDiets =
-        [
-            'gluten free',
-            'dairy free',
-            'lacto ovo vegetarian',
-            'vegan',
-            'paleolithic',
-            'pescatarian',
-            'primal',
-            'fodmap friendly',
-            'whole 30',
-        ]
+            [
+                'gluten free',
+                'dairy free',
+                'lacto ovo vegetarian',
+                'vegan',
+                'paleolithic',
+                'pescatarian',
+                'primal',
+                'fodmap friendly',
+                'whole 30',
+            ]
 
         diets.forEach(diet => {
             if (diets.length == 0) {

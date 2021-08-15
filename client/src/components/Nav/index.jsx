@@ -22,12 +22,12 @@ export default function Nav() {
           ABOUT / ACERCA
         </NavLink>
         <div>
-        {/* ESTO ME LLEVA AL FORMULARIO PARA CREAR MI RECETA */}
-        <button className={style.linkMakeRecipe}>
-          <NavLink className={style.navLink} to="/recipe">
-            CREA TU PROPIA RECETA
-          </NavLink>
-        </button>
+          {/* ESTO ME LLEVA AL FORMULARIO PARA CREAR MI RECETA */}
+          <button className={style.linkMakeRecipe}>
+            <NavLink className={style.navLink} to="/recipe">
+              CREA TU PROPIA RECETA
+            </NavLink>
+          </button>
         </div>
       </div>
     </div>
