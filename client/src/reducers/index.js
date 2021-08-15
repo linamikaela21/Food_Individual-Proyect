@@ -86,11 +86,11 @@ function rootReducer(state = initialState, action) {
 
         case ORDER_RECIPE_BY_SCORE:
 
-            const orderByScore = action.payload === 'mayor' ?
+            const orderByScore = action.payload === 'menor' ?
 
-            state.allRecipes.sort(function(a , b) {if (a.score - b.score) {return 1} else if(a.score - b.score) {return -1} return 0})
+            state.allRecipes.sort((a , b) => a.score - b.score)
             :
-            state.allRecipes.sort(function(a , b) {if (a.score - b.score) {return -1} else if(a.score - b.score) {return 1} return 0})
+            state.allRecipes.sort((a , b) => b.score - a.score)
             
             console.log(action.payload,'soy action.payload')
             console.log(orderByScore)
@@ -102,7 +102,7 @@ function rootReducer(state = initialState, action) {
         case ORDER_RECIPE_BY_DIET:
             const allRecipes = state.allRecipes
             const dietsFiltered = action.payload === 'all' ? allRecipes
-                : allRecipes.filter(elem => elem.diets === action.payload)
+                : allRecipes.diets.filter(elem => elem === action.payload)
             return {
                 ...state,
                 recipes: dietsFiltered

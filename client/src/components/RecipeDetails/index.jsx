@@ -61,21 +61,21 @@ export function RecipeDetails() {
             DESCRIPTION / DESCRIPCION:
           </h3>
           <h3
-            className={style.detalleRecipeDetails}
+            className={style.detalleRecipeDescription}
             dangerouslySetInnerHTML={funcDescription()}
           ></h3>
           <h3 className={style.tituloRecipeDetails}>
             INSTRUCTIONS / INSTRUCCIONES:
           </h3>
-            {recipeDetails.steps.map(s => {
+          
+            {
+            recipeDetails.steps.map(s => {
               return (
-              <ul className={style.detalleRecipeUl}>
-                <li key={s} className={style.detalleRecipeLi}>
+                <p className={style.detalleRecipeSteps}>
                   {s.step}
-                </li>
-                </ul>
-              )
-            })}
+                </p>
+            )})
+            }
         </div>
       ) : (
         <p>Loading...</p>
