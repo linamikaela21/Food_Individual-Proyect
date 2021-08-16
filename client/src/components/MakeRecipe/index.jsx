@@ -52,12 +52,12 @@ export function MakeRecipe() {
     if (!recipe.score)
       errors.score = `Recipe's score is requiered / Se requiere una puntuacion de la receta`;
     else if (recipe.score < 1 || recipe.score > 100) {
-      errors.score = `Recipe's score should be between 1 and 100 / La puntuacion de la receta debe ser entre 1 y 100 puntos`;
+      errors.score = `Recipe's score should be between 1 and 99 / La puntuacion de la receta debe ser entre 1 y 99 puntos`;
     }
     if (!recipe.healthy)
       errors.healthy = `Recipe's healthy is requiered / Se requiere un puntaje de que tan saludable es la receta`;
     else if (recipe.healthy < 1 || recipe.healthy > 100) {
-      errors.healthy = `Recipe's healthy should be between 1 and 100 / La puntuacion saludable debe ser entre 1 y 100 puntos`;
+      errors.healthy = `Recipe's healthy should be between 1 and 99 / La puntuacion saludable debe ser entre 1 y 99 puntos`;
     }
     if (!recipe.steps)
       errors.steps = `Recipe's instructions is requiered / Se requiere las instrucciones de la receta`;
@@ -67,9 +67,9 @@ export function MakeRecipe() {
     if (!recipe.image) {
       errors.image = `Recipe's image is requiered / Se requiere una imagen de la receta`;
     }
-    // if (recipe.diets.length < 1) {
-    //   errors.diets = `Recipe's diets is requiered / Se requiere el/los tipos de dieta/s en la/s que esta incluida la receta`;
-    // }
+    if (recipe.diets.length === 0) {
+      errors.diets = `Recipe's diets is requiered / Se requiere el/los tipos de dieta/s en la/s que esta incluida la receta`;
+    }
     return errors;
   };
 
@@ -97,7 +97,6 @@ export function MakeRecipe() {
           [e.target.name]: e.target.value,
         })
       );
-      console.log(recipe, "soy la receta que estas creando");
     }
   }
   // const handleDiets = (e) => {
@@ -115,6 +114,7 @@ export function MakeRecipe() {
         ...recipe,
         diets: [...recipe.diets, e.target.value],
       });
+      console.log(recipe);
     } else {
       setRecipe({
         ...recipe,
@@ -295,7 +295,7 @@ export function MakeRecipe() {
                 <label name={diet}>{diet?.name?.toUpperCase()}</label>
               </span>
             ))}
-            {/* {errors.diets && <p className={style.errors}> {errors.diets} </p>} */}
+            {errors.diets && <p className={style.errors}> {errors.diets} </p>}
           </div>
 
           <div>

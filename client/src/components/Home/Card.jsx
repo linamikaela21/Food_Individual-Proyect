@@ -3,11 +3,12 @@ import style from "./Card.module.css";
 const Card = ({ name, diets, image }) => {
   return (
     <div className={style.cardRecipe}>
-      <h2 className={style.nameRecipe}> {name?.toUpperCase()} </h2>
-      <h3 className={style.dietsRecipe}>
+      <div className={style.nameRecipeDiv}><h2 className={style.nameRecipe}> {name?.toUpperCase()} </h2></div>
+      <div className={style.dietsRecipeDiv}><h3 className={style.dietsRecipe}>
         {" "}
         {diets?.map((elem) => elem.toUpperCase() + " - ")}{" "}
       </h3>
+      </div>
       <img
         className={style.imgRecipe}
         src={image}

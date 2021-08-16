@@ -101,12 +101,6 @@ export function Home() {
         <SearchBar />
       </div>
 
-      <Paginado
-        recipesPerPage={recipesPerPage}
-        allRecipes={allRecipes.length}
-        paginado={paginado}
-      />
-
       <div className={style.containerSelect}>
         <label>Name</label>
         <select onChange={(e) => handleOrderRecipeByName(e)}>
@@ -171,6 +165,12 @@ export function Home() {
           </Link>
         );
       })}
+
+      <Paginado
+        recipesPerPage={recipesPerPage}
+        allRecipes={allRecipes.length}
+        paginado={paginado}
+      />
 
       <Footer />
     </div>
