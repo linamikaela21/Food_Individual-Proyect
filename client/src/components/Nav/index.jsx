@@ -25,7 +25,7 @@ export default function Nav() {
           {/* ESTO ME LLEVA AL FORMULARIO PARA CREAR MI RECETA */}
           <button className={style.linkMakeRecipe}>
             <NavLink className={style.navLink} to="/recipe">
-              CREA TU PROPIA RECETA
+             CREA TU PROPIA RECETA <br /> MAKE YOUR RECIPE
             </NavLink>
           </button>
         </div>

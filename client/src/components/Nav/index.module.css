@@ -11,40 +11,41 @@
 }
 
 .navContainer img {
-  margin: 20px;
+  width: 100px;
+  margin: 15px;
 }
 
 .navLink {
-  margin: 20px;
+  margin: 10px;
   font-size: x-large;
   color: white;
   font-weight: bold;
   text-decoration: none;
+  padding: 2px;
+  margin-left: 30px;
 }
 
 /* FORMULARIO */
 
 .linkMakeRecipe {
-  padding-top: 10px;
-  padding-left: 20px;
-  padding-bottom: 10px;
-  padding-right: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: x-large;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-  font-size: 20px;
   font-weight: 300;
   border-radius: 10px;
   background-color: rgb(144, 0, 0);
   border: solid 5px rgb(255, 255, 255);
-
   margin-left: 80px;
+  margin-bottom: 15px;
+  margin-top: 15px;
 }
 
 .linkMakeRecipe:hover {
-  color: rgb(255, 255, 255);
   border: solid 6px rgb(144, 0, 0);
-  background-color: darkorange;
+  background-color: rgb(0, 0, 0);
 }
 
 .LinklinkMakeRecipe {
