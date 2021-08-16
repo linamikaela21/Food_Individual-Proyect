@@ -164,6 +164,7 @@ export function MakeRecipe() {
           </div>
         </Link>
         <h1 className={style.formTitle}>CREA TU PROPIA RECETA !</h1>
+        <h1 className={style.formTitle}>MAKE YOUR RECIPE !</h1>
 
         <form onSubmit={(e) => handleSubmit(e)}>
           <label className={style.labelInput}>Nombre / Name:</label>
@@ -215,6 +216,8 @@ export function MakeRecipe() {
           <div className={style.divInput}>
             <input
               type="number"
+              min="0"
+              max="99"
               name="score"
               value={recipe.score}
               placeholder="Recipe Score"
@@ -229,6 +232,8 @@ export function MakeRecipe() {
           <div className={style.divInput}>
             <input
               type="number"
+              min="0"
+              max="99"
               name="healthy"
               value={recipe.healthy}
               placeholder="Recipe Healthy"

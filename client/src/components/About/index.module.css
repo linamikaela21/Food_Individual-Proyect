@@ -6,6 +6,7 @@
 }
 .about {
   background-image: url("../../Images/FondoAbout.jpg");
+  background-size: contain;
   text-align: left;
   justify-content: center;
 }

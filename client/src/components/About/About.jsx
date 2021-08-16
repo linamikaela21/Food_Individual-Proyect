@@ -15,7 +15,7 @@ export default function About() {
         <h1>MUCHAS GRACIAS POR INGRESAR AL PROYECTO FOOD</h1>
         <p>
           Esta aplicación es un proyecto individual que fue creado durante mi
-          bootcamp en{" "}
+          bootcamp en {" "}
           <a
             href="https://www.soyhenry.com"
             target="_blank"
@@ -36,7 +36,7 @@ export default function About() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                PostgreSQL
+                {" "}PostgreSQL{" "}
               </a>
             </li>
           </ul>
@@ -48,7 +48,7 @@ export default function About() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Sequelize
+                {" "}Sequelize{" "}
               </a>
               y{" "}
               <a
@@ -56,7 +56,7 @@ export default function About() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Express
+                {" "}Express{" "}
               </a>
             </li>
           </ul>
@@ -68,23 +68,23 @@ export default function About() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                React
-              </a>{" "}
-              y
+                {" "}React{" "}
+              </a>
+              y 
               <a
                 href="https://redux.js.org/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Redux
-              </a>{" "}
+                {" "}Redux{" "}
+              </a>
               entre otras librerias como
               <a
                 href="https://axios-http.com/docs/intro"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Axios
+               {" "} Axios
               </a>
             </li>
           </ul>
@@ -102,7 +102,7 @@ export default function About() {
           >
             Spoonacular API
           </a>
-          para obtener distintos tipos de recetas, captar las primeras 100 y
+          {" "}para obtener distintos tipos de recetas, captar las primeras 100 y
           luego almacenarlos para trabajarlos y requerirlos desde una API
           propia.
         </p>

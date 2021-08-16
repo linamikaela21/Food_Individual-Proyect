@@ -39,8 +39,6 @@ export function RecipeDetails() {
             className="imgDetails"
             src={recipeDetails.image}
             alt="Not found"
-            width="500"
-            height="500"
           />
 
           <h3 className={style.tituloRecipeDetails}>DIETS / DIETAS:</h3>
@@ -49,18 +47,17 @@ export function RecipeDetails() {
           </h2>
           <h3 className={style.tituloRecipeDetails}> SCORE / PUNTAJE:</h3>
           <h2 className={style.detalleRecipeDetails}>
-            {recipeDetails?.score}{" "}
+            {recipeDetails?.score}
           </h2>
+        
           <h3 className={style.tituloRecipeDetails}>
             DISH TYPES / TIPO DE PLATO:
           </h3>
-          <h2 className={style.detalleRecipeDetails}>
             {typeof recipeDetails?.dishes === "string"
               ? recipeDetails?.dishes.toUpperCase()
               : recipeDetails?.dishes?.map(
-                  (elem) => elem.toUpperCase() + " - "
+                  elem => (<h2><ul><li key={elem} className={style.detalleRecipeDetails}>{elem.toUpperCase()}</li></ul></h2>)
                 )}
-          </h2>
           <h3 className={style.tituloRecipeDetails}>
             HEALTHY / PUNTAJE SALUDABLE:
           </h3>
@@ -81,11 +78,10 @@ export function RecipeDetails() {
           <ol>
             {typeof recipeDetails?.steps === "string"
               ? <ul><li key={recipeDetails.step} className={style.detalleRecipeSteps}>{recipeDetails?.steps}</li></ul> 
-              : recipeDetails?.steps?.map((s) => {
+              : recipeDetails?.steps?.map(s => {
                   return (
                     <li key={s.step} className={style.detalleRecipeSteps}>
-                      {" "}
-                      {s.step}{" "}
+                      {s.step}
                     </li>
                   );
                 })}
@@ -103,60 +99,4 @@ export function RecipeDetails() {
 
 export default RecipeDetails;
 
-// import { useState, useEffect } from "react";
-// import axios from "axios";
-// import { useParams } from "react-router";
-// import { Link } from "react-router-dom";
-// import style from './index.module.css'
 
-// import { URL_ALL_RECIPES } from "../../constantes";
-
-// export function RecipeDetails () {
-
-//   const [recipeDetails, setrecipeDetails] = useState({});
-
-//   const { id } = useParams();
-
-//   function getRecipesById(id) {
-//     axios(URL_ALL_RECIPES + id).then((recipe) => {
-//       setrecipeDetails(recipe.data);
-//     });
-//   }
-
-//   useEffect(() => {
-//     getRecipesById(id);
-//   }, [])
-
-//    const funcDescription = () => {
-//   return  {__html: recipeDetails.description};
-//  }
-//   return (
-//   <div className={style.content}>
-//     <div className={style.contentRecipeDetails}>
-//         <h1 className={style.tituloNameRecipeDetails}> {recipeDetails.name} </h1>
-//         <img
-
-//         className="imgDetails"
-//         src={recipeDetails.image}
-//         alt="Not found"
-//         width="400"
-//         height="400"
-//       />
-//         <h3 className={style.tituloRecipeDetails}>DIETS / DIETAS:</h3>
-//       <h3 className={style.detalleRecipeDetails}> {recipeDetails.diets} </h3>
-//       <h3 className={style.tituloRecipeDetails}> SCORE / PUNTAJE:</h3>
-//       <h3 className={style.detalleRecipeDetails}>{recipeDetails.score} </h3>
-//       <h3 className={style.tituloRecipeDetails}> HEALTHY / PUNTAJE SALUDABLE:</h3>
-//       <h3 className={style.detalleRecipeDetails}> {recipeDetails.healthy} </h3>
-//       <h3 className={style.tituloRecipeDetails}>DESCRIPTION / DESCRIPCION: </h3>
-//       <h4 className={style.detalleRecipeDetails} dangerouslySetInnerHTML={funcDescription()}></h4>
-//       <h4 className={style.tituloRecipeDetails}>INSTRUCTIONS / INSTRUCCIONES: </h4>
-//       <h4 className={style.detalleRecipeDetails}> {recipeDetails.steps} </h4>
-//       </div>
-//   <Link to='/recipes'><button className={style.buttonVolver}>Volver / Go back</button></Link>
-// </div>
-// )
-
-// }
-
-// export default RecipeDetails;

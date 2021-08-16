@@ -35,15 +35,16 @@
   font-size: 20px;
   font-weight: 300;
   border-radius: 10px;
-  border: solid 4px darkviolet;
-  background-color: darkorange;
+  background-color: rgb(144, 0, 0);
+  border: solid 5px rgb(255, 255, 255);
+
   margin-left: 80px;
 }
 
 .linkMakeRecipe:hover {
   color: rgb(255, 255, 255);
-  background-color: rgb(86, 11, 113);
-  border: solid 5px rgb(255, 255, 255);
+  border: solid 6px rgb(144, 0, 0);
+  background-color: darkorange;
 }
 
 .LinklinkMakeRecipe {
