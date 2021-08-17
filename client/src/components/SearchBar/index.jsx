@@ -26,7 +26,7 @@ function SearchBar() {
     <div className={style.containerSearchBar}>
       <input
         type="text"
-        placeholder="Busca tu receta.."
+        placeholder="Search your recipe.. | Busca tu receta.."
         onChange={(e) => handleChangeSearchBar(e)}
         className={style.inputSearchBar}
       />
@@ -35,7 +35,7 @@ function SearchBar() {
         className={style.buttonSearchBar}
         onClick={(e) => handleSubmitSearchBar(e)}
       >
-        Enviar
+        SEND | ENVIAR
       </button>
     </div>
   );

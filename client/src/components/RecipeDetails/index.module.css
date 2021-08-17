@@ -1,19 +1,19 @@
 .content {
   display: inline;
-  justify-content: center;
-  background-image: url("../../Images/FondoB&W.jpg");
+  justify-content: left;
+  background-image: url("../../Images/blackandwithstuff.jpg");
 }
 
 .contentRecipeDetails {
-  background-image: url("../../Images/Fondo-Details.jpg");
-  border-image-repeat: repeat;
-  width: 80%;
+  background-image: url("../../Images/Plate-Folk.jpg");
+  /* border-image-repeat: repeat; */
   margin-top: 5%;
   margin-left: 10%;
   margin-right: 10%;
 }
 
 .tituloNameRecipeDetails {
+  background-color: black;
   color: white;
   padding-top: 3%;
   padding-bottom: 2%;

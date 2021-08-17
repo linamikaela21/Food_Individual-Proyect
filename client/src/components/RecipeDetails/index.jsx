@@ -54,7 +54,7 @@ export function RecipeDetails() {
             DISH TYPES / TIPO DE PLATO:
           </h3>
             {typeof recipeDetails?.dishes === "string"
-              ? recipeDetails?.dishes.toUpperCase()
+              ? <h2 className={style.detalleRecipeDetails}>{recipeDetails?.dishes.toUpperCase()}</h2>
               : recipeDetails?.dishes?.map(
                   elem => (<h2><ul><li key={elem} className={style.detalleRecipeDetails}>{elem.toUpperCase()}</li></ul></h2>)
                 )}
@@ -82,6 +82,10 @@ export function RecipeDetails() {
                   return (
                     <li key={s.step} className={style.detalleRecipeSteps}>
                       {s.step}
+                      <h3 className={style.tituloRecipeDetails}>INGREDIENTS | INGREDIENTES</h3>
+                      {s.ingredients?.map(elem => 
+                      <ul><li><h4>{elem.name}</h4></li></ul>
+                      )}
                     </li>
                   );
                 })}

@@ -12,25 +12,37 @@ export default function About() {
         <button className={style.buttonVolver}>Volver / Go back</button>
       </Link>
       <div className={style.about}>
-        <h1>MUCHAS GRACIAS POR INGRESAR AL PROYECTO FOOD</h1>
+      <h1>THANK YOU FOR VISITING "FOOD PROYECT"</h1>
+        <h1>MUCHAS GRACIAS POR INGRESAR AL "PROYECTO FOOD"</h1>
         <p>
-          Esta aplicación es un proyecto individual que fue creado durante mi
-          bootcamp en {" "}
+          This app is a individual proyect made in the bootCamp           
           <a
             href="https://www.soyhenry.com"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Soy Henry
+            {" "} Soy Henry{" "}
+          </a>
+          , this one of two projects required.
+          </p>
+          <p>
+          Esta aplicación es un proyecto individual que fue creado durante mi
+          bootCamp en 
+          <a
+            href="https://www.soyhenry.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+          {" "}  Soy Henry{" "}
           </a>
           , siendo uno de los 2 proyectos requeridos.
         </p>
         <br />
         <div className={style.ulLi}>
-          <p>Las tecnologías utilizadas aqui son:</p>
+          <p>The technologies used here: <br /> Las tecnologías utilizadas aqui son:</p>
           <ul>
             <li>
-              <strong>Base de datos:</strong>{" "}
+              <strong>Data Base | Base de datos:</strong>{" "}
               <a
                 href="https://www.postgresql.org/about/"
                 target="_blank"
@@ -42,7 +54,7 @@ export default function About() {
           </ul>
           <ul>
             <li>
-              <strong>Base de BackEnd:</strong>
+              <strong>BackEnd:</strong>
               <a
                 href="https://sequelize.org/"
                 target="_blank"
@@ -62,7 +74,7 @@ export default function About() {
           </ul>
           <ul>
             <li>
-              <strong>Base de FrontEnd:</strong>{" "}
+              <strong>FrontEnd:</strong>{" "}
               <a
                 href="https://reactjs.org/"
                 target="_blank"
@@ -89,25 +101,35 @@ export default function About() {
             </li>
           </ul>
           <p>
-            No se ha utilizado apoyo de alguna libreria en la parte de diseño
+            There are no design libraries | No se ha utilizado apoyo de alguna libreria en la parte de diseño
           </p>
         </div>
         <br />
         <p>
-          Esta aplicación se sirve de la API{" "}
+          This app uses {" "}
           <a
-            href="https://api.spoonacular.com/recipes/complexSearch/"
+            href="https://spoonacular.com/food-api"
             target="_blank"
             rel="noopener noreferrer"
           >
             Spoonacular API
           </a>
-          {" "}para obtener distintos tipos de recetas, captar las primeras 100 y
-          luego almacenarlos para trabajarlos y requerirlos desde una API
-          propia.
+          {" "}to get different types of recipes, I get 100 first recipes and push into the database to work with my own API.
         </p>
+        <p>
+          Esta aplicación se sirve de la API{" "}
+          <a
+            href="https://spoonacular.com/food-api"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Spoonacular API
+          </a>
+          {" "}para obtener distintos tipos de recetas, captar las primeras 100 para trabajarlos y requerirlos desde una API propia.
+        </p>
+       
         <br />
-        <h2>CONTACTO</h2>
+        <h2>CONTACT | CONTACTO</h2>
         <div className={style.contact}>
           <div className={style.contact_item}>
             <img

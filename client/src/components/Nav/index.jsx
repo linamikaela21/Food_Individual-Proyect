@@ -5,7 +5,7 @@ import logo from "../../Images/logo.jpg";
 export default function Nav() {
   return (
     <div className={style.navContainer}>
-      <img src={logo} alt="" width="100px" />
+      <NavLink to="/"><img src={logo} alt="No found | No encontrada" width="100px" /></NavLink> 
       <div className={style.navLinks}>
         <NavLink
           to="/recipes"

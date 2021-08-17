@@ -51,10 +51,10 @@ export function Home() {
   }, [dispatch]);
 
   //Para resetear las recetas en caso de que no se hallan cargado bien
-  function handleClick(e) {
-    e.preventDefault();
-    dispatch(getRecipes());
-  }
+  // function handleClick(e) {
+  //   e.preventDefault();
+  //   dispatch(getRecipes());
+  // }
 
   //ACA VAN A IR MIS HANDLES PARA ORDENAR
 
@@ -102,22 +102,22 @@ export function Home() {
       </div>
 
       <div className={style.containerSelect}>
-        <label>Name</label>
+        <label>Name | Nombre</label>
         <select onChange={(e) => handleOrderRecipeByName(e)}>
           <option value="asc">A - Z</option>
           <option value="desc">Z - A</option>
         </select>
 
-        <label>Score</label>
+        <label>Score | Puntaje</label>
         <select onChange={(e) => handleOrderRecipeByScore(e)}>
-          <option value="mayor">Mayor - Menor</option>
-          <option value="menor">Menor - Mayor</option>
+          <option value="mayor">Ascending | Ascendente</option>
+          <option value="menor">Descending | Descendente</option>
         </select>
         {/*Es importante que en el value le ponga lo que me llega por back porque va a ser lo que me va a filtrar mi action.payload */}
 
-        <label>Diets</label>
+        <label>Diets | Dietas</label>
         <select onChange={(e) => handleOrderRecipeByDiet(e)}>
-          <option value="all">All</option>
+          <option value="all">All | Todas</option>
           <option value="gluten free">Dieta: Gluten Free</option>
           <option value="dairy free">Dieta: Dairy Free</option>
           <option value="lacto ovo vegetarian">
@@ -132,17 +132,18 @@ export function Home() {
         </select>
       </div>
 
-      <div className={style.buttonRecargarContainer}>
-        {/* POR LAS DUDAS NO CARGUEN LAS RECETAS A LA PRIMERA */}
+      {/* <div className={style.buttonRecargarContainer}>
+        POR LAS DUDAS NO CARGUEN LAS RECETAS A LA PRIMERA 
         <button
           className={style.buttonRecargar}
           onClick={(e) => {
             handleClick(e);
           }}
         >
-          VOLVER A CARGAR TODAS LAS RECETAS
+          REFRESH PAGE <br />
+          VOLVER A CARGAR PAGINA
         </button>
-      </div>
+      </div> */}
 
       {/*El componente RECIPES ya trajo el estado inicial por ende exporto mi componente Recipe, 
           mapeo la info de mi state y la paso por props a Recipe */}
