@@ -12,14 +12,14 @@ export default function Nav() {
           activeClassName="nav-link-active"
           className={style.navLink}
         >
-          HOME / INICIO
+          HOME | INICIO
         </NavLink>
         <NavLink
           to="/about"
           activeClassName="nav-link-active"
           className={style.navLink}
         >
-          ABOUT / ACERCA
+          ABOUT | ACERCA
         </NavLink>
         <div>
           {/* ESTO ME LLEVA AL FORMULARIO PARA CREAR MI RECETA */}

@@ -159,11 +159,6 @@ export function MakeRecipe() {
   return (
     <div className={style.formFondo}>
       <div className={style.formContainer}>
-        <Link to="/recipes">
-          <div>
-            <button className={style.formButton}> GO BACK | VOLVER</button>
-          </div>
-        </Link>
         <h1 className={style.formTitle}>MAKE YOUR RECIPE !</h1>
         <h1 className={style.formTitle}>CREA TU PROPIA RECETA !</h1>
 
@@ -282,7 +277,9 @@ export function MakeRecipe() {
         </select>
         </div> */}
 
-          <label className={style.labelInput}>Choose your diets | Elije tus dietas:</label>
+          <label className={style.labelInput}>
+            Choose your diets | Elije tus dietas:
+          </label>
           <div className={style.dietsCheckbox}>
             {diets.map((diet) => (
               <span className={style.checkboxsNames} key={diet.name}>
@@ -318,6 +315,12 @@ export function MakeRecipe() {
          
         </div>
       )} */}
+
+        <Link to="/recipes">
+          <div>
+            <button className={style.formButton}> GO BACK | VOLVER</button>
+          </div>
+        </Link>
       </div>
     </div>
   );

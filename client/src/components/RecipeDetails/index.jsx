@@ -29,50 +29,51 @@ export function RecipeDetails() {
   };
 
   return (
-    <div className={style.content}>
-      {loading ? (
+    <div className={style.content} >
+      {loading  ? (
+        <div className={style.content}>
         <div className={style.contentRecipeDetails}>
           <h1 className={style.tituloNameRecipeDetails}>
             {recipeDetails?.name?.toUpperCase()}
           </h1>
           <img
-            className="imgDetails"
+            className={style.imgDetails}
             src={recipeDetails.image}
             alt="Not found"
           />
 
-          <h3 className={style.tituloRecipeDetails}>DIETS / DIETAS:</h3>
+          <h3 className={style.tituloRecipeDetails}>DIETS | DIETAS:</h3>
           <h2 className={style.detalleRecipeDetails}>
             {recipeDetails?.diets?.map((elem) => elem.toUpperCase() + " - ")}
           </h2>
-          <h3 className={style.tituloRecipeDetails}> SCORE / PUNTAJE:</h3>
+          <h3 className={style.tituloRecipeDetails}> SCORE | PUNTAJE:</h3>
           <h2 className={style.detalleRecipeDetails}>
             {recipeDetails?.score}
           </h2>
         
           <h3 className={style.tituloRecipeDetails}>
-            DISH TYPES / TIPO DE PLATO:
+            DISH TYPES | TIPO DE PLATO:
           </h3>
             {typeof recipeDetails?.dishes === "string"
-              ? <h2 className={style.detalleRecipeDetails}>{recipeDetails?.dishes.toUpperCase()}</h2>
+              ? <h2 className={style.detalleRecipeDetailsDish}>{recipeDetails?.dishes.toUpperCase()}</h2>
               : recipeDetails?.dishes?.map(
-                  elem => (<h2><ul><li key={elem} className={style.detalleRecipeDetails}>{elem.toUpperCase()}</li></ul></h2>)
+                  elem => (<h2> <ul className={style.detalleRecipeDetailsDish}><li key={elem} >{elem.toUpperCase()}</li></ul></h2>)
                 )}
           <h3 className={style.tituloRecipeDetails}>
-            HEALTHY / PUNTAJE SALUDABLE:
+            HEALTHY | PUNTAJE SALUDABLE:
           </h3>
           <h2 className={style.detalleRecipeDetails}>
             {recipeDetails?.healthy}
           </h2>
           <h3 className={style.tituloRecipeDetails}>
-            DESCRIPTION / DESCRIPCION:
+            DESCRIPTION | DESCRIPCION:
           </h3>
           <h3
             className={style.detalleRecipeDescription}
             dangerouslySetInnerHTML={funcDescription()}
           ></h3>
           <h3 className={style.tituloRecipeDetails}>
-            INSTRUCTIONS / INSTRUCCIONES:
+            INSTRUCTIONS | INSTRUCCIONES:
           </h3>
 
           <ol>
@@ -84,18 +85,19 @@ export function RecipeDetails() {
                       {s.step}
                       <h3 className={style.tituloRecipeDetails}>INGREDIENTS | INGREDIENTES</h3>
                       {s.ingredients?.map(elem => 
-                      <ul><li><h4>{elem.name}</h4></li></ul>
+                      <ul><li><h4>{elem.name?.toUpperCase()}</h4></li></ul>
                       )}
                     </li>
                   );
                 })}
           </ol>
         </div>
+        </div>
       ) : (
-        <p>Loading...</p>
+        <div className={style.loading}></div>
       )}
       <Link to="/recipes">
-        <button className={style.buttonVolver}>Volver / Go back</button>
+        <button className={style.buttonVolver}>Volver | Go back</button>
       </Link>
     </div>
   );

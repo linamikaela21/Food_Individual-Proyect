@@ -13,6 +13,7 @@ const Card = ({ name, diets, image }) => {
         className={style.imgRecipe}
         src={image}
         alt="No encontrada / Not found"
+        title={name}
       />
     </div>
   );

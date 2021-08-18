@@ -1,5 +1,5 @@
 .pagination {
-  background-color: black;
+  /* background-color: black; */
   padding: 8px;
 }
 
@@ -11,9 +11,11 @@
 
 .numberA {
   padding: 10px 20px;
-  border: solid 2px black;
-  background-color: rgb(222, 142, 45);
+  border: solid 2px rgb(255, 255, 255);
+  background-color: rgb(147, 15, 8);
   font-weight: 700;
   font-size: large;
   text-decoration: none;
+  border-radius: 12px;
+  color: white;
 }

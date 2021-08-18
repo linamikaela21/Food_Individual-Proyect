@@ -5,11 +5,11 @@ Si se rompe y bajas de nuevo el repo, acordate de hacer npm i en api y en client
 DENTRO DE API CREAR UN ARCHICO .env copia y pega eso y CAMBIA LA API POR LA TUYA !!!!!!!
 
 DB_USER=postgres
-DB_PASSWORD=Lali
-DB_HOST=localhost
-DB_NAME: food
+DB_PASSWORD=lali
+DB_HOST=localhost:5432
+DB_NAME= food
 
-API_KEY = 
+dbApi = 
 
 **PASOS**
 

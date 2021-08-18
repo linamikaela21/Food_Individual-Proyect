@@ -6,6 +6,7 @@
   background-size: cover;
   margin: auto;
   background-position: left;
+  border-radius: 12px;
 }
 
 .contentRecipe {
@@ -43,4 +44,5 @@
 .imgRecipe {
   height: 300px;
   width: 350px;
+  border-radius: 12px;
 }

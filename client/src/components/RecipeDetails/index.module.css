@@ -1,15 +1,20 @@
+.loading {
+  background-image: url("../../Images/Loading.gif");
+}
+
 .content {
-  display: inline;
-  justify-content: left;
-  background-image: url("../../Images/blackandwithstuff.jpg");
+  background-image: url("../../Images/FondoB&W.jpg");
 }
 
 .contentRecipeDetails {
-  background-image: url("../../Images/Plate-Folk.jpg");
+  /* background-image: url("../../Images/Plate-Folk.jpg"); */
   /* border-image-repeat: repeat; */
+  background-color: black;
   margin-top: 5%;
   margin-left: 10%;
   margin-right: 10%;
+  border: 2px solid rgb(0, 0, 0);
+  border-radius: 50px;
 }
 
 .tituloNameRecipeDetails {
@@ -36,10 +41,22 @@
   text-align: center;
 }
 
-.contentRecipeDetails img {
+/* DISH */
+
+.detalleRecipeDetailsDish {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(0, 0, 0);
+  color: rgb(189, 192, 34);
+}
+
+.imgDetails {
   width: 500px;
   height: 500px;
   object-fit: cover;
+  border-radius: 12px;
+  border: 5px solid rgb(255, 255, 255);
 }
 
 .detalleRecipeDescription {
@@ -65,11 +82,6 @@
   padding-bottom: 2%;
 }
 
-.contentRecipeDetails img {
-  border: 10px solid darkorange;
-  object-fit: cover;
-}
-
 h2 {
   font-size: 40px;
 }
@@ -90,6 +102,8 @@ h2 {
   border: solid 4px rgb(0, 0, 0);
   margin-top: 20px;
   margin-bottom: 3%;
+  cursor: pointer;
+  transition: 0.5s;
 }
 
 .buttonVolver:hover {

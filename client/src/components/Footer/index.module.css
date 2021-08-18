@@ -4,20 +4,17 @@
   justify-content: space-around;
   left: 0;
   bottom: 0;
-  background-color: black;
+  background-color: rgb(147, 15, 8);
   align-items: center;
-}
-
-.footerElements img {
-  width: 100px;
 }
 
 .span {
   color: white;
-  font-size: medium;
+  font-size: large;
 }
 
-.footerIcon {
+.footerIcon  {
   width: 100px;
   padding: 15px;
+  border-radius: 12px;
 }
