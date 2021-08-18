@@ -2,6 +2,8 @@ const { getRecipes } = require('./Recipe/getRecipes')
 const { getRecipeByName } = require('./Recipe/getRecipeByName')
 const { getRecipeById } = require('./Recipe/getRecipeById')
 const { postRecipe } = require('./Recipe/postRecipe')
+const { deleteRecipe } = require('./Recipe/deleteRecipe')
+const { changeRecipe } = require('./Recipe/changeRecipe')
 
 const { getDiets } = require('./Diet/getDiet')
 
@@ -10,5 +12,7 @@ module.exports = {
     getRecipeByName,
     getRecipeById,
     postRecipe,
-    getDiets
+    getDiets,
+    deleteRecipe,
+    changeRecipe
 }

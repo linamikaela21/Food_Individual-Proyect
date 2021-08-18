@@ -36,7 +36,7 @@ getDiets = async (_req, res, next) => {
                 'whole 30',
             ]
 
-        diets.forEach(diet => {
+        await diets.forEach(diet => {
             if (diets.length == 0) {
                 return modelDiets
             } else {

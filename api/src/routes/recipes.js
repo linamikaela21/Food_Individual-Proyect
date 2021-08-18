@@ -1,6 +1,6 @@
 const { Router } = require('express');
 
-const { getRecipes, getRecipeByName, getRecipeById, postRecipe } = require('../controllers/index')
+const { getRecipes, getRecipeByName, getRecipeById, postRecipe, deleteRecipe, changeRecipe } = require('../controllers/index')
 
 const router = Router()
 
@@ -32,6 +32,15 @@ router.get('/:id', getRecipeById);
 // Crea una receta en la base de datos
 // http://localhost:3001/recipes/
 router.post('/', postRecipe);
+
+
+// DELETE /recipe
+// http://localhost:3001/recipes/:id
+router.delete('/:id', deleteRecipe);
+
+// PUT /recipe
+// http://localhost:3001/recipes/:id
+router.delete('/:id', changeRecipe);
 
 module.exports = router;
 

@@ -37,8 +37,5 @@
 .buttonSearchBar:hover {
   color: rgb(255, 255, 255);
   background-color: rgb(144, 0, 0);
-  /* border: solid 4px rgb(255, 255, 255); */
-  &::before {
     border: 0px ;
-  }
 }

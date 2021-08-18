@@ -1,115 +1,117 @@
 import {
-    GET_RECIPES,
-    GET_DIETS,
-    SEARCH_RECIPE_BY_NAME,
-    SEARCH_RECIPE_BY_ID,
-    ORDER_RECIPE_BY_NAME,
-    ORDER_RECIPE_BY_DIET,
-    ORDER_RECIPE_BY_SCORE,
-    ADD_RECIPE,
-} from '../actions/constants'
+  GET_RECIPES,
+  GET_DIETS,
+  SEARCH_RECIPE_BY_NAME,
+  SEARCH_RECIPE_BY_ID,
+  ORDER_RECIPE_BY_NAME,
+  ORDER_RECIPE_BY_DIET,
+  ORDER_RECIPE_BY_SCORE,
+  ADD_RECIPE,
+  DELETE_RECIPE,
+} from "../actions/constants";
 
 const initialState = {
-    //Estado con todas las recetas 
-    allRecipes: [],
-    //Estado con los detalles todas las recetas 
-    details: [],
-    //Estado con las recetas fltradas sino me filtraba sobre lo filtrado
-    recipes: [],
-    //Este estado es para las dietas que van a ir al formulario
-    diets: []
-}
+  //Estado con todas las recetas
+  allRecipes: [],
+  //Estado con los detalles todas las recetas
+  details: [],
+  //Estado con las recetas fltradas sino me filtraba sobre lo filtrado
+  recipes: [],
+  //Este estado es para las dietas que van a ir al formulario
+  diets: [],
+};
 
 function rootReducer(state = initialState, action) {
-    switch (action.type) {
+  switch (action.type) {
+    case GET_RECIPES:
+      return {
+        ...state,
+        allRecipes: action.payload,
+        recipes: action.payload,
+      };
 
-        case GET_RECIPES:
-            return {
-                ...state,
-                allRecipes: action.payload,
-                recipes: action.payload
-            }
+    case ADD_RECIPE:
+      return {
+        ...state,
+      };
+    case DELETE_RECIPE:
+      return {
+        ...state,
+      };
 
-        case ADD_RECIPE:
-            return {
-                ...state,
-            }
+    case GET_DIETS:
+      return {
+        ...state,
+        diets: action.payload,
+      };
+    case SEARCH_RECIPE_BY_ID:
+      return {
+        ...state,
+        details: action.payload,
+      };
+    case SEARCH_RECIPE_BY_NAME:
+      return {
+        ...state,
+        recipes: action.payload,
+      };
 
-        case GET_DIETS:
-            return {
-                ...state,
-                diets: action.payload,
-            }
-        case SEARCH_RECIPE_BY_ID:
-            return {
-                ...state,
-                details: action.payload
-            }
-        case SEARCH_RECIPE_BY_NAME:
-            return {
-                ...state,
-                recipes: action.payload
-            }
+    case ORDER_RECIPE_BY_NAME:
+      const orderByName =
+        action.payload === "asc"
+          ? state.recipes.sort(function (a, b) {
+              if (a.name > b.name) {
+                return 1;
+              }
 
-        case ORDER_RECIPE_BY_NAME:
+              if (b.name > a.name) {
+                return -1;
+              }
 
-            const orderByName = action.payload === 'asc' ?
+              return 0;
+            })
+          : state.recipes.sort(function (a, b) {
+              if (a.name > b.name) {
+                return -1;
+              }
 
-                state.recipes.sort(function (a, b) {
+              if (b.name > a.name) {
+                return 1;
+              }
 
-                    if (a.name > b.name) {
-                        return 1;
-                    }
+              return 0;
+            });
+      return {
+        ...state,
+        recipes: orderByName,
+      };
 
-                    if (b.name > a.name) {
-                        return -1;
-                    }
+    case ORDER_RECIPE_BY_SCORE:
+      const orderByScore =
+        action.payload === "menor"
+          ? state.recipes.sort((a, b) => a.score - b.score)
+          : state.recipes.sort((a, b) => b.score - a.score);
 
-                    return 0;
-                }) :
-                state.recipes.sort(function (a, b) {
+      console.log(action.payload, "soy action.payload");
+      console.log(orderByScore);
+      return {
+        ...state,
+        recipes: orderByScore,
+      };
 
-                    if (a.name > b.name) {
-                        return -1;
-                    }
+    case ORDER_RECIPE_BY_DIET:
+      const allRecipes = state.allRecipes;
+      const dietsFiltered =
+        action.payload === "all"
+          ? allRecipes
+          : allRecipes.filter((elem) => elem.diets.includes(action.payload));
+      return {
+        ...state,
+        recipes: dietsFiltered,
+      };
 
-                    if (b.name > a.name) {
-                        return 1;
-                    }
-
-                    return 0;
-                });
-            return {
-                ...state,
-                recipes: orderByName
-            }
-
-        case ORDER_RECIPE_BY_SCORE:
-
-            const orderByScore = action.payload === 'menor' ?
-
-                state.recipes.sort((a, b) => a.score - b.score)
-                :
-                state.recipes.sort((a, b) => b.score - a.score)
-
-            console.log(action.payload, 'soy action.payload')
-            console.log(orderByScore)
-            return {
-                ...state,
-                recipes: orderByScore
-            }
-
-        case ORDER_RECIPE_BY_DIET:
-            const allRecipes = state.allRecipes
-            const dietsFiltered = action.payload === 'all' ? allRecipes
-                : allRecipes.filter(elem => elem.diets.includes(action.payload))
-            return {
-                ...state,
-                recipes: dietsFiltered
-            }
-
-        default: return state
-    }
+    default:
+      return state;
+  }
 }
 
 export default rootReducer;
