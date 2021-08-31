@@ -1,6 +1,7 @@
 const { Router } = require('express');
 
-const { getDiets } = require('../controllers/index')
+// const { getDiets } = require('../controllers/index')
+const { getDietsDB } = require('../controllers/index')
 
 const router = Router()
 
@@ -11,6 +12,7 @@ const router = Router()
 // En una primera instancia, cuando no exista ninguno, deberán precargar la base de datos con los tipos de datos indicados por spoonacular acá
 
 //http://localhost:3001/types/
-router.get('/', getDiets)
+// router.get('/', getDiets)
+router.get('/', getDietsDB)
 
 module.exports = router;

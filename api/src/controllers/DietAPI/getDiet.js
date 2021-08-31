@@ -4,10 +4,6 @@ const axios = require('axios').default
 
 const { dbApi } = require('../../utils/config')
 
-// function getDiets (req, res, next) {
-//     res.send('Soy la funcion getDiets')
-// }
-
 getDiets = async (_req, res, next) => {
 
     try {
@@ -28,6 +24,7 @@ getDiets = async (_req, res, next) => {
                 'gluten free',
                 'dairy free',
                 'lacto ovo vegetarian',
+                'vegetarian',
                 'vegan',
                 'paleolithic',
                 'pescatarian',
@@ -36,8 +33,8 @@ getDiets = async (_req, res, next) => {
                 'whole 30',
             ]
 
-        await diets.forEach(diet => {
-            if (diets.length == 0) {
+         diets.forEach(diet => {
+            if (diets.length === 0) {
                 return modelDiets
             } else {
                 Diet.findOrCreate({
