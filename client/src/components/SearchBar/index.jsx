@@ -9,9 +9,8 @@ function SearchBar() {
 
   const dispatch = useDispatch(getRecipeByName);
 
-  const handleChangeSearchBar = (e) => {
+  const handleChangeSearchBar = e => {
     e.preventDefault();
-    console.log(name);
     setName(e.target.value);
   };
 

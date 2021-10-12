@@ -20,12 +20,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 170px;
+  height: 150px;
   background-color: rgba(147, 39, 39, 0.455);
 }
 
 .nameRecipe {
-  font-size: 29px;
+  font-size: 26px;
   color: white;
 }
 
@@ -33,7 +33,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 90px;
+  height: 140px;
 }
 
 .dietsRecipe {

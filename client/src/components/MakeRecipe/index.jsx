@@ -15,7 +15,7 @@ export function MakeRecipe() {
   const dispatch = useDispatch();
 
   //Me estoy trayendo el estado de diets
-  const diets = useSelector((state) => state.diets);
+  const diets = useSelector(state => state.diets);
 
   const [recipe, setRecipe] = useState({
     name: "",
@@ -23,7 +23,8 @@ export function MakeRecipe() {
     dishes: "",
     score: "",
     healthy: "",
-    steps: "",
+    steps: [],
+    ingredients: [],
     image: "",
     diets: [],
   });
@@ -61,8 +62,13 @@ export function MakeRecipe() {
     }
     if (!recipe.steps)
       errors.steps = `Recipe's instructions is requiered / Se requiere las instrucciones de la receta`;
-    else if (recipe.steps.length < 50) {
-      errors.steps = `Recipe's  should be between at least 50 characters of extension / Las instrucciones deben contener al menos 50 caracteres`;
+    else if (recipe.steps.length < 30) {
+      errors.steps = `Recipe's steps should be between at least 30 characters of extension / Las instrucciones deben contener al menos 30 caracteres`;
+    }
+    if (!recipe.ingredients)
+      errors.ingredients = `Recipe's ingredients is requiered / Se requiere las ingredientes de la receta`;
+    else if (recipe.ingredients.length < 20) {
+      errors.ingredients = `Recipe's ingredients should be between at least 20 characters of extension / Los ingredientes deben contener al menos 20 caracteres`;
     }
     if (!recipe.image) {
       errors.image = `Recipe's image is requiered / Se requiere una imagen de la receta`;
@@ -108,28 +114,21 @@ export function MakeRecipe() {
   // };
 
   const handleCheckbox = (e) => {
-    console.log(e.target.value);
     if (e.target.checked) {
       setRecipe({
         ...recipe,
         diets: [...recipe.diets, e.target.value],
       });
-      console.log(recipe);
     } else {
       setRecipe({
         ...recipe,
         diets: recipe.diets.filter((diet) => diet !== e.target.value),
       });
     }
-  };
+  }
 
-  // const handleDeleteDietsNames = (elem) => {
-  //   setRecipe({
-  //     ...recipe,
-  //     diets: recipe.diets.filter((diet) => diet !== elem),
-  //   });
-  // };
 
+  console.log(recipe, 'que carajos estoy haciendo')
   //Aca hago mi post a mi base de datos
 
   const handleSubmit = (e) => {
@@ -145,14 +144,15 @@ export function MakeRecipe() {
         dishes: "",
         score: "",
         healthy: "",
-        steps: "",
+        steps: [],
+        ingredients: [],
         image: "",
         diets: [],
       });
       dispatch(getRecipes());
       history.push("/recipes");
     } else {
-      alert("Some ingredients are missing :(");
+      alert("Some ingredients are missing :(")
     }
   };
 
@@ -252,6 +252,41 @@ export function MakeRecipe() {
             />
             {errors.steps && <p className={style.errors}> {errors.steps} </p>}
           </div>
+          <div className={style.divInput}>
+            <textarea
+              type="textarea"
+              name="steps"
+              value={recipe.steps}
+              placeholder="Recipe Steps.. | Instrucciones de la receta.."
+              onChange={(e) => onInputChange(e)}
+              className={style.input}
+            />
+            {errors.steps && <p className={style.errors}> {errors.steps} </p>}
+          </div>
+          <div className={style.divInput}>
+            <textarea
+              type="textarea"
+              name="steps"
+              value={recipe.steps}
+              placeholder="Recipe Steps.. | Instrucciones de la receta.."
+              onChange={(e) => onInputChange(e)}
+              className={style.input}
+            />
+            {errors.steps && <p className={style.errors}> {errors.steps} </p>}
+          </div>
+
+          <label className={style.labelInput}>Ingredients | Ingredientes:</label>
+          <div className={style.divInput}>
+            <textarea
+              type="text"
+              name="ingredients"
+              value={recipe.ingredients}
+              placeholder="Recipe ingredients.. | Ingredientes de la receta.."
+              onChange={(e) => onInputChange(e)}
+              className={style.input}
+            />
+            {errors.ingredients && <p className={style.errors}> {errors.ingredients} </p>}
+          </div>
           <label className={style.labelInput}>Image | Imagen:</label>
           <div className={style.divInput}>
             <input
@@ -264,18 +299,6 @@ export function MakeRecipe() {
             />
             {errors.image && <p className={style.errors}> {errors.image} </p>}
           </div>
-
-          {/* <label className={style.labelInput}>Dietas / Diets: </label>
-        <div className={style.divInput}>
-
-        <select className={style.containerSelect} onChange={e => handleDiets(e)}>
-          {diets.map(diet => (
-            <option value={diet.name}>{diet.name}</option>
-          ))}
-
-          {errors.diets && <p className={style.errors}> {errors.diets} </p>}
-        </select>
-        </div> */}
 
           <label className={style.labelInput}>
             Choose your diets | Elije tus dietas:

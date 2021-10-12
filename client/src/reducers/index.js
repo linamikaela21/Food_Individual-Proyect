@@ -90,9 +90,6 @@ function rootReducer(state = initialState, action) {
         action.payload === "menor"
           ? state.recipes.sort((a, b) => a.score - b.score)
           : state.recipes.sort((a, b) => b.score - a.score);
-
-      console.log(action.payload, "soy action.payload");
-      console.log(orderByScore);
       return {
         ...state,
         recipes: orderByScore,
@@ -100,10 +97,9 @@ function rootReducer(state = initialState, action) {
 
     case ORDER_RECIPE_BY_DIET:
       const allRecipes = state.allRecipes;
-      const dietsFiltered =
-        action.payload === "all"
+      const dietsFiltered = action.payload === "all"
           ? allRecipes
-          : allRecipes.filter((elem) => elem.diets.includes(action.payload));
+          : allRecipes.filter(elem => elem.Diets.map(diet => diet.name).includes(action.payload))
       return {
         ...state,
         recipes: dietsFiltered,

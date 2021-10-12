@@ -23,13 +23,13 @@ export function Home() {
 
   //Este Hooks es lo mismo que hacer el MapStateToPRops
   //Me estoy trayendo todo lo que esta en el estado de recipes
-  const allRecipes = useSelector((state) => state.recipes);
+  const allRecipes = useSelector(state => state.recipes);
 
   //Esta es mi logica del paginado
   //El estado de mi pagina actual que empieza en Pagina 1
   const [currentPage, setCurrentPage] = useState(1);
   //Cuantas recetas quiero por pagina => 9
-  const [recipesPerPage, setRecipesPerPage] = useState(9);
+  const recipesPerPage= 9
   //La posicion de mi ultima receta
   const indexLastRecipe = currentPage * recipesPerPage;
   //La posicion de mi primer receta
@@ -120,9 +120,7 @@ export function Home() {
           <option value="all">All | Todas</option>
           <option value="gluten free">Dieta: Gluten Free</option>
           <option value="dairy free">Dieta: Dairy Free</option>
-          <option value="lacto ovo vegetarian">
-            Dieta: Lacto Ovo Vegetarian
-          </option>
+          <option value="lacto ovo vegetarian">Dieta: Lacto Ovo Vegetarian</option>
           <option value="vegan">Dieta: Vegan</option>
           <option value="paleolithic">Dieta: Paleo / Paleolithic</option>
           <option value="pescatarian">Dieta: Pescatarian</option>
@@ -131,19 +129,6 @@ export function Home() {
           <option value="whole 30">Dieta: Whole 30</option>
         </select>
       </div>
-
-      {/* <div className={style.buttonRecargarContainer}>
-        POR LAS DUDAS NO CARGUEN LAS RECETAS A LA PRIMERA 
-        <button
-          className={style.buttonRecargar}
-          onClick={(e) => {
-            handleClick(e);
-          }}
-        >
-          REFRESH PAGE <br />
-          VOLVER A CARGAR PAGINA
-        </button>
-      </div> */}
 
       {/*El componente RECIPES ya trajo el estado inicial por ende exporto mi componente Recipe, 
           mapeo la info de mi state y la paso por props a Recipe */}
@@ -154,12 +139,13 @@ export function Home() {
               <Card
                 key={elem?.id}
                 name={elem?.name}
-                diets={elem?.diets}
+                diets={elem?.Diets}
                 dishes={elem?.dishes}
                 score={elem?.score}
                 description={elem?.description}
                 healthy={elem?.healthy}
                 steps={elem?.steps}
+                ingredients={elem?.ingredients}
                 image={elem?.image}
               />
             </div>

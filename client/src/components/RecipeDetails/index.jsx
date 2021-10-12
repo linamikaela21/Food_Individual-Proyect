@@ -20,7 +20,7 @@ export function RecipeDetails() {
   }, [id, dispatch]);
 
   //Me traigo el estado desde el reducer
-  const recipeDetails = useSelector((state) => state.details);
+  const recipeDetails = useSelector(state => state.details)
 
   const [loading, setLoading] = useState(false);
 
@@ -39,7 +39,7 @@ export function RecipeDetails() {
     dispatch(deleteRecipe(id));
     dispatch(getRecipes());
     history.push("/recipes");
-  };
+  }
 
   return (
     <div className={style.content}>
@@ -53,6 +53,7 @@ export function RecipeDetails() {
               BORRAR RECETA
             </button>
           </div>
+
           <div className={style.contentRecipeDetails}>
             <h1 className={style.tituloNameRecipeDetails}>
               {recipeDetails?.name?.toUpperCase()}
@@ -65,7 +66,7 @@ export function RecipeDetails() {
 
             <h3 className={style.tituloRecipeDetails}>DIETS | DIETAS:</h3>
             <h2 className={style.detalleRecipeDetails}>
-              {recipeDetails?.diets?.map((elem) => elem.toUpperCase() + " - ")}
+              {recipeDetails?.diets?.map(diet => diet.name.toUpperCase() + ' - ')}
             </h2>
             <h3 className={style.tituloRecipeDetails}> SCORE | PUNTAJE:</h3>
             <h2 className={style.detalleRecipeDetails}>
@@ -82,7 +83,6 @@ export function RecipeDetails() {
             ) : (
               recipeDetails?.dishes?.map((elem) => (
                 <h2>
-                  {" "}
                   <ul className={style.detalleRecipeDetailsDish}>
                     <li key={elem}>{elem.toUpperCase()}</li>
                   </ul>
@@ -105,37 +105,29 @@ export function RecipeDetails() {
             <h3 className={style.tituloRecipeDetails}>
               INSTRUCTIONS | INSTRUCCIONES:
             </h3>
-
-            <ol>
-              {typeof recipeDetails?.steps === "string" ? (
-                <ul>
-                  <li
-                    key={recipeDetails.step}
-                    className={style.detalleRecipeSteps}
-                  >
-                    {recipeDetails?.steps}
-                  </li>
-                </ul>
-              ) : (
-                recipeDetails?.steps?.map((s) => {
+             <ol>
+              {recipeDetails?.steps?.map(s => s.map(s => {
                   return (
-                    <li key={s.step} className={style.detalleRecipeSteps}>
-                      {s.step}
-                      <h3 className={style.tituloRecipeDetails}>
-                        INGREDIENTS | INGREDIENTES
-                      </h3>
-                      {s.ingredients?.map((elem) => (
-                        <ul>
-                          <li key={elem.name}>
-                            <h4>{elem.name?.toUpperCase()}</h4>
-                          </li>
-                        </ul>
-                      ))}
+                    <li key={s} className={style.detalleRecipeSteps}>
+                      {s}
                     </li>
-                  );
-                })
+                  )})
               )}
-            </ol>
+            </ol> 
+
+            <h3 className={style.tituloRecipeDetails}>
+               INGREDIENTS | INGREDIENTES
+           </h3>
+
+           <ol>
+              {recipeDetails?.ingredients?.map(ing => ing.map(ing => {
+                  return (
+                    <li key={ing} className={style.detalleRecipeSteps}>
+                      {ing}
+                    </li>
+                  )})
+              )}
+            </ol> 
           </div>
         </div>
       ) : (

@@ -33,7 +33,7 @@ import {
 //ASYNC AWAIT
 export function getRecipes() {
   return async function (dispatch) {
-    var allRecipes = await axios(URL_ALL_RECIPES, {});
+    var allRecipes = await axios(URL_ALL_RECIPES)
     return dispatch({
       type: GET_RECIPES,
       payload: allRecipes.data,
@@ -44,7 +44,7 @@ export function getRecipes() {
 //CREACION DE RECETA
 export function getDiets() {
   return async (dispatch) => {
-    var allDiets = await axios.get(URL_DIETS);
+    var allDiets = await axios.get(URL_DIETS)
     return dispatch({
       type: GET_DIETS,
       payload: allDiets.data,
@@ -55,8 +55,6 @@ export function getDiets() {
 export function addRecipe(payload) {
   return async function (dispatch) {
     var addRecipe = await axios.post(URL_ALL_RECIPES, payload);
-    console.log(payload);
-    //dispatch
     return {
       type: ADD_RECIPE,
       addRecipe,
@@ -83,7 +81,7 @@ export function getRecipeByName(name) {
 export function getRecipeById(id) {
   return async function (dispatch) {
     try {
-      const recipeId = await axios(URL_ALL_RECIPES + `${id}`);
+      const recipeId = await axios(URL_ALL_RECIPES + `${id}`)
       return dispatch({
         type: SEARCH_RECIPE_BY_ID,
         payload: recipeId.data,
@@ -98,7 +96,6 @@ export function getRecipeById(id) {
 export function deleteRecipe(id) {
   return async function (dispatch) {
     var deleteRecipe = await axios.delete(URL_ALL_RECIPES + `${id}`);
-    console.log(deleteRecipe);
     return {
       type: DELETE_RECIPE,
       deleteRecipe,
