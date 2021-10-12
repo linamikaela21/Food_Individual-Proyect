@@ -43,7 +43,11 @@ module.exports = (sequelize) => {
       allowNull: true,
     },
     steps: {
-      type: DataTypes.ARRAY(DataTypes.TEXT),
+      type: DataTypes.ARRAY(DataTypes.JSON),
+      allowNull: true,
+    },
+    ingredients: {
+      type: DataTypes.ARRAY(DataTypes.JSON),
       allowNull: true,
     },
     image: {

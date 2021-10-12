@@ -20,9 +20,9 @@ getRecipeByIdDB = async (req, res, next) => {
       dishes: dbRecipeId.dishes,
       score: dbRecipeId.score,
       healthy: dbRecipeId.healthy,
-      // diets: dbRecipeId.Diets.map((elem) => elem.name),
       diets: dbRecipeId.Diets,
-      steps: dbRecipeId.steps?.map(s => s),
+      steps: dbRecipeId.steps,
+      ingredients: dbRecipeId.ingredients,
       image: dbRecipeId.image,
     };
 

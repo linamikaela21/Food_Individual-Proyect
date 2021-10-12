@@ -28,12 +28,8 @@ const getRecipeByNameDB = async (req, res, next) => {
           [Op.iLike]: `%${name}%`,
         }
           },
-      include: {
-        model: Diet,
-      },
+      include: Diet,
     });
-
-    console.log(name);
 
     if (dbRecipes.length === 0) {
       return res.send(

@@ -11,14 +11,14 @@ const exclude = ['createdAt', 'updatedAt']
 
 const getRecipesDB = async (_req, res, next) => {
   try {
-    const dbRecipes = await Recipe.findAll({
-      attributes: {
-        exclude
-    },
-    include: {
-      model: Diet
-  }
-})
+  let dbRecipes = await Recipe.findAll({
+    attributes: {
+              exclude
+          },
+          include: [{
+            model: Diet,
+          }]
+  })
 
     res.send(dbRecipes);
   } catch (error) {

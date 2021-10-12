@@ -64,6 +64,7 @@ const getRecipes = (_req, res, next) => {
 
     //aca los uno
     var allRecipes = apiRecipes.concat(dbRecipes)
+    
     res.send(allRecipes)
   })
     .catch(error => next(error))

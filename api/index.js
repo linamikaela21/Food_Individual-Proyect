@@ -5,12 +5,10 @@ const force = JSON.parse(FORCE)
 
 //Lo agrego para que al iniciar el servidor precargue mi Base de Datos
 const { getDataFromApi }  = require('./src/controllers/RecipeDB/getDataFromApi')
-const { getDietsDB }  = require('./src/controllers/DietDB/getDietDB')
 
 // Syncing all the models at once.
 conn.sync({ force })
 .then(() => force ? getDataFromApi() : null)
-.then(() => force ? getDietsDB() : null)
 .then(() => {
   server.listen(PORT, () => {
     console.log(`Server listening at port ${PORT}`); // eslint-disable-line no-console

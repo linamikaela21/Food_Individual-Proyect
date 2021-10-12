@@ -28,8 +28,8 @@ const { v4: uuidv4 } = require('uuid')
     dishes: dishes,
     score: score,
     healthy: healthy,
+    steps: steps,
     image: image,
-    steps: steps
   })
 
   //Agrego dietas
