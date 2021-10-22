@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import style from "./index.module.css";
 
-import { deleteRecipe, getRecipeById, getRecipes } from "../../actions";
+import { deleteRecipe, getRecipeById, getRecipes } from "../../redux/actions";
 
 export function RecipeDetails() {
   const dispatch = useDispatch();
@@ -115,19 +115,6 @@ export function RecipeDetails() {
               )}
             </ol> 
 
-            <h3 className={style.tituloRecipeDetails}>
-               INGREDIENTS | INGREDIENTES
-           </h3>
-
-           <ol>
-              {recipeDetails?.ingredients?.map(ing => ing.map(ing => {
-                  return (
-                    <li key={ing} className={style.detalleRecipeSteps}>
-                      {ing}
-                    </li>
-                  )})
-              )}
-            </ol> 
           </div>
         </div>
       ) : (

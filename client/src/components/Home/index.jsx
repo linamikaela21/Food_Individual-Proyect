@@ -9,7 +9,7 @@ import {
   orderRecipeByName,
   orderRecipeByDiet,
   orderRecipeByScore,
-} from "../../actions/index";
+} from "../../redux/actions/index";
 
 import Card from "./Card";
 import Paginado from "../Paginado";
@@ -145,7 +145,6 @@ export function Home() {
                 description={elem?.description}
                 healthy={elem?.healthy}
                 steps={elem?.steps}
-                ingredients={elem?.ingredients}
                 image={elem?.image}
               />
             </div>

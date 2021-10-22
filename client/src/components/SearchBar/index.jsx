@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getRecipeByName } from "../../actions/index";
+import { getRecipeByName } from "../../redux/actions/index";
 
 import style from "./index.module.css";
 

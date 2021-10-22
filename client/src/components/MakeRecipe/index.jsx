@@ -4,7 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 
 import style from "./index.module.css";
 
-import { addRecipe, getDiets, getRecipes } from "../../actions";
+import { addRecipe, getDiets, getRecipes } from "../../redux/actions"
 
 export function MakeRecipe() {
   //const {name, description, score, healthy, image, steps, diets} = req.body
@@ -20,14 +20,17 @@ export function MakeRecipe() {
   const [recipe, setRecipe] = useState({
     name: "",
     description: "",
-    dishes: "",
+    dishes: [],
     score: "",
     healthy: "",
     steps: [],
-    ingredients: [],
     image: "",
     diets: [],
   });
+
+const [step, setStep] = useState('')
+
+const [dish, setDish] = useState('')
 
   //VALIDACION Y MANEJO DE ERRORES
 
@@ -47,8 +50,8 @@ export function MakeRecipe() {
     }
     if (!recipe.dishes)
       errors.dishes = `Recipe's type of dish is requiered / Se requiere un tipo de plato`;
-    else if (recipe.dishes.length < 4) {
-      errors.dishes = `Recipe's type of dish should be at least 5 characters of extension / El tipo de plato de la receta debe ser de al menos 4 caracteres`;
+    else if (recipe.dishes.length < 1) {
+      errors.dishes = `Recipe's type of dish should be al least one / El tipo de plato de la receta debe ser al menos uno`;
     }
     if (!recipe.score)
       errors.score = `Recipe's score is requiered / Se requiere una puntuacion de la receta`;
@@ -62,20 +65,15 @@ export function MakeRecipe() {
     }
     if (!recipe.steps)
       errors.steps = `Recipe's instructions is requiered / Se requiere las instrucciones de la receta`;
-    else if (recipe.steps.length < 30) {
-      errors.steps = `Recipe's steps should be between at least 30 characters of extension / Las instrucciones deben contener al menos 30 caracteres`;
-    }
-    if (!recipe.ingredients)
-      errors.ingredients = `Recipe's ingredients is requiered / Se requiere las ingredientes de la receta`;
-    else if (recipe.ingredients.length < 20) {
-      errors.ingredients = `Recipe's ingredients should be between at least 20 characters of extension / Los ingredientes deben contener al menos 20 caracteres`;
+    else if (recipe.steps.length < 1) {
+      errors.steps = `Recipe's steps should be al least one step / Las instrucciones deben contener al menos un paso`;
     }
     if (!recipe.image) {
       errors.image = `Recipe's image is requiered / Se requiere una imagen de la receta`;
     }
-    // if (recipe.diets.length === 0) {
-    //   errors.diets = `Recipe's diets is requiered / Se requiere el/los tipos de dieta/s en la/s que esta incluida la receta`;
-    // }
+    if (recipe.diets.length < 1) {
+      errors.diets = `Recipe's diets is requiered / Se requiere el/los tipos de dieta/s en la/s que esta incluida la receta`;
+    }
     return errors;
   };
 
@@ -105,13 +103,6 @@ export function MakeRecipe() {
       );
     }
   }
-  // const handleDiets = (e) => {
-  //   const newDiets = new Set(recipe.diets);
-  //   setRecipe({
-  //     ...recipe,
-  //     diets: [...newDiets, e.target.value],
-  //   });
-  // };
 
   const handleCheckbox = (e) => {
     if (e.target.checked) {
@@ -127,8 +118,6 @@ export function MakeRecipe() {
     }
   }
 
-
-  console.log(recipe, 'que carajos estoy haciendo')
   //Aca hago mi post a mi base de datos
 
   const handleSubmit = (e) => {
@@ -141,11 +130,10 @@ export function MakeRecipe() {
       setRecipe({
         name: "",
         description: "",
-        dishes: "",
+        dishes: [],
         score: "",
         healthy: "",
         steps: [],
-        ingredients: [],
         image: "",
         diets: [],
       });
@@ -155,6 +143,38 @@ export function MakeRecipe() {
       alert("Some ingredients are missing :(")
     }
   };
+
+  const onChangeStep = (e) => {
+    setStep(e.target.value)
+  }
+
+  const addStep = (e) => {
+    e.preventDefault()
+    setRecipe({...recipe, steps: [...recipe.steps, step]})
+    setStep('')
+  }
+
+  const deleteStep = (e, s) => {
+    e.preventDefault()
+    setRecipe({...recipe, steps: recipe.steps.filter(x => x !== s)})
+  }
+
+  const onChangeDish = (e) => {
+    setDish(e.target.value)
+  }
+
+  const addDish = (e) => {
+    e.preventDefault()
+    setRecipe({...recipe, dishes: [...recipe.dishes, dish]})
+    setDish('')
+  }
+
+  const deleteDish = (e, d) => {
+    e.preventDefault()
+    setRecipe({...recipe, dishes: recipe.dishes.filter(x => x !== d)})
+  }
+
+  console.log(recipe, 'que estoy haciendo ?')
 
   return (
     <div className={style.formFondo}>
@@ -200,12 +220,18 @@ export function MakeRecipe() {
             <input
               type="text"
               name="dishes"
-              value={recipe.dishes}
+              value={dish}
               placeholder="Recipe Dishes Types.. | Tipo/s de plato/s.."
-              onChange={(e) => onInputChange(e)}
+              onChange={e => onChangeDish(e)}
               className={style.input}
             />
             {errors.dishes && <p className={style.errors}> {errors.dishes} </p>}
+          </div>
+          <button className={style.stepButtonAdd} onClick={e => addDish(e)}> Add Dish | Agregar plato</button>
+          <div className={style.divInput}>
+            <ol className={style.step}> {recipe.dishes?.map(d => (
+             <div > <li> {d} <button className={style.stepButton} onClick={e => deleteDish(e, d)}>Delete | Borrar</button> </li></div>
+            ))} </ol>
           </div>
 
           <label className={style.labelInput}>Score | Puntaje:</label>
@@ -241,52 +267,24 @@ export function MakeRecipe() {
             )}
           </div>
           <label className={style.labelInput}>Steps | Instrucciones:</label>
-          <div className={style.divInput}>
-            <textarea
-              type="textarea"
-              name="steps"
-              value={recipe.steps}
-              placeholder="Recipe Steps.. | Instrucciones de la receta.."
-              onChange={(e) => onInputChange(e)}
-              className={style.input}
-            />
-            {errors.steps && <p className={style.errors}> {errors.steps} </p>}
-          </div>
-          <div className={style.divInput}>
-            <textarea
-              type="textarea"
-              name="steps"
-              value={recipe.steps}
-              placeholder="Recipe Steps.. | Instrucciones de la receta.."
-              onChange={(e) => onInputChange(e)}
-              className={style.input}
-            />
-            {errors.steps && <p className={style.errors}> {errors.steps} </p>}
-          </div>
-          <div className={style.divInput}>
-            <textarea
-              type="textarea"
-              name="steps"
-              value={recipe.steps}
-              placeholder="Recipe Steps.. | Instrucciones de la receta.."
-              onChange={(e) => onInputChange(e)}
-              className={style.input}
-            />
-            {errors.steps && <p className={style.errors}> {errors.steps} </p>}
-          </div>
-
-          <label className={style.labelInput}>Ingredients | Ingredientes:</label>
-          <div className={style.divInput}>
+           <div className={style.divInput}>
             <textarea
               type="text"
-              name="ingredients"
-              value={recipe.ingredients}
-              placeholder="Recipe ingredients.. | Ingredientes de la receta.."
-              onChange={(e) => onInputChange(e)}
+              name="step"
+              value={step}
+              onChange={e => onChangeStep(e)}
+              placeholder="Recipe Steps.. | Instrucciones de la receta.."
               className={style.input}
             />
-            {errors.ingredients && <p className={style.errors}> {errors.ingredients} </p>}
+            {errors.steps && <p className={style.errors}> {errors.steps} </p>}
+          </div> 
+            <button className={style.stepButtonAdd} onClick={e => addStep(e)}> Add Step | Agregar paso</button>
+          <div className={style.divInput}>
+            <ol className={style.step}> {recipe.steps?.map(s => (
+             <div > <li> {s} <button className={style.stepButton} onClick={e => deleteStep(e, s)}>Delete | Borrar</button> </li></div>
+            ))} </ol>
           </div>
+
           <label className={style.labelInput}>Image | Imagen:</label>
           <div className={style.divInput}>
             <input
@@ -316,7 +314,6 @@ export function MakeRecipe() {
                 <label name={diet}>{diet?.name?.toUpperCase()}</label>
               </span>
             ))}
-            {/* {errors.diets && <p className={style.errors}> {errors.diets} </p>} */}
           </div>
 
           <div>
@@ -329,15 +326,6 @@ export function MakeRecipe() {
             </button>
           </div>
         </form>
-
-        {/* {
-      recipe.diets.map(elem => 
-      <div className={style.divLI}>
-        <ul><li className={style.li} key={elem}>{elem}</li>
-        <button onClick={e => handleDeleteDietsNames(e)} >X</button></ul>
-         
-        </div>
-      )} */}
 
         <Link to="/recipes">
           <div>

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { URL_ALL_RECIPES, URL_DIETS, URL_RECIPES_BY_NAME } from "../../constantes";
+import { URL_ALL_RECIPES, URL_DIETS, URL_RECIPES_BY_NAME } from "../../constantes"
 
 import {
   GET_RECIPES,
