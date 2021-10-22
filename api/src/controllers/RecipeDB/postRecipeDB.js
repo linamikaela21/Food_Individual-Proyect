@@ -18,6 +18,8 @@ const { v4: uuidv4 } = require('uuid')
     diets
   } = req.body
 
+  console.log(req.body, 'body')
+
 
   if (!name || !description) return res.status(404).json({})
 
@@ -26,9 +28,9 @@ const { v4: uuidv4 } = require('uuid')
     name: name,
     description: description,
     dishes: dishes,
-    score: score,
-    healthy: healthy,
-    steps: steps,
+    score: parseInt(score),
+    healthy: parseInt(healthy),
+    steps: [steps],
     image: image,
   })
 

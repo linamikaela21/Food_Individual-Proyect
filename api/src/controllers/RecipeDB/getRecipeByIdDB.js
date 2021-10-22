@@ -22,7 +22,6 @@ getRecipeByIdDB = async (req, res, next) => {
       healthy: dbRecipeId.healthy,
       diets: dbRecipeId.Diets,
       steps: dbRecipeId.steps,
-      ingredients: dbRecipeId.ingredients,
       image: dbRecipeId.image,
     };
 

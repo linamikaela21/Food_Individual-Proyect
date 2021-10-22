@@ -12,8 +12,13 @@ const getDataFromApi = async () => {
     try {
       let info = await axios.get(url)
       let data = info.data.results
+
+      let a = 0
       
       for ( let receta of data) {
+        if(a === 0) {
+        a++
+        }
         const recipe = await Recipe.create({
             id: uuidv4(),
            name: receta?.title,
@@ -22,8 +27,7 @@ const getDataFromApi = async () => {
            score: receta?.spoonacularScore,
            healthy: receta?.healthScore,
            steps: receta?.analyzedInstructions?.map(s => s.steps.map(x => x.step)),
-           ingredients: receta?.analyzedInstructions?.map(ing => ing.steps.map(ing => ing.ingredients.map(ing => ing.name))),
-           image: receta?.image,
+           image: receta?.image
         })
         for (let diet of receta.diets) {
           const [dietDB] = await Diet.findOrCreate({
