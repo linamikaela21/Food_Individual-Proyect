@@ -174,8 +174,6 @@ const [dish, setDish] = useState('')
     setRecipe({...recipe, dishes: recipe.dishes.filter(x => x !== d)})
   }
 
-  console.log(recipe, 'que estoy haciendo ?')
-
   return (
     <div className={style.formFondo}>
       <div className={style.formContainer}>
@@ -281,7 +279,7 @@ const [dish, setDish] = useState('')
             <button className={style.stepButtonAdd} onClick={e => addStep(e)}> Add Step | Agregar paso</button>
           <div className={style.divInput}>
             <ol className={style.step}> {recipe.steps?.map(s => (
-             <div > <li> {s} <button className={style.stepButton} onClick={e => deleteStep(e, s)}>Delete | Borrar</button> </li></div>
+             <div > <li key={s}> {s} <button className={style.stepButton} onClick={e => deleteStep(e, s)}>Delete | Borrar</button> </li></div>
             ))} </ol>
           </div>
 

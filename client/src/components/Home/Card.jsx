@@ -7,7 +7,7 @@ const Card = ({ name, diets, image }) => {
       <div className={style.dietsRecipeDiv}>
         <ul className={style.dietsRecipe}>
          {diets?.map(diet => (
-           <li> {diet.name.toUpperCase()} </li>
+           <li key={diet.name}> {diet.name.toUpperCase()} </li>
          )
          )}
       </ul>

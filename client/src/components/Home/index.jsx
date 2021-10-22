@@ -132,7 +132,7 @@ export function Home() {
 
       {/*El componente RECIPES ya trajo el estado inicial por ende exporto mi componente Recipe, 
           mapeo la info de mi state y la paso por props a Recipe */}
-      {currentRecipes.map((elem) => {
+      {currentRecipes?.map(elem => {
         return (
           <Link to={`/recipes/${elem?.id}`}>
             <div className={style.recipes} name={elem.id}>
