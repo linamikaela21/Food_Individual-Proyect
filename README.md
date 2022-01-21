@@ -1,8 +1,8 @@
-# Individual Project - Food
-
-<p align="right">
-  <img height="200" src="./cooking.png" />
+<p align='left'>
+    <img src='https://static.wixstatic.com/media/85087f_0d84cbeaeb824fca8f7ff18d7c9eaafd~mv2.png/v1/fill/w_160,h_30,al_c,q_85,usm_0.66_1.00_0.01/Logo_completo_Color_1PNG.webp' </img>
 </p>
+
+# Individual Project - Henry Food
 
 ## Objetivos del Proyecto
 
@@ -11,16 +11,10 @@
 - Aprender mejores prácticas.
 - Aprender y practicar el workflow de GIT.
 
-## Horarios y Fechas
-
-El proyecto tendrá una duración máxima de tres semanas.
-
 ## Comenzando
 
  1. Forkear el repositorio para tener una copia del mismo en sus cuentas
  2. Clonar el repositorio en sus computadoras para comenzar a trabajar
-
-Tendrán un `boilerplate` con la estructura general tanto del servidor como de cliente.
 
 ## BoilerPlate
 
@@ -40,7 +34,7 @@ FORCE= false
 
 ## Enunciado
 
-La idea general fue crear una aplicación en la cual se puedan ver distintas recetas de comida junto con información relevante de las mismas utilizando la api externa [spoonacular](https://spoonacular.com/food-api) y a partir de ella poder, entre otras cosas:
+La idea general es crear una aplicación en la cual se puedan ver distintas recetas de comida junto con información relevante de las mismas utilizando la api externa [spoonacular](https://spoonacular.com/food-api) y a partir de ella poder, entre otras cosas:
 
   - Buscar recetas
   - Filtrarlos / Ordenarlos
@@ -102,7 +96,7 @@ __Ruta de creación de recetas__:
 - [ ] Posibilidad de seleccionar/agregar uno o más tipos de dietas
 - [ ] Botón/Opción para crear una nueva receta
 
-__Pagina inicial__: Landing page con imagen representativa
+#### Base de datos
 
 El modelo de la base de datos contiene:
 
