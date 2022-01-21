@@ -1,4 +1,4 @@
-export const URL_BASE = 'https://food-individual-proyect.herokuapp.com' || 'http://localhost:3001'
+export const URL_BASE = 'https://food-individual-proyect.herokuapp.com/' || 'http://localhost:3001/'
 //export const URL_BASE = 'http://localhost:3001/'
 
 export const URL_ALL_RECIPES = URL_BASE + 'recipes/'
