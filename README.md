@@ -21,15 +21,19 @@
 En `api` crear un archivo llamado: `.env` que tenga la siguiente forma:
 
 ```
-DB_USER=
-DB_PASSWORD=
-DB_HOST=localhost:5432
-DB_NAME=food
-PORT=
+NODE_ENV= ==>> si es deploy: production
 
-API_KEY= 
+DB_PG_DIALECT=postgres
+DB_PG_USER=
+DB_PG_PASSWORD=
+DB_PG_HOST=localhost
+DB_PG_DATABASE=food
 
-FORCE= false
+API_KEY=
+
+FORCE=false
+PORT=3001
+
 ```
 
 ## Enunciado
