@@ -10,28 +10,33 @@
 - Afirmar y conectar los conceptos aprendidos en la carrera.
 - Aprender mejores prácticas.
 - Aprender y practicar el workflow de GIT.
-- Usar y practicar testing.
+
+## Horarios y Fechas
+
+El proyecto tendrá una duración máxima de tres semanas.
 
 ## Comenzando
 
- 1. Forkear el repositorio para tener una copia del mismo en sus cuentas y clonarlo en sus computadoras
+ 1. Forkear el repositorio para tener una copia del mismo en sus cuentas
+ 2. Clonar el repositorio en sus computadoras para comenzar a trabajar
 
-## Iniciar el proyecto
+Tendrán un `boilerplate` con la estructura general tanto del servidor como de cliente.
+
+## BoilerPlate
 
 En `api` crear un archivo llamado: `.env` que tenga la siguiente forma:
 
-DB_USER=usuariodepostgres
-DB_PASSWORD=passwordDePostgres
+```
+DB_USER=
+DB_PASSWORD=
 DB_HOST=localhost:5432
+DB_NAME=food
+PORT=
 
-DB_NAME= food
+API_KEY= 
 
-Registrarse y buscarla en https://spoonacular.com/food-api/
-dbApi = 
-
-Reemplazar `usuariodepostgres` y `passwordDePostgres` con tus propias credenciales para conectarte a postgres. Este archivo va ser ignorado en la subida a github, ya que contiene información sensible (las credenciales).
-
-Adicionalmente será necesario que creen desde psql una base de datos llamada `food`
+FORCE= false
+```
 
 ## Enunciado
 
@@ -41,35 +46,93 @@ La idea general fue crear una aplicación en la cual se puedan ver distintas rec
   - Filtrarlos / Ordenarlos
   - Crear nuevas recetas propias
 
-  En principio se utilizo todo el tiempo la API y en una segunda instancia se realizo una copia de la informacion cargando la data en la propia base de datos de una vez y continuar utilizando solo la informacion que la base de datos brinda para poder realizar un CRUD completo
+__IMPORTANTE__: Para poder utilizar esta API externa es necesario crearse una cuenta para obtener una API Key que luego debera ser incluida en todos los request que hagamos a spoonacular simplemente agregando `?apiKey={YOUR_API_KEY}` al final de cada endpoint. Agregar la clave en el archivo `.env` para que la misma no se suba al repositorio por cuestiones de seguridad y utilizarla desde allí. Por otro lado tienen un límite de requests por día por lo que usenlos con cuidado!
 
-#### Tecnologías necesarias:
+__IMPORTANTE__: Para las funcionalidades de filtrado y ordenamiento NO pueden utilizar los endpoints de la API externa que ya devuelven los resultados filtrados u ordenados sino que deben realizarlo ustedes mismos. En particular alguno de los ordenamientos o filtrados debe si o si realizarse desde el frontend.
+
+### Únicos Endpoints/Flags que pueden utilizar
+
+  * GET https://api.spoonacular.com/recipes/complexSearch
+    - Para obtener mayor información sobre las recetas, como por ejemplo el tipo de dieta deben agregar el flag `&addRecipeInformation=true` a este endpoint
+    - Para los tipos de dieta deben tener en cuenta las propiedades vegetarian, vegan, glutenFree por un lado y también analizar las que se incluyan dentro de la propiedad `diets`
+  * GET https://api.spoonacular.com/recipes/{id}/information
+
+#### Tecnologías utilizadas:
+
 - [ ] React
 - [ ] Redux
 - [ ] Express
 - [ ] Sequelize - Postgres
+- [ ] No se permitirá utilizar librerías externas para aplicar estilos a la aplicación. Tendrán que utilizar CSS con algunas de las opciones que vimos en dicha clase (CSS puro, CSS Modules o Styled Components)
 
 #### Frontend
 
-Se han utilizado las tecnologias de React y redux para poder acceder a los enpoints creados. Para el diseño solo se recurrio al uso de CSS puro con su formato de Css modules
+Se debe desarrollar una aplicación de React/Redux que contenga las siguientes pantallas/rutas.
+
+__Pagina inicial__: deben armar una landing page con
+- [ ] Alguna imagen de fondo representativa al proyecto
+- [ ] Botón para ingresar al home (`Ruta principal`)
+
+__Ruta principal__: debe contener
+- [ ] Input de búsqueda para encontrar recetas por nombre
+- [ ] Área donde se verá el listado de recetas. Deberá mostrar su:
+  - Imagen
+  - Nombre
+  - Tipo de dieta
+- [ ] Botones/Opciones para filtrar por por tipo de dieta
+- [ ] Botones/Opciones para ordenar tanto ascendentemente como descendentemente las recetas por orden alfabético y por puntuación
+- [ ] Paginado para ir buscando y mostrando las siguientes recetas, 9 recetas por pagina, mostrando las primeros 9 en la primer pagina.
+
+Dentro de la Ruta Principal se deben mostrar tanto las recetas traidas desde la API como así también las de la base de datos. Debido a que en la API existen alrededor de 5 mil recetas, por cuestiones de performance pueden tomar la simplificación de obtener y paginar las primeras 100.
+
+__Ruta de detalle de receta__:
+- [ ] Los campos mostrados en la ruta principal para cada receta (imagen, nombre, tipo de plato y tipo de dieta)
+- [ ] Resumen del plato
+- [ ] Puntuación
+- [ ] Nivel de "comida saludable"
+- [ ] Paso a paso
+
+__Ruta de creación de recetas__: 
+- [ ] Un formulario __controlado__ con los siguientes campos
+  - Nombre
+  - Resumen del plato
+  - Puntuación
+  - Nivel de "comida saludable"
+  - Paso a paso
+- [ ] Posibilidad de seleccionar/agregar uno o más tipos de dietas
+- [ ] Botón/Opción para crear una nueva receta
 
 __Pagina inicial__: Landing page con imagen representativa
 
-__Ruta principal__: Donde se muestran todas las recetas, el paginado correspondiente y el acceso a demas elementos de la pagina
+El modelo de la base de datos contiene:
 
-__Ruta de detalle de receta__: Con toda la informacion respectiva a una receta particular y donde se puede eliminar o modificar una receta
+- [ ] Receta con las siguientes propiedades:
+  - ID: 
+  - Nombre 
+  - Resumen del plato 
+  - Puntuación
+  - Nivel de "comida saludable"
+  - Paso a paso
+- [ ] Tipo de dieta con las siguientes propiedades:
+  - ID
+  - Nombre
 
-__Ruta de creación de recetas__: Donde se puede agregar a la base de datos una nueva creacion relacionandola con las dietas respectivas
-
-#### Base de datos
-
-Se han creado dos modelos de entidad relacion de muchos a muchos con Sequelize relacionando a las Recetas de la API con sus dietas respectivas
+La relación entre ambas entidades debe ser de muchos a muchos ya que una receta puede ser parte de varios tipos de dieta en simultaneo y, a su vez, un tipo de dieta puede contener múltiples recetas distintas.
 
 #### Backend
 
-- [ ] __GET /recipes?name="..."__: Para buscar recetas por nombre
-- [ ] __GET /recipes/{idReceta}__: Para buscar recetas por id
-- [ ] __GET /types__: Para buscar dietas 
-- [ ] __POST /recipe__: Para crear una nueva receta
-- [ ] __DELETE /recipe__: Para eliminar una receta
-- [ ] __PUT /recipe__: Para modificar una receta
+Se debe desarrollar un servidor en Node/Express con las siguientes rutas:
+
+- [ ] __GET /recipes?name="..."__:
+  - Obtener un listado de las recetas que contengan la palabra ingresada como query parameter
+  - Si no existe ninguna receta mostrar un mensaje adecuado
+- [ ] __GET /recipes/{idReceta}__:
+  - Obtener el detalle de una receta en particular
+  - Debe traer solo los datos pedidos en la ruta de detalle de receta
+  - Incluir los tipos de dieta asociados
+- [ ] __GET /types__:
+  - Obtener todos los tipos de dieta posibles
+  - En una primera instancia, cuando no exista ninguno, deberán precargar la base de datos con los tipos de datos indicados por spoonacular [acá](https://spoonacular.com/food-api/docs#Diets)
+- [ ] __POST /recipe__:
+  - Recibe los datos recolectados desde el formulario controlado de la ruta de creación de recetas por body
+  - Crea una receta en la base de datos
