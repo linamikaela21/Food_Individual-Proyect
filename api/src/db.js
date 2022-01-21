@@ -2,15 +2,47 @@ require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
-const {
-  DB_USER, DB_PASSWORD, DB_HOST,
-} = process.env;
 
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/food`, {
-  logging: false, // set to console.log to see the raw SQL queries
-  native: false, // lets Sequelize know we can use pg-native for ~30% more speed
-});
-const basename = path.basename(__filename);
+const { DB_PG_USER, 
+  DB_PG_PASSWORD, 
+  DB_PG_HOST, 
+  DB_PG_DIALECT, 
+  DB_PG_DATABASE, 
+  NODE_ENV } = process.env
+
+  const sequelize =
+  NODE_ENV === "production"
+    ? new Sequelize({
+        database: DB_PG_DATABASE,
+        dialect: DB_PG_DIALECT,
+        host: DB_PG_HOST,
+        port: 5432,
+        username: DB_PG_USER,
+        password: DB_PG_PASSWORD,
+        pool: {
+          max: 3,
+          min: 1,
+          idle: 10000,
+        },
+        dialectOptions: {
+          ssl: {
+            require: true,
+            // Ref.: https://github.com/brianc/node-postgres/issues/2009
+            rejectUnauthorized: false,
+          },
+          keepAlive: true,
+        },
+        ssl: true,
+      })
+    : new Sequelize(
+        `${DB_PG_DIALECT}://${DB_PG_USER}:${DB_PG_PASSWORD}@${DB_PG_HOST}/${DB_PG_DATABASE}`,
+        {
+          logging: false, // set to console.log to see the raw SQL queries
+          native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+        }
+      );
+
+const basename = path.basename(__filename)
 
 const modelDefiners = [];
 
@@ -39,10 +71,10 @@ const { Recipe, Diet } = sequelize.models;
 // =====> One-to-one  = belongsTo
 // =====> One-to-many = hasMany
 
-Recipe.belongsToMany(Diet, { through: 'recipe_diet' });
-Diet.belongsToMany(Recipe, { through: 'recipe_diet' });
+Recipe.belongsToMany(Diet, { through: 'recipe_diet' })
+Diet.belongsToMany(Recipe, { through: 'recipe_diet' })
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize,     // para importart la conexión { conn } = require('./db.js');
-};
+}
