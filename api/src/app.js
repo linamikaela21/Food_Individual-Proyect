@@ -3,11 +3,11 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const routes = require('./routes/index.js');
+const cors = require('cors')
 
 require('./db.js');
 
 const server = express();
-const cors = require('cors')
 
 server.name = 'Food';
 
@@ -33,14 +33,6 @@ server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
   const message = err.message || err;
   console.error(err);
   res.status(status).send(message);
-});
-
-// app.use((err, req, res) => {
-//   var error = {}
-//   error.msg = err.msg || err
-//   error.status = err.status || 500;
-//   res.status.send(error)
-// }) //si estamos en produccion, no vamos a enviar el error completo
-//   //si estamos en producion, queremos sacar el stack
+})
 
 module.exports = server;
